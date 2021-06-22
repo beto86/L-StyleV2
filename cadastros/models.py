@@ -61,12 +61,18 @@ class Instituicao(models.Model):
 
 
 class Turma(models.Model):
+    turno_choice = (
+        ('Matutino', 'Matutino'),
+        ('Vespertino', 'Vespertino'),
+        ('Noturno', 'Noturno'),
+    )
     nome = models.CharField(max_length=45)
     ra = models.CharField(max_length=10, unique=True, verbose_name='RA')
     periodo = models.IntegerField(verbose_name='Período')
     ano = models.IntegerField()
     curso = models.CharField(max_length=45)
-    turno = models.CharField(max_length=15, blank=True, null=True)
+    turno = models.CharField(
+        max_length=15, choices=turno_choice, blank=True, null=True)
     instituicao = models.ForeignKey(
         Instituicao, related_name='instituicao_ensinos', on_delete=models.CASCADE, verbose_name='Instituição de Ensino', blank=True, null=True)
 
@@ -183,7 +189,7 @@ class FormaAprendizagem(models.Model):
         max_length=300, verbose_name='Recomendação')
 
     class Meta:
-        verbose_name = 'Estilo'
+        verbose_name = 'Forma de Aprendizagem'
 
     def __str__(self):
         return self.nome
