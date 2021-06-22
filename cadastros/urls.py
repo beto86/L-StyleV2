@@ -2,6 +2,7 @@ from django.urls import path
 from .views import EnderecoCreate, InstituicaoCreate, TurmaCreate
 from .views import EnderecoUpdate, InstituicaoUpdate, TurmaUpdate
 from .views import EnderecoDelete, InstituicaoDelete, TurmaDelete
+from .views import EnderecoList, InstituicaoList, TurmaList
 
 
 urlpatterns = [
@@ -24,6 +25,11 @@ urlpatterns = [
          InstituicaoDelete.as_view(), name='excluir-instituicao'),
     path('excluir/turma/<int:pk>/',
          TurmaDelete.as_view(), name='excluir-turma'),
+
+    path('listar/enderecos', EnderecoList.as_view(), name='listar-enderecos'),
+    path('listar/instituicoes', InstituicaoList.as_view(),
+         name='listar-instituicoes'),
+    path('listar/turmas', TurmaList.as_view(), name='listar-turmas'),
 
 
 

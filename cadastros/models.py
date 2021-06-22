@@ -32,7 +32,6 @@ class Perfil(models.Model):
         blank=True, null=True, verbose_name='Data de Nascimento')
     fone = models.CharField(max_length=12, blank=True,
                             null=True, verbose_name='Telefone')
-    email = models.EmailField(blank=True, null=True)
     endereco = models.ForeignKey(Endereco, related_name='enderecos',
                                  on_delete=models.CASCADE, blank=True, null=True, verbose_name='Endereço')
     cpf = models.CharField(max_length=12, blank=True,

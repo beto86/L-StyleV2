@@ -26,8 +26,8 @@ class EnderecoAdmin(admin.ModelAdmin):
 
 @admin.register(Perfil)
 class PerfilAdmin(admin.ModelAdmin):
-    list_display = ('id', 'sexo', 'data_nascimento', 'cpf', 'fone',
-                    'email', 'endereco', 'criacao', 'atualizacao')
+    list_display = ('id', 'sexo', 'data_nascimento', 'cpf',
+                    'fone', 'endereco', 'criacao', 'atualizacao')
 
 
 @admin.register(Instituicao)
