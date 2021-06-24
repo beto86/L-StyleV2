@@ -5,9 +5,9 @@
 
 
 {% block conteudo %}
-    <h3>Excluir registros</h3>
+    <h3>{{titulo}}</h3>
     <p class="lead">
-        Confirme o registro para excluir definitivamente.
+        Confirme {{titulo2}} para excluir definitivamente.
     </p>
 
     <hr>
@@ -15,7 +15,7 @@
     <form action="" method="POST">
 
         <p>
-            Deseja excluir o registro: <strong>{{ object }}</strong>?
+            Deseja excluir {{titulo2}}: <strong>{{ object }}</strong>?
         </p>
 
         {% csrf_token %}
