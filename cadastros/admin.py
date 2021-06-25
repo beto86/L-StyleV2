@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Endereco, Estilo, FormaAprendizagem, Instituicao, Opcao, Perfil, Questao, Questionario, Resposta, Tentativa, Teste, Turma
+from .models import Endereco, Estilo, FormaAprendizagem, Instituicao, Opcao, Questao, Questionario, Resposta, Tentativa, Teste, Turma
 
 # Register your models here.
 """
@@ -22,12 +22,6 @@ admin.site.register(Turma)
 class EnderecoAdmin(admin.ModelAdmin):
     list_display = ('id', 'cep', 'rua', 'numero', 'complemento',
                     'bairro', 'cidade', 'estado')
-
-
-@admin.register(Perfil)
-class PerfilAdmin(admin.ModelAdmin):
-    list_display = ('id', 'sexo', 'data_nascimento', 'cpf',
-                    'fone', 'endereco', 'criacao', 'atualizacao')
 
 
 @admin.register(Instituicao)

@@ -20,33 +20,6 @@ class Endereco(models.Model):
         return f'{self.rua}, {self.numero}, {self.cidade}'
 
 
-class Perfil(models.Model):
-    sexo_choice = (
-        ('Masculino', 'Masculino'),
-        ('Feminino', 'Feminino'),
-        ('Prefiro_nao_opinar', 'Prefiro não opinar'),
-    )
-    sexo = models.CharField(max_length=30, choices=sexo_choice,
-                            default='Prefiro_nao_opinar', blank=True, null=True)
-    data_nascimento = models.DateField(
-        blank=True, null=True, verbose_name='Data de Nascimento')
-    fone = models.CharField(max_length=12, blank=True,
-                            null=True, verbose_name='Telefone')
-    endereco = models.ForeignKey(Endereco, related_name='enderecos',
-                                 on_delete=models.CASCADE, blank=True, null=True, verbose_name='Endereço')
-    cpf = models.CharField(max_length=12, blank=True,
-                           null=True, verbose_name='CPF')
-    criacao = models.DateTimeField(auto_now_add=True, verbose_name='Criação')
-    atualizacao = models.DateTimeField(
-        auto_now=True, verbose_name='Atualização')
-
-    class Meta:
-        verbose_name = 'Perfil'
-
-    def __str__(self):
-        return self.cpf
-
-
 class Instituicao(models.Model):
     nome = models.CharField(max_length=100)
     endereco = models.ForeignKey(Endereco, related_name='%(class)s_enderecos',
