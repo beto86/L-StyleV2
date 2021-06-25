@@ -8,6 +8,14 @@
 
 {% block conteudo %}
     <h3>Pagina inicial</h3>
+   
+    {% if user.perfil.nome_cmpleto %}
+        Bem vindo ao sistema {{ user.perfil.nome_cmpleto }}.
+    {% else %}
+        Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados' %}">meus dados</a> para atualizar.
+    {% endif %}
+
+    <br>
 
     Esta pagina vai ser a primeira pagina, (pagina home).
 
