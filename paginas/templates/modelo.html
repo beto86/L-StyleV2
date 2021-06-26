@@ -17,6 +17,8 @@
 
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css"/>
+
 </head>
 <body>
 
@@ -141,6 +143,16 @@
 
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+    
+    <!-- bloco de scripts -->
+    {% block scripts %}
+    <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+    
+    {% endblock %}
+
+
     
 </div>
 </html>
