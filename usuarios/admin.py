@@ -6,5 +6,5 @@ from .models import Perfil
 
 @admin.register(Perfil)
 class PerfilAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome_cmpleto', 'cpf', 'telefone', 'sexo',
+    list_display = ('id', 'nome_completo', 'cpf', 'telefone', 'sexo',
                     'data_nascimento', 'usuario', 'endereco', 'criacao', 'atualizacao')
