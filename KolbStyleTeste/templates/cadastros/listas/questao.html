@@ -1,0 +1,49 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+    <h3>Lista de questões registradas</h3>
+    <a href="{% url 'cadastrar-questao' %}" class="btn btn-primary btn-sm">Adicionar Questão</a>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th>Questionário</th>
+                    <th>Descrição</th>
+                    <th>Ordem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for questao in object_list %}
+                <tr>
+                    <td>{{ questao.questionario.descricao }}</td>
+                    <td>{{ questao.descricao }}</td>
+                    <td>{{ questao.ordem }}</td>
+                    <td>
+                        <a href="{% url 'editar-questao' questao.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        <a href="{% url 'excluir-questao' questao.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        
+                    </td>
+                </tr>
+                {% empty %}
+                <td colspan="3">Nenhuma questao registrada.</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+
+{% endblock %}

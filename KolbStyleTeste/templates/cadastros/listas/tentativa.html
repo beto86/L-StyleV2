@@ -1,0 +1,42 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+    <h3>Lista de tentativas registradas</h3>
+    <a href="{% url 'cadastrar-tentativa' %}" class="btn btn-primary btn-sm">Adicionar Tentativa</a>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th>Teste</th>
+                    <th>Aluno</th>
+                    <th>Data</th>
+                    <th>Concluiu</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tentativa in object_list %}
+                <tr>
+                    <td>{{tentativa.teste.descricao}}</td>
+                    <td>{{tentativa.aluno}}</td>
+                    <td>{{tentativa.data}}</td>
+                    <td>{{tentativa.concluiu}}</td>
+                </tr>
+                {% empty %}
+                <td colspan="3">Nenhuma tentativa registrada.</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+
+{% endblock %}

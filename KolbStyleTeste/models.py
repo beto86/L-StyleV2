@@ -52,7 +52,10 @@ class Tentativa(models.Model):
 
 
 class Questao(models.Model):
+    questionario = models.ForeignKey(
+        Questionario, related_name='%(class)s_questionarios', on_delete=models.CASCADE, null=True)
     descricao = models.CharField(max_length=100, verbose_name='Descrição')
+    ordem = models.IntegerField(null=True)
 
     class Meta:
         verbose_name = 'Questão'
@@ -65,6 +68,8 @@ class Opcao(models.Model):
     questao = models.ForeignKey(
         Questao, related_name='questaos', on_delete=models.CASCADE, verbose_name='Questão')
     descricao = models.CharField(max_length=100, verbose_name='Descrição')
+    imagem = models.URLField(null=True, blank=True)
+    video = models.URLField(null=True, blank=True)
     ordem = models.IntegerField()
 
     class Meta:

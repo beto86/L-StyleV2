@@ -55,6 +55,13 @@
                                 <li><a class="dropdown-item" href="{% url 'listar-enderecos' %}">Endereço</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-instituicoes' %}">Instituição</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-turmas' %}">Turma</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'listar-questionarios' %}">Questionário</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar-questoes' %}">Questão</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar-opcoes' %}">Opção</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar-tentativas' %}">Tentativa</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar-testes' %}">Teste</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar-respostas' %}">Resposta</a></li>
                             </ul>
                         </li>
                         {% endif %}
@@ -149,6 +156,7 @@
     <!-- bloco de scripts -->
     {% block scripts %}
     <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
     
     {% endblock %}
 

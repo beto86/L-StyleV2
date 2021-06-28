@@ -1,0 +1,41 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+    <h3>Lista de respostas registradas</h3>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th>Tentativa</th>
+                    <th>Opção</th>
+                    <th>Valor</th>
+                    <th>Aluno</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resposta in object_list %}
+                <tr>
+                    <td>{{resposta.tentativa.descricao }}</td>
+                    <td>{{resposta.opcao.descricao}}</td>
+                    <td>{{resposta.valor}}</td>
+                    <td>{{resposta.aluno}}</td>
+                </tr>
+                {% empty %}
+                <td colspan="3">Nenhuma resposta registrada.</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+
+{% endblock %}

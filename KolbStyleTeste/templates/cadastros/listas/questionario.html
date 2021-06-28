@@ -1,0 +1,45 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+    <h3>Lista de questionários registrados</h3>
+    <a href="{% url 'cadastrar-questionario' %}" class="btn btn-primary btn-sm">Adicionar Questionário</a>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for questionario in object_list %}
+                <tr>
+                    <td>{{ questionario.descricao }}</td>
+                    <td>
+                        <a href="{% url 'editar-questionario' questionario.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        <a href="{% url 'excluir-questionario' questionario.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        
+                    </td>
+                </tr>
+                {% empty %}
+                <td colspan="3">Nenhuma questionário registrado.</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+
+{% endblock %}

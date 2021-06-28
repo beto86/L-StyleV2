@@ -22,12 +22,12 @@ class TentativaAdmin(admin.ModelAdmin):
 
 @admin.register(Questao)
 class QuestaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'descricao')
+    list_display = ('id', 'questionario', 'descricao', 'ordem')
 
 
 @admin.register(Opcao)
 class OpcaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'questao', 'descricao', 'ordem')
+    list_display = ('id', 'questao', 'descricao', 'imagem', 'video', 'ordem')
 
 
 @admin.register(Resposta)
