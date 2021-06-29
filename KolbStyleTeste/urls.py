@@ -3,6 +3,7 @@ from .views import QuestionarioCreate, QuestaoCreate, OpcaoCreate, TentativaCrea
 from .views import QuestionarioUpdate, QuestaoUpdate, OpcaoUpdate, TesteUpdate
 from .views import QuestionarioDelete, QuestaoDelete, OpcaoDelete, TesteDelete
 from .views import QuestionarioList, QuestaoList, OpcaoList, TentativaList, TesteList, RespostaList
+from .views import TesteILSKolbView
 
 urlpatterns = [
     path('cadastrar/questionario/', QuestionarioCreate.as_view(),
@@ -39,6 +40,8 @@ urlpatterns = [
     path('listar/tentativas', TentativaList.as_view(), name='listar-tentativas'),
     path('listar/testes', TesteList.as_view(), name='listar-testes'),
     path('listar/respostas', RespostaList.as_view(), name='listar-respostas'),
+
+    path('teste-ils-kolb/', TesteILSKolbView.as_view(), name='teste-ils-kolb'),
 
 
 ]

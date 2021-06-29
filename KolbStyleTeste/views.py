@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -13,7 +14,7 @@ class QuestionarioCreate(LoginRequiredMixin, CreateView):
     model = Questionario
     fields = ['descricao']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-questionario')
+    success_url = reverse_lazy('listar-questionarios')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -26,7 +27,7 @@ class QuestaoCreate(LoginRequiredMixin, CreateView):
     model = Questao
     fields = ['questionario', 'descricao', 'ordem']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-questionario')
+    success_url = reverse_lazy('listar-questoes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,7 +41,7 @@ class OpcaoCreate(LoginRequiredMixin, CreateView):
     fields = ['questao', 'descricao', 'imagem',
               'video', 'ordem']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-ordem')
+    success_url = reverse_lazy('listar-opcoes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -51,10 +52,9 @@ class OpcaoCreate(LoginRequiredMixin, CreateView):
 class TentativaCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Tentativa
-    fields = ['teste', 'aluno', 'data',
-              'concluiu']
+    fields = ['teste', 'aluno', 'concluiu']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-tentativa')
+    success_url = reverse_lazy('listar-tentativas')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -68,7 +68,7 @@ class TesteCreate(LoginRequiredMixin, CreateView):
     fields = ['descricao', 'professor',
               'questionario', 'turma', 'chave_acesso', 'ativo']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-teste')
+    success_url = reverse_lazy('listar-testes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -84,7 +84,7 @@ class QuestionarioUpdate(LoginRequiredMixin, UpdateView):
     model = Questionario
     fields = ['descricao']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-questionario')
+    success_url = reverse_lazy('listar-questionarios')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -95,9 +95,9 @@ class QuestionarioUpdate(LoginRequiredMixin, UpdateView):
 class QuestaoUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     model = Questao
-    fields = ['questao', 'descricao', 'ordem']
+    fields = ['questionario', 'descricao', 'ordem']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-questao')
+    success_url = reverse_lazy('listar-questoes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -111,7 +111,7 @@ class OpcaoUpdate(LoginRequiredMixin, UpdateView):
     fields = ['questao', 'descricao', 'imagem',
               'video', 'ordem']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-opcao')
+    success_url = reverse_lazy('listar-opcoes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -121,9 +121,9 @@ class OpcaoUpdate(LoginRequiredMixin, UpdateView):
 
 class TesteUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
-    model = Opcao
+    model = Teste
     fields = ['descricao', 'professor',
-              'questionario', 'turma', 'turma', 'chave_acesso', 'ativo']
+              'questionario', 'turma', 'chave_acesso', 'ativo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-testes')
 
@@ -153,7 +153,7 @@ class QuestaoDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
     model = Questao
     template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('listar-questao')
+    success_url = reverse_lazy('listar-questoes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -166,7 +166,7 @@ class OpcaoDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
     model = Opcao
     template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('listar-opcao')
+    success_url = reverse_lazy('listar-opcoes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -179,7 +179,7 @@ class TesteDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
     model = Teste
     template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('listar-teste')
+    success_url = reverse_lazy('listar-testes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -224,3 +224,9 @@ class RespostaList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = Resposta
     template_name = 'cadastros/listas/resposta.html'
+
+############# OUTRAS PAGINAS DO TESTE ##############
+
+
+class TesteILSKolbView(TemplateView):
+    template_name = 'teste-ils-kolb.html'
