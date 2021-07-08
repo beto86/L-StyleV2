@@ -9,34 +9,31 @@
 {% block conteudo %}
 <h2>{{ questionario }}</h2>
 
+<form action="" method="POST">
+    {% csrf_token %}
 
-<!-- bloco de perguntas -->
-<div>
-    <div>
-        <label>{{ ordem }}. {{ pergunta }}</label><br>
-            {% for op in opcao %}
-            <form>
-                <div class="radio-inline">
-                    <label class="radio-inline"><input type="radio" name="1opA" class="linha1 coluna1 p1" value="1">{{op.descricao}}</label>
-                    
-                </div>
-            </form>
+    <!-- bloco de perguntas -->
+    {% for q in questoes %}
+    <div class="questoes" ordem="{{q.ordem}}">
+        Enunciado
+        
+        <!-- Colocar as opções -->
+        <div>
+            {% for opc in opcoes[q.pk] %}
+            Descrição da opção
+            
+            <input type="number" name="qx_ox">
             {% endfor %}
-                
-            
-            
+        </div>
 
-            <form action="" method="POST">
-                {% csrf_token %}
-        
-                {{ form.as_p}}
-        
-                <button type="submit" class="btn btn-primary mt-3" >Cadastrar</button>
-        
-                
-            </form>
+        <button>Próximo</button>
         
     </div>
-</div>
+    {% endfor %}
+
+
+</form>
+
+
 
 {% endblock %}

@@ -228,17 +228,23 @@ class RespostaList(LoginRequiredMixin, ListView):
 ############# OUTRAS PAGINAS DO TESTE ##############
 
 
-class TesteILSKolbView(TemplateView):
+class TesteILSKolbView(FormView):
     template_name = 'teste-ils-kolb.html'
-    questao = Questao.objects.get(id=1)
+    # questao = Questao.objects.get(id=1)
     #opcao = Opcao.objects.get(id=1)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['questionario'] = self.questao.questionario
-        context['pergunta'] = self.questao
-        context['ordem'] = self.questao.ordem
-        context['opcao'] = Opcao.objects.filter(questao=1)
+        context['questionario'] = Questionario.objects.get(pk=1)
+
+        context['questoes'] = Questao.objects.filter(questionario=context['questionario'])
+
+        context['opcoes'] = {}
+
+        for q in context['questoes']:
+            context['opcoes'][q.pk] = Opcao.objects.filter(questao=q)
+
+
         return context
 
 

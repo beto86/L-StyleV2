@@ -5,6 +5,7 @@ from cadastros.models import Turma
 # Create your models here.
 
 
+
 class Questionario(models.Model):
     descricao = models.CharField(max_length=100, verbose_name='Descrição')
 
@@ -59,6 +60,8 @@ class Questao(models.Model):
 
     class Meta:
         verbose_name = 'Questão'
+        unique_together = ('questionario','ordem') # para não repetir ordem das questões
+        order_by = ['ordem'] # ou ordering
 
     def __str__(self):
         return self.descricao
@@ -74,7 +77,8 @@ class Opcao(models.Model):
 
     class Meta:
         verbose_name = 'Opção'
-        unique_together = ('descricao', 'questao')
+        unique_together = ('ordem', 'questao')
+        order_by = ['ordem']
 
     def __str__(self):
         return self.descricao
