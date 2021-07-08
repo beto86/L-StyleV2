@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Questionario, Questao, Teste, Tentativa, Opcao, Resposta
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -230,3 +230,28 @@ class RespostaList(LoginRequiredMixin, ListView):
 
 class TesteILSKolbView(TemplateView):
     template_name = 'teste-ils-kolb.html'
+    questao = Questao.objects.get(id=1)
+    #opcao = Opcao.objects.get(id=1)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['questionario'] = self.questao.questionario
+        context['pergunta'] = self.questao
+        context['ordem'] = self.questao.ordem
+        context['opcao'] = Opcao.objects.filter(questao=1)
+        return context
+
+
+"""
+class TesteILSKolbView(ListView):
+    template_name = 'teste-ils-kolb.html'
+    model = Questao
+    questao = Questao.objects.get(id=1)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['questionario'] = self.questao.questionario
+        context['pergunta'] = self.questao
+        context['ordem'] = self.questao.ordem
+        return context
+"""

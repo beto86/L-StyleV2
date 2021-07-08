@@ -3,12 +3,40 @@
 {% load static %}
 
 {% block titulo %}
-<title>Questionario de Kolb ILS versão 2</title>
+<title>LSI-2</title>
 {% endblock %}
 
 {% block conteudo %}
-    <h3>Sobre o sistema</h3>
+<h2>{{ questionario }}</h2>
 
-    Esta pagina vai ser o teste de Kolb.
+
+<!-- bloco de perguntas -->
+<div>
+    <div>
+        <label>{{ ordem }}. {{ pergunta }}</label><br>
+            {% for op in opcao %}
+            <form>
+                <div class="radio-inline">
+                    <label class="radio-inline"><input type="radio" name="1opA" class="linha1 coluna1 p1" value="1">{{op.descricao}}</label>
+                    
+                </div>
+            </form>
+            {% endfor %}
+                
+            
+            
+
+            <form action="" method="POST">
+                {% csrf_token %}
+        
+                {{ form.as_p}}
+        
+                <button type="submit" class="btn btn-primary mt-3" >Cadastrar</button>
+        
+                
+            </form>
+        
+    </div>
+</div>
 
 {% endblock %}

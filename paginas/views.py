@@ -11,3 +11,7 @@ class IndexView(TemplateView):
 
 class SobreView(TemplateView):
     template_name = 'sobre.html'
+
+
+class QuemSomosView(TemplateView):
+    template_name = 'quem-somos.html'
