@@ -59,6 +59,10 @@ class Questao(models.Model):
 
     class Meta:
         verbose_name = 'Questão'
+        verbose_name_plural = 'Questões'
+        # para não repetir ordem das questões
+        unique_together = ('questionario', 'ordem')
+        ordering = ['ordem']
 
     def __str__(self):
         return self.descricao
@@ -74,7 +78,9 @@ class Opcao(models.Model):
 
     class Meta:
         verbose_name = 'Opção'
-        unique_together = ('descricao', 'questao')
+        verbose_name_plural = 'Opções'
+        unique_together = ('ordem', 'questao')
+        ordering = ['ordem']
 
     def __str__(self):
         return self.descricao
@@ -117,6 +123,7 @@ class FormaAprendizagem(models.Model):
 
     class Meta:
         verbose_name = 'Forma de Aprendizagem'
+        verbose_name_plural = 'Formas de Aprendizagens'
 
     def __str__(self):
         return self.nome

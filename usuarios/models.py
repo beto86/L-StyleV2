@@ -1,8 +1,41 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cadastros.models import Endereco
 
 # Create your models here.
+
+
+class Pais(models.Model):
+    nome = models.CharField(max_length=60)
+    nome_pt = models.CharField(max_length=60, verbose_name='nome')
+    sigla = models.CharField(max_length=3)
+    bacen = models.IntegerField()
+
+    class Meta:
+        verbose_name = 'País'
+        verbose_name_plural = 'Países'
+
+    def __str__(self):
+        return self.nome
+
+
+class Estado(models.Model):
+    nome = models.CharField(max_length=60)
+    uf = models.CharField(max_length=2, verbose_name='UF')
+    ibge = models.IntegerField()
+    pais = models.OneToOneField(Pais, on_delete=models.CASCADE)
+    ddd = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nome
+
+
+class Cidade(models.Model):
+    nome = models.CharField(max_length=120)
+    uf = models.OneToOneField(Estado, on_delete=models.CASCADE)
+    ibge = models.IntegerField()
+
+    def __str__(self):
+        return self.nome
 
 
 class Perfil(models.Model):
@@ -19,8 +52,14 @@ class Perfil(models.Model):
     data_nascimento = models.DateField(
         blank=True, null=True, verbose_name='Data de Nascimento')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    endereco = models.ForeignKey(Endereco, related_name='enderecos',
-                                 on_delete=models.CASCADE, null=True, verbose_name='Endereço')
+    endereco = models.CharField(
+        max_length=100, null=True, verbose_name='Endereço')
+    numero = models.CharField(max_length=10, null=True, verbose_name='Número')
+    cep = models.CharField(max_length=45, null=True, verbose_name='CEP')
+    cidade = models.ForeignKey(Cidade, null=True, on_delete=models.CASCADE)
+    estado = models.ForeignKey(Estado, null=True, on_delete=models.CASCADE)
+    pais = models.ForeignKey(
+        Pais, null=True, on_delete=models.CASCADE, verbose_name='País')
     criacao = models.DateTimeField(auto_now_add=True, verbose_name='Criação')
     atualizacao = models.DateTimeField(
         auto_now=True, verbose_name='Atualização')
@@ -29,4 +68,4 @@ class Perfil(models.Model):
         verbose_name = 'Perfil'
 
     def __str__(self):
-        return self.cpf
+        return self.nome_completo

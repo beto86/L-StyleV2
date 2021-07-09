@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UsuarioForm
@@ -17,6 +17,7 @@ class UsuarioCreate(CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
+        #Group = get_object_or_404(Group, name="Aluno")
         url = super().form_valid(form)
         self.object.save()
 
@@ -49,7 +50,7 @@ class PerfilUpdate(UpdateView):
 
 class AlterarSenha(PasswordChangeView):
     from_class = PasswordChangeForm
-    template_name = 'usuarios/form.html'
+    template_name = 'cadastros/form.html'
     model = User
     success_url = reverse_lazy("index")
 

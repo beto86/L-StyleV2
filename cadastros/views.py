@@ -1,30 +1,18 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
-from .models import Endereco, Instituicao, Turma
+from .models import Instituicao, Turma
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from braces.views import GroupRequiredMixin
 
 
 # Create your views here.
 
 
-class EnderecoCreate(LoginRequiredMixin, CreateView):
+class InstituicaoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
-    model = Endereco
-    fields = ['cep', 'rua', 'numero',
-              'complemento', 'bairro', 'cidade', 'estado']
-    template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-enderecos')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Cadastro de Endereços'
-        return context
-
-
-class InstituicaoCreate(LoginRequiredMixin, CreateView):
-    login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Instituicao
     fields = ['nome', 'endereco']
     template_name = 'cadastros/form.html'
@@ -36,8 +24,9 @@ class InstituicaoCreate(LoginRequiredMixin, CreateView):
         return context
 
 
-class TurmaCreate(LoginRequiredMixin, CreateView):
+class TurmaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Turma
     fields = ['nome', 'ra', 'periodo',
               'ano', 'curso', 'turno', 'instituicao']
@@ -52,22 +41,9 @@ class TurmaCreate(LoginRequiredMixin, CreateView):
 ################ UPDATE ####################
 
 
-class EnderecoUpdate(LoginRequiredMixin, UpdateView):
+class InstituicaoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
-    model = Endereco
-    fields = ['cep', 'rua', 'numero',
-              'complemento', 'bairro', 'cidade', 'estado']
-    template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-enderecos')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Editar Cadastro de Endereço'
-        return context
-
-
-class InstituicaoUpdate(LoginRequiredMixin, UpdateView):
-    login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Instituicao
     fields = ['nome', 'endereco']
     template_name = 'cadastros/form.html'
@@ -96,21 +72,9 @@ class TurmaUpdate(LoginRequiredMixin, UpdateView):
 ################ DELETE ####################
 
 
-class EnderecoDelete(LoginRequiredMixin, DeleteView):
+class InstituicaoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
-    model = Endereco
-    template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('listar-enderecos')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Excluir Endereço'
-        context['titulo2'] = 'o endereço'
-        return context
-
-
-class InstituicaoDelete(LoginRequiredMixin, DeleteView):
-    login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Instituicao
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-instituicoes')
@@ -122,8 +86,9 @@ class InstituicaoDelete(LoginRequiredMixin, DeleteView):
         return context
 
 
-class TurmaDelete(LoginRequiredMixin, DeleteView):
+class TurmaDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Turma
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-turmas')
@@ -138,19 +103,15 @@ class TurmaDelete(LoginRequiredMixin, DeleteView):
 ################ LIST ####################
 
 
-class EnderecoList(LoginRequiredMixin, ListView):
+class InstituicaoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    model = Endereco
-    template_name = 'cadastros/listas/endereco.html'
-
-
-class InstituicaoList(LoginRequiredMixin, ListView):
-    login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Instituicao
     template_name = 'cadastros/listas/instituicao.html'
 
 
-class TurmaList(LoginRequiredMixin, ListView):
+class TurmaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Turma
     template_name = 'cadastros/listas/turma.html'
