@@ -16,13 +16,11 @@
     {% for q in questoes %}
     <div class="questoes" ordem="{{q.ordem}}">
         Enunciado
-
         <!-- Colocar as opções -->
         <div>
             {% for opc in opcoes[q.pk] %}
-            Descrição da opção
-
-            <input type="number" name="qx_ox">
+                Descrição da opção
+                <input type="number" name="qx_ox">
             {% endfor %}
         </div>
 
