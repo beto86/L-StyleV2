@@ -22,7 +22,7 @@ class Estado(models.Model):
     nome = models.CharField(max_length=60)
     uf = models.CharField(max_length=2, verbose_name='UF')
     ibge = models.IntegerField()
-    pais = models.OneToOneField(Pais, on_delete=models.CASCADE)
+    pais = models.OneToOneField(Pais, on_delete=models.CASCADE, unique=False)
     ddd = models.CharField(max_length=30)
 
     def __str__(self):
@@ -31,7 +31,7 @@ class Estado(models.Model):
 
 class Cidade(models.Model):
     nome = models.CharField(max_length=120)
-    uf = models.OneToOneField(Estado, on_delete=models.CASCADE)
+    uf = models.OneToOneField(Estado, on_delete=models.CASCADE, unique=False)
     ibge = models.IntegerField()
 
     def __str__(self):
@@ -54,7 +54,8 @@ class Perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     endereco = models.CharField(
         max_length=100, null=True, verbose_name='Endereço')
-    numero = models.CharField(max_length=10, null=True, verbose_name='Número')
+    numero = models.CharField(max_length=10, null=True,
+                              verbose_name='Número')
     cep = models.CharField(max_length=45, null=True, verbose_name='CEP')
     cidade = models.ForeignKey(Cidade, null=True, on_delete=models.CASCADE)
     estado = models.ForeignKey(Estado, null=True, on_delete=models.CASCADE)

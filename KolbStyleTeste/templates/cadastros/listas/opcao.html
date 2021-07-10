@@ -21,7 +21,7 @@
             <tbody>
                 {% for opcao in object_list %}
                 <tr>
-                    <td>{{ opcao.questao.descricao }}</td>
+                    <td>{{opcao.questao.ordem}} - {{ opcao.questao.descricao }}</td>
                     <td>{{ opcao.descricao }}</td>
                     <td>{{ opcao.imagem }}</td>
                     <td>{{ opcao.video }}</td>
