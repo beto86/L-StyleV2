@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block conteudo %}
-<h2>{{ questionario }}</h2>
+<h2> {{ questionario }} </h2>
 
 <form action="" method="POST">
     {% csrf_token %}
@@ -15,11 +15,11 @@
     <!-- bloco de perguntas -->
     {% for q in questoes %}
     <div class="questoes" ordem="{{q.ordem}}">
-        Enunciado
+        <p><strong>{{q.ordem}} - {{ q.descricao }}</strong></p>
         <!-- Colocar as opções -->
         <div>
-            {% for opc in opcoes[q.pk] %}
-                Descrição da opção
+            {% for opc in opcoes %}
+                <p>{{opc.ordem}} - {{ opc.descricao }}</p>
                 <input type="number" name="qx_ox">
             {% endfor %}
         </div>

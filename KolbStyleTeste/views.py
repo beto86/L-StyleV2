@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
+from .forms import TesteILSKolbForm
+
 
 # Create your views here.
 
@@ -249,7 +251,8 @@ class RespostaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 
 
 class TesteILSKolbView(FormView):
-    template_name = 'teste-ils-kolb.html'
+    template_name = "teste-ils-kolb.html"
+    form_class = TesteILSKolbForm
     #questao = Questao.objects.get(id=1)
     #opcao = Opcao.objects.get(id=1)
 
@@ -262,6 +265,7 @@ class TesteILSKolbView(FormView):
         context['opcoes'] = {}
 
         for q in context['questoes']:
-            context['opcoes'][q.pk] = Opcao.objects.filter(questao=q)
+            context['opcoes'][q] = Opcao.objects.filter(questao=q)
+            print(context['opcoes'][q])
 
         return context
