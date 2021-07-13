@@ -23,8 +23,8 @@
                 <tr>
                     <td>{{opcao.questao.ordem}} - {{ opcao.questao.descricao }}</td>
                     <td>{{ opcao.descricao }}</td>
-                    <td>{{ opcao.imagem }}</td>
-                    <td>{{ opcao.video }}</td>
+                    <td>{{ opcao.imagem|default_if_none:'Sem imagem' }}</td>
+                    <td>{{ opcao.video|default_if_none:'Sem vídeo' }}</td>
                     <td>{{ opcao.ordem }}</td>
                     <td>
                         <a href="{% url 'editar-opcao' opcao.pk %}" class="btn btn-warning btn-sm" title="Editar">

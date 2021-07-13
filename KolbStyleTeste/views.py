@@ -253,8 +253,62 @@ class RespostaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 class TesteILSKolbView(FormView):
     template_name = "teste-ils-kolb.html"
     form_class = TesteILSKolbForm
-    #questao = Questao.objects.get(id=1)
-    #opcao = Opcao.objects.get(id=1)
+    success_url = reverse_lazy("index")
+
+    def form_valid(self, form):
+        
+        # Verificar se todos os dados foram preenchidos
+
+        # Contar questões de Kolb
+        num_q = Questao.objects.filter(questionario__pk=1).count() # Sempre O Kolb com id 1
+
+        # Cria uma lista numérica com a ordem das questões
+        questoes = range(1, num_q+1)
+        # Cria uma lista numérica de opções
+        opcoes = range(1, 5)
+
+        # Validar respostas
+        respostas = True
+
+        # Para cada número das questões
+        for q in questoes:
+            # Para cada opção que a gente tem de cada questão
+            for opc in opcoes:
+                # Gera o name igual lá no template
+                name = f"opc_{q}_{opc}"
+                # pega o valor desse input que ficou selecionado no template
+                valor = self.request.POST.get(name)
+                # Se input não foi preenchido ou se for algum outro valor
+                if(valor is None or valor not in ["1","2","3","4"]):
+                    # Adiciona uma mensagem de erro no formulário
+                    form.add_error(None, f"Você não respondeu corretamente a opção {opc} da questão {q}.")
+                    # Muda para falso para não submeter com sucesso o formulário
+                    respostas = False
+
+        # Se não preencheu tudo, retorna ao formulário com as mensagens de erro encontradas
+        if(respostas == False):
+            return self.form_invalid(form)
+        
+        # Caso esteja tudo certo...
+
+        # Criar uma Tentativa
+        # teste = Teste.objects.get(pk=1)
+        # tentativa = Tentativa.objects.create(teste=teste, aluno=self.request.user)
+
+        # para cada resposta, criar uma Resposta
+        # Para cada número das questões
+        for q in questoes:
+            # Para cada opção que a gente tem de cada questão
+            for opc in opcoes:
+                # Gera o name igual lá no template
+                name = f"opc_{q}_{opc}"
+                # pega o valor desse input que ficou selecionado no template
+                valor = self.request.POST.get(name)
+                # Criar um objeto Resposta para cada um com a tentativa, teste, opção, etc
+                
+                # resp = Resposta.objects.create()
+        
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -262,10 +316,12 @@ class TesteILSKolbView(FormView):
 
         context['questoes'] = Questao.objects.filter(
             questionario=context['questionario'])
+
         context['opcoes'] = {}
 
         for q in context['questoes']:
-            context['opcoes'][q] = Opcao.objects.filter(questao=q)
-            print(context['opcoes'][q])
+            context['opcoes'][q.pk] = Opcao.objects.filter(questao=q)
+
+        
 
         return context

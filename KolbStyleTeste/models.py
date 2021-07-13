@@ -42,7 +42,8 @@ class Tentativa(models.Model):
     aluno = models.ForeignKey(
         User, related_name='%(class)s_alunos', on_delete=models.PROTECT, blank=True, null=True)
     data = models.DateTimeField(auto_now_add=True)
-    concluiu = models.BooleanField(default=False)
+    # Remover atributo
+    concluiu = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Tentativa'

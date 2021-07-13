@@ -1,6 +1,7 @@
 {% extends 'modelo.html' %}
 
 {% load static %}
+{% load filtros %}
 
 {% block titulo %}
 <title>LSI-2</title>
@@ -9,26 +10,86 @@
 {% block conteudo %}
 <h2> {{ questionario }} </h2>
 
+<!-- Como pegar a mensagem de validação de form -->
+{% if form.errors %}
+<div class="alert alert-danger">
+    {{ form.errors }}
+</div>
+{% endif %}
+
 <form action="" method="POST">
     {% csrf_token %}
 
+    <button type="submit">ENviar</button>
+
     <!-- bloco de perguntas -->
     {% for q in questoes %}
-    <div class="questoes" ordem="{{q.ordem}}">
-        <p><strong>{{q.ordem}} - {{ q.descricao }}</strong></p>
-        <!-- Colocar as opções -->
-        <div>
-            {% for opc in opcoes %}
-                <p>{{opc.ordem}} - {{ opc.descricao }}</p>
-                <input type="number" name="qx_ox">
-            {% endfor %}
-        </div>
 
-        <button>Próximo</button>     
+    <!-- Adicionar essa classe abaixo: d-none -->
+    <div class="questoes mt-4 border border-warning shadow-sm p-4 " ordem="{{q.ordem}}">
+        
+        <h4 class="mb-3 border-bottom border-light">{{q.ordem}} - {{ q.descricao }}</h4>
+        
+        <!-- Colocar as opções -->
+        {% for opc in opcoes|get_opcoes_questao:q.pk %}
+        <div class="opcoes my-2" ordem="{{opc.ordem}}">
+
+            <h5>{{ opc.ordem }} - {{ opc.descricao }}</h5>
+            
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" >
+            <label for="opc_{{opc.pk}}_1" class="me-4">1</label>&nbsp;
+
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" >
+            <label for="opc_{{opc.pk}}_2" class="me-4">2</label>&nbsp;
+
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" >
+            <label for="opc_{{opc.pk}}_3" class="me-4">3</label>&nbsp;
+
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" >
+            <label for="opc_{{opc.pk}}_4" class="me-4">4</label>&nbsp;
+
+            
+        </div>
+        {% endfor %}
+
+        {% if q.ordem < 12 %}
+        <button type="button" class="btn btn-primary mt-4 btn_proximo" ordem="{{q.ordem}}">Próximo</button>     
+        {% else %}
+        <button type="submit" class="btn btn-success mt-4" ordem="{{q.ordem}}">Enviar respostas</button>     
+        {% endif %}
         
     </div>
     {% endfor %}
 
 </form>
 
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        
+        // Remove a classe d-none da questão 1
+        $(".questoes[ordem=1]").removeClass("d-none");
+        
+        // Ao clicar nos botões de próximo
+        $(".btn_proximo").click(function (e) { 
+            
+            // Recebe a ordem da questão atual que está no botão
+            var ordem = $(this).attr("ordem");
+
+            if(ordem<12){
+                var atual = ".questoes[ordem="+ ordem + "]";
+                var prox = ".questoes[ordem="+ (parseInt(ordem) + 1) + "]";
+    
+                $(atual).addClass("d-none");
+                $(prox).removeClass("d-none");
+            }
+            
+        });
+        
+    });    
+
+</script>
 {% endblock %}
