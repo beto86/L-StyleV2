@@ -12,9 +12,9 @@
 
 <!-- Como pegar a mensagem de validação de form -->
 {% if form.errors %}
-<div class="alert alert-danger">
-    {{ form.errors }}
-</div>
+<ul class="alert alert-danger">
+    {{ form.as_p }}
+</ul>
 {% endif %}
 
 <form action="" method="POST">
@@ -26,7 +26,7 @@
     {% for q in questoes %}
 
     <!-- Adicionar essa classe abaixo: d-none -->
-    <div class="questoes mt-4 border border-warning shadow-sm p-4 " ordem="{{q.ordem}}">
+    <div class="questoes mt-4 border border-warning shadow-sm p-4" ordem="{{q.ordem}}">
         
         <h4 class="mb-3 border-bottom border-light">{{q.ordem}} - {{ q.descricao }}</h4>
         

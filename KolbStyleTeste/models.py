@@ -37,7 +37,7 @@ class Teste(models.Model):
 
 
 class Tentativa(models.Model):
-    teste = models.OneToOneField(
+    teste = models.ForeignKey(
         Teste, related_name='testes', on_delete=models.CASCADE)
     aluno = models.ForeignKey(
         User, related_name='%(class)s_alunos', on_delete=models.PROTECT, blank=True, null=True)
@@ -88,11 +88,11 @@ class Opcao(models.Model):
 
 
 class Resposta(models.Model):
-    tentativa = models.OneToOneField(
+    tentativa = models.ForeignKey(
         Tentativa, verbose_name='tentativas', on_delete=models.CASCADE)
     opcao = models.ForeignKey(
         Opcao, related_name='opcaos', on_delete=models.CASCADE, verbose_name='Opção')
-    valor = models.IntegerField()
+    valor = models.IntegerField(default=0, null=True)
     aluno = models.ForeignKey(
         User, related_name='alunos', on_delete=models.PROTECT, blank=True, null=True)
 

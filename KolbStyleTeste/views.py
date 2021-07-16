@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Questionario, Questao, Teste, Tentativa, Opcao, Resposta
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
@@ -256,11 +257,13 @@ class TesteILSKolbView(FormView):
     success_url = reverse_lazy("index")
 
     def form_valid(self, form):
-        
+
         # Verificar se todos os dados foram preenchidos
+        questionario = Questionario.objects.get(pk=1)
 
         # Contar questões de Kolb
-        num_q = Questao.objects.filter(questionario__pk=1).count() # Sempre O Kolb com id 1
+        num_q = Questao.objects.filter(
+            questionario__pk=1).count()  # Sempre O Kolb com id 1
 
         # Cria uma lista numérica com a ordem das questões
         questoes = range(1, num_q+1)
@@ -279,35 +282,41 @@ class TesteILSKolbView(FormView):
                 # pega o valor desse input que ficou selecionado no template
                 valor = self.request.POST.get(name)
                 # Se input não foi preenchido ou se for algum outro valor
-                if(valor is None or valor not in ["1","2","3","4"]):
+                if(valor is None or valor not in ["1", "2", "3", "4"]):
                     # Adiciona uma mensagem de erro no formulário
-                    form.add_error(None, f"Você não respondeu corretamente a opção {opc} da questão {q}.")
+                    form.add_error(
+                        None, f"Você não respondeu corretamente a opção {opc} da questão {q}.")
                     # Muda para falso para não submeter com sucesso o formulário
                     respostas = False
 
         # Se não preencheu tudo, retorna ao formulário com as mensagens de erro encontradas
-        if(respostas == False):
-            return self.form_invalid(form)
-        
-        # Caso esteja tudo certo...
+        # if(respostas == False):
+        #    return self.form_invalid(form)
+        # else:
+            # Caso esteja tudo certo...
 
-        # Criar uma Tentativa
-        # teste = Teste.objects.get(pk=1)
-        # tentativa = Tentativa.objects.create(teste=teste, aluno=self.request.user)
+            # Criar uma Tentativa
+        teste = Teste.objects.get(pk=self.kwargs['pk_teste'])
+        tentativa = Tentativa.objects.create(
+            teste=teste, aluno=self.request.user)
 
-        # para cada resposta, criar uma Resposta
+        # para cada tentativa, criar uma Resposta
         # Para cada número das questões
         for q in questoes:
+            questao = Questao.objects.get(questionario=questionario, ordem=q)
             # Para cada opção que a gente tem de cada questão
             for opc in opcoes:
                 # Gera o name igual lá no template
                 name = f"opc_{q}_{opc}"
+                opcao = Opcao.objects.get(questao=questao, ordem=opc)
+
                 # pega o valor desse input que ficou selecionado no template
                 valor = self.request.POST.get(name)
                 # Criar um objeto Resposta para cada um com a tentativa, teste, opção, etc
-                
-                # resp = Resposta.objects.create()
-        
+
+                resp = Resposta.objects.create(
+                    tentativa=tentativa, opcao=opcao, valor=valor, aluno=self.request.user)
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -322,6 +331,19 @@ class TesteILSKolbView(FormView):
         for q in context['questoes']:
             context['opcoes'][q.pk] = Opcao.objects.filter(questao=q)
 
-        
+        return context
+
+
+def RelatorioView(DetailView):
+    template_name = 'relatorio.html'
+    model = Teste
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tentativas'] = Tentativa.objects.filter(teste=self.object)
+
+        #context['respostas'] = {}
+        # for t in context['tentativas']:
+        #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
         return context
