@@ -14,5 +14,10 @@ def get_opcoes_questao(lista, id):
 @register.filter(name='avaliar_tentativa_kolb')
 def avaliar_tentativa_kolb(tentativa):
     respostas = Resposta.objects.filter(tentativa=tentativa)
-    # fazer os calculos aqui
+
+    # cálculos do teste
+
+    # calculo EC
+    # 1a
+
     return 'ok'

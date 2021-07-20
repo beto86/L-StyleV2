@@ -254,7 +254,7 @@ class RespostaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 class TesteILSKolbView(FormView):
     template_name = "teste-ils-kolb.html"
     form_class = TesteILSKolbForm
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("resposta")
 
     def form_valid(self, form):
 
@@ -334,12 +334,13 @@ class TesteILSKolbView(FormView):
         return context
 
 
-def RelatorioView(DetailView):
-    template_name = 'relatorio.html'
+class RespostaView(DetailView):
+    template_name = 'resposta.html'
     model = Teste
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['questionario'] = Questionario.objects.get(pk=1)
         context['tentativas'] = Tentativa.objects.filter(teste=self.object)
 
         #context['respostas'] = {}

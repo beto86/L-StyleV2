@@ -36,16 +36,16 @@
 
             <h5>{{ opc.ordem }} - {{ opc.descricao }}</h5>
             
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" >
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" class="coluna1">
             <label for="opc_{{opc.pk}}_1" class="me-4">1</label>&nbsp;
 
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" >
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" class="coluna2">
             <label for="opc_{{opc.pk}}_2" class="me-4">2</label>&nbsp;
 
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" >
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" class="coluna3">
             <label for="opc_{{opc.pk}}_3" class="me-4">3</label>&nbsp;
 
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" >
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" class="coluna4">
             <label for="opc_{{opc.pk}}_4" class="me-4">4</label>&nbsp;
 
             
@@ -92,4 +92,5 @@
     });    
 
 </script>
+
 {% endblock %}

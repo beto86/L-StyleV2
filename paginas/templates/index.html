@@ -7,23 +7,195 @@
 {% endblock %}
 
 {% block conteudo %}
-    <h3>Pagina inicial</h3>
-   
-    {% if user.perfil.nome_completo %}
-        Bem vindo ao sistema {{ user.perfil.nome_completo }}.
-    {% else %}
-        Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados' %}">meus dados</a> para atualizar.
-    {% endif %}
 
-    <br>
+{% comment %} {% if user.perfil.nome_completo %}
+Bem vindo ao sistema {{ user.perfil.nome_completo }}.
+{% else %}
+Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados' %}">meus dados</a> para atualizar.
+{% endif %} {% endcomment %}
+<section class="main-block welcome-block">
+    <div class="container">
+        <div class="welcome-info color-custom-primary">
+            <h1>Seja bem vindo, vamos fazer o teste?</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet consequatur maxime commodi.</p>
+            <button class="btn-welcome border-custom-primary">Quero fazer o teste</button>
+        </div>
+        <img src="{% static 'img/img-hero.jpg' %}" class="img-cover">
+    </div>
+</section>
+<section class="main-block info-block">
+    <div class="container">
+        <div class="show-off-title">
+            <div class="show-off-title-icon show-off-icon-left">
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+            </div>
+            <h1 class="color-custom-primary">Quais são os metodos de aprendizagem?</h1>
+            <div class="show-off-title-icon show-off-icon-right">
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+            </div>
+        </div>
+        <div class="info-section">
+            <ul>
+                <li>
+                    <div>
+                        <b>Experiência Concreta (EC):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <b>Observação Reflexiva (OR):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <b>Conceituação Abstrato (CA):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <b>Experimentação Ativa (EA):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="main-block info-block">
+    <div class="container">
+        <div class="show-off-title">
+            <div class="show-off-title-icon show-off-icon-left">
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+            </div>
+            <h1 class="color-custom-primary">Alguns dados interessantes</h1>
+            <div class="show-off-title-icon show-off-icon-right">
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+            </div>
+        </div>
+        <div class="metrics">
+            <div class="info-block-card">
+                <div class="card-container">
+                    <div class="card-icon" style="background-color: #62d3db;">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="card-info">
+                        <h2>Experiência Concreta (EC)</h2>
+                        <span>56 vezes</span>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card-icon" style="background-color: #5c57af;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="card-info">
+                        <h2>Observação Reflexiva (OR)</h2>
+                        <span>56 vezes</span>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card-icon" style="background-color: #e54b4b;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="card-info">
+                        <h2>Conceituação Abstrato (CA)</h2>
+                        <span>56 vezes</span>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card-icon bg-color-custom-primary">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="card-info">
+                        <h2>Experimentação Ativa (EA)</h2>
+                        <span>56 vezes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-block-statics">
+                <div class="chart">
+                    <canvas id="metricsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="main-block info-block">
+    <div class="container">
+        <div class="show-off-title">
+            <div class="show-off-title-icon show-off-icon-left">
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+            </div>
+            <h1 class="color-custom-primary">Veja a opnião de quem fez</h1>
+            <div class="show-off-title-icon show-off-icon-right">
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary"></i>
+            </div>
+        </div>
+        <div class="testemonials">
+            <div class="left">
+                <div class="testemonials-item testemonials-item-active">
+                    <div class="photo">
+                        <img src="{% static 'img/Userdefault.png' %}" width="100%">
+                    </div>
+                    <div class="info">
+                        <h2>Guilherme Brasil, 20</h2>
+                        <p>Metodo: Observação Reflexiva</p>
+                    </div>
+                </div>
+                <div class="testemonials-item">
+                    <div class="photo">
+                        <img src="{% static 'img/Userdefault.png' %}" width="100%">
+                    </div>
+                    <div class="info">
+                        <h2>Guilherme Brasil, 20</h2>
+                        <p>Metodo: Observação Reflexiva</p>
+                    </div>
+                </div>
+                <div class="testemonials-item">
+                    <div class="photo">
+                        <img src="{% static 'img/Userdefault.png' %}" width="100%">
+                    </div>
+                    <div class="info">
+                        <h2>Guilherme Brasil, 20</h2>
+                        <p>Metodo: Observação Reflexiva</p>
+                    </div>
+                </div>
+                <div class="testemonials-item">
+                    <div class="photo">
+                        <img src="{% static 'img/Userdefault.png' %}" width="100%">
+                    </div>
+                    <div class="info">
+                        <h2>Guilherme Brasil, 20</h2>
+                        <p>Metodo: Observação Reflexiva</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <h1>Lorem ipsum dolor, sit amet consectetur</h1>
+                <div class="testemonials-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam aperiam amet nisi eveniet officia accusantium facere voluptatibus expedita quaerat ea, eos provident esse distinctio error est sint dicta commodi.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    Esta pagina vai ser a primeira pagina, (pagina home).
-
-    <img src="{% static 'img/logo-utfpr-santa-helena.png' %}" alt="">
+{% comment %} <img src="{% static 'img/logo-utfpr-santa-helena.png' %}" alt=""> {% endcomment %}
 
 {% endblock %}
-
-
-
-
-

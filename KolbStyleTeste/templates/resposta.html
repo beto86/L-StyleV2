@@ -1,0 +1,28 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+{% load filtros %}
+
+{% block titulo %}
+<title>Resposta</title>
+{% endblock %}
+
+{% block conteudo %}
+<h2> {{ questionario }} </h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    
+    <!-- -->
+    
+    
+
+</form>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+{% endblock %}
