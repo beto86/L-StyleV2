@@ -16,5 +16,6 @@
         "recomendacao",
         "rodape",
         "usuarios"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }

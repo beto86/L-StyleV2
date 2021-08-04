@@ -30,7 +30,7 @@
         
         <h4 class="mb-3 border-bottom border-light">{{q.ordem}} - {{ q.descricao }}</h4>
         
-        <!-- Colocar as opções -->
+        <!-- Colocar as opções  -->
         {% for opc in opcoes|get_opcoes_questao:q.pk %}
         <div class="opcoes my-2" ordem="{{opc.ordem}}">
 

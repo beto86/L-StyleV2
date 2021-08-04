@@ -49,7 +49,7 @@ class Tentativa(models.Model):
         verbose_name = 'Tentativa'
 
     def __str__(self):
-        return self.teste.descricao
+        return f'{self.pk}-{self.teste.descricao}'
 
 
 class Questao(models.Model):
@@ -66,7 +66,7 @@ class Questao(models.Model):
         ordering = ['ordem']
 
     def __str__(self):
-        return self.descricao
+        return f'{self.ordem} - {self.descricao}'
 
 
 class Opcao(models.Model):
@@ -84,7 +84,7 @@ class Opcao(models.Model):
         ordering = ['ordem']
 
     def __str__(self):
-        return self.descricao
+        return f'{self.ordem}-{self.descricao}'
 
 
 class Resposta(models.Model):

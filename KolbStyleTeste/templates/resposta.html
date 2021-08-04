@@ -8,16 +8,34 @@
 {% endblock %}
 
 {% block conteudo %}
-<h2> {{ questionario }} </h2>
+<h2> {{questionario}} </h2>
 
 <form action="" method="POST">
-    {% csrf_token %}
-    
-    <!-- -->
-    
+
     
 
+    <p>{{EC}}</p>
+    <p>{{OR}}</p>
+    <p>{{CA}}</p>
+    <p>{{EA}}</p>
+
+    <p>{{resultadoSoma}}</p>
+
+    <p>{{estilo}}</p>
+
+    <p>{{forma1}}</p>
+    <p>{{forma2}}</p>
+
 </form>
+<!-- tabelas -->
+<br>
+{{tabelas|safe}}
+<!-- Gráfico da resposta -->
+
+<br>
+{% autoescape off %}
+{{ plot_div }}
+{% endautoescape %}
 
 {% endblock %}
 

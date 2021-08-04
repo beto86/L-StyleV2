@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Questionario, Questao, Teste, Tentativa, Opcao, Resposta
+from django.shortcuts import render, get_object_or_404
+from .models import Questionario, Questao, Teste, Tentativa, Opcao, Resposta, Estilo, FormaAprendizagem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -9,6 +9,13 @@ from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
 from .forms import TesteILSKolbForm
 
+from plotly.graph_objs import Scatter
+from plotly.offline import plot
+import plotly.graph_objs as go
+from django.views.generic import TemplateView
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Create your views here.
 
@@ -336,15 +343,195 @@ class TesteILSKolbView(FormView):
 
 class RespostaView(DetailView):
     template_name = 'resposta.html'
-    model = Teste
+    model = Questionario
+    success_url = reverse_lazy("index")
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Tentativa, id=id_)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['questionario'] = Questionario.objects.get(pk=1)
-        context['tentativas'] = Tentativa.objects.filter(teste=self.object)
+        #teste = Teste.objects.get(pk=1)
+        context['tentativas'] = Tentativa.objects.filter(id=9)
 
-        #context['respostas'] = {}
+        context['respostas'] = Resposta.objects.filter(tentativa__pk=10)
         # for t in context['tentativas']:
         #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
+
+        # aqui vai calcular a quantidade de cada forma de aprendizagem traz
+        EC = 0
+        OR = 0
+        CA = 0
+        EA = 0
+        for res in context['respostas']:
+            # calculo EC
+            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 1):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 3):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 4):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 1):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 1):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 3):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 2):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 4):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 2):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 2):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 1):
+                EC = res.valor + EC
+            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 2):
+                EC = res.valor + EC
+            # calculo OR
+            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 4):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 1):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 3):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 3):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 2):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 1):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 1):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 3):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 1):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 1):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 2):
+                OR = res.valor + OR
+            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 3):
+                OR = res.valor + OR
+            # calculo CA
+            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 2):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 2):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 1):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 4):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 3):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 4):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 3):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 2):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 4):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 4):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 3):
+                CA = res.valor + CA
+            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 1):
+                CA = res.valor + CA
+            # calculo EA
+            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 3):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 4):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 2):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 2):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 4):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 2):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 4):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 1):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 3):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 3):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 4):
+                EA = res.valor + EA
+            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 4):
+                EA = res.valor + EA
+
+        context['EC'] = EC
+        context['OR'] = OR
+        context['CA'] = CA
+        context['EA'] = EA
+
+        # aqui calculo do resultado do estilo de aprendizagem
+
+        assimilador = OR + CA
+        convergente = CA + EA
+        divergente = EC + OR
+        acomodador = EA + EC
+        resultadoSoma = max(assimilador, convergente, divergente, acomodador)
+
+        context['resultadoSoma'] = resultadoSoma
+
+        # função para descobrir o estilo
+        estilos = Estilo.objects.all()
+        if (resultadoSoma == divergente):
+            estilo = Estilo.objects.get(id=2)
+        if (resultadoSoma == assimilador):
+            estilo = Estilo.objects.get(id=4)
+        if (resultadoSoma == convergente):
+            estilo = Estilo.objects.get(id=3)
+        if (resultadoSoma == acomodador):
+            estilo = Estilo.objects.get(id=1)
+
+        context['estilo'] = estilo
+
+        # aqui calcula o resultado da forma de aprendizagem
+
+        eap1 = CA - EC  # +abstrato ou -concreto
+        eap2 = EA - OR  # +ativo ou -reflexivo
+
+        forma1 = FormaAprendizagem.objects.get(id=1)
+        forma2 = FormaAprendizagem.objects.get(id=2)
+        if (eap1 > 0):
+            forma1 = FormaAprendizagem.objects.get(id=3)
+        if (eap2 > 0):
+            forma2 = FormaAprendizagem.objects.get(id=4)
+
+        context['forma1'] = forma1
+        context['forma2'] = forma2
+
+        ########################################################
+        # teste do alex
+
+        # Questionario
+        questionario = Questionario.objects.all().values()
+        df_questionario = pd.DataFrame(questionario)
+        df_questio = df_questionario.head()
+
+        # respostas
+        respostas = Resposta.objects.all().values()
+        df_respostas = pd.DataFrame(respostas)
+        df_respostas['valor'] = df_respostas['valor'].fillna(
+            1)    # preencher valores null com '1'
+        df_resp = df_respostas.head()
+        qtd_resp = df_respostas.groupby(['valor'])['id'].count().reset_index()
+
+        dict = {
+            df_questio.to_html(),
+            df_resp.to_html(),
+            qtd_resp.to_html(),
+            df_respostas.to_html(),
+        }
+        #context['tabelas'] = dict
 
         return context

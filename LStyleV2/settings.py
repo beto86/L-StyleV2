@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cadastros',
     'usuarios',
     'KolbStyleTeste',
+    'relatorios',
     'crispy_forms',
     'crispy_bootstrap5',
     # 'paginas.apps.PaginasConfig',

@@ -43,7 +43,8 @@ urlpatterns = [
 
     path('teste-ils-kolb/<int:pk_teste>/',
          TesteILSKolbView.as_view(), name='teste-ils-kolb'),
-    path('resposta/<int:pk>/', RespostaView.as_view(), name='resposta'),
+    path('resposta/<int:id>/',
+         RespostaView.as_view(), name='resposta'),
 
 
 ]
