@@ -9,13 +9,13 @@ from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
 from .forms import TesteILSKolbForm
 
-from plotly.graph_objs import Scatter
-from plotly.offline import plot
-import plotly.graph_objs as go
+# from plotly.graph_objs import Scatter
+# from plotly.offline import plot
+# import plotly.graph_objs as go
 from django.views.generic import TemplateView
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# import numpy as np
 
 # Create your views here.
 
@@ -341,22 +341,25 @@ class TesteILSKolbView(FormView):
         return context
 
 
-class RespostaView(DetailView):
+class RespostaView(TemplateView):
     template_name = 'resposta.html'
-    model = Questionario
-    success_url = reverse_lazy("index")
+    # success_url = reverse_lazy("index")
+    # model = Questionario
 
-    def get_object(self):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Tentativa, id=id_)
+    # def get_object(self):
+    #     id_ = self.kwargs.get("id")
+    #     return get_object_or_404(Tentativa, id=id_)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['questionario'] = Questionario.objects.get(pk=1)
         #teste = Teste.objects.get(pk=1)
-        context['tentativas'] = Tentativa.objects.filter(id=9)
+        
+        # Esse context é um objeto por causa do get
+        context['tentativas'] = Tentativa.objects.filter(aluno=self.request.user).last()
 
-        context['respostas'] = Resposta.objects.filter(tentativa__pk=10)
+        # Filtra (gera uma lista) de respostas daquele objeto tentativa
+        context['respostas'] = Resposta.objects.filter(tentativa=context['tentativas'])
         # for t in context['tentativas']:
         #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
@@ -514,24 +517,24 @@ class RespostaView(DetailView):
         # teste do alex
 
         # Questionario
-        questionario = Questionario.objects.all().values()
-        df_questionario = pd.DataFrame(questionario)
-        df_questio = df_questionario.head()
+        # questionario = Questionario.objects.all().values()
+        # df_questionario = pd.DataFrame(questionario)
+        # df_questio = df_questionario.head()
 
         # respostas
-        respostas = Resposta.objects.all().values()
-        df_respostas = pd.DataFrame(respostas)
-        df_respostas['valor'] = df_respostas['valor'].fillna(
-            1)    # preencher valores null com '1'
-        df_resp = df_respostas.head()
-        qtd_resp = df_respostas.groupby(['valor'])['id'].count().reset_index()
+        # respostas = Resposta.objects.all().values()
+        # df_respostas = pd.DataFrame(respostas)
+        # df_respostas['valor'] = df_respostas['valor'].fillna(
+        #     1)    # preencher valores null com '1'
+        # df_resp = df_respostas.head()
+        # qtd_resp = df_respostas.groupby(['valor'])['id'].count().reset_index()
 
-        dict = {
-            df_questio.to_html(),
-            df_resp.to_html(),
-            qtd_resp.to_html(),
-            df_respostas.to_html(),
-        }
+        # dict = {
+        #     df_questio.to_html(),
+        #     df_resp.to_html(),
+        #     qtd_resp.to_html(),
+        #     df_respostas.to_html(),
+        # }
         #context['tabelas'] = dict
 
         return context
