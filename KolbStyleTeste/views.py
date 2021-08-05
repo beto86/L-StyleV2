@@ -53,7 +53,7 @@ class OpcaoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     group_required = u"Administrador"
     model = Opcao
     fields = ['questao', 'descricao', 'imagem',
-              'video', 'ordem']
+              'video', 'ordem', 'forma_aprendizagem']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-opcoes')
 
@@ -128,7 +128,7 @@ class OpcaoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     group_required = u"Administrador"
     model = Opcao
     fields = ['questao', 'descricao', 'imagem',
-              'video', 'ordem']
+              'video', 'ordem', 'forma_aprendizagem']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-opcoes')
 

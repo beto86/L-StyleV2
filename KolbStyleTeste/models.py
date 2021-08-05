@@ -4,6 +4,32 @@ from cadastros.models import Turma
 
 # Create your models here.
 
+class Estilo(models.Model):
+    nome = models.CharField(max_length=50)
+    descricao = models.TextField(max_length=300, verbose_name='Descrição')
+    recomendacao = models.TextField(
+        max_length=300, verbose_name='Recomendação')
+
+    class Meta:
+        verbose_name = 'Estilo'
+
+    def __str__(self):
+        return self.nome
+
+
+class FormaAprendizagem(models.Model):
+    nome = models.CharField(max_length=50)
+    descricao = models.TextField(max_length=300, verbose_name='Descrição')
+    recomendacao = models.TextField(
+        max_length=300, verbose_name='Recomendação')
+
+    class Meta:
+        verbose_name = 'Forma de Aprendizagem'
+        verbose_name_plural = 'Formas de Aprendizagens'
+
+    def __str__(self):
+        return self.nome
+
 
 class Questionario(models.Model):
     descricao = models.CharField(max_length=100, verbose_name='Descrição')
@@ -76,6 +102,7 @@ class Opcao(models.Model):
     imagem = models.URLField(null=True, blank=True)
     video = models.URLField(null=True, blank=True)
     ordem = models.IntegerField()
+    forma_aprendizagem = models.ForeignKey(FormaAprendizagem, on_delete=models.PROTECT, help_text="As respostas dessa opção serão somadas para calcular o valor da forma de aprendizagem selecionada.")
 
     class Meta:
         verbose_name = 'Opção'
@@ -103,28 +130,4 @@ class Resposta(models.Model):
         return self.opcao.descricao
 
 
-class Estilo(models.Model):
-    nome = models.CharField(max_length=50)
-    descricao = models.TextField(max_length=300, verbose_name='Descrição')
-    recomendacao = models.TextField(
-        max_length=300, verbose_name='Recomendação')
 
-    class Meta:
-        verbose_name = 'Estilo'
-
-    def __str__(self):
-        return self.nome
-
-
-class FormaAprendizagem(models.Model):
-    nome = models.CharField(max_length=50)
-    descricao = models.TextField(max_length=300, verbose_name='Descrição')
-    recomendacao = models.TextField(
-        max_length=300, verbose_name='Recomendação')
-
-    class Meta:
-        verbose_name = 'Forma de Aprendizagem'
-        verbose_name_plural = 'Formas de Aprendizagens'
-
-    def __str__(self):
-        return self.nome
