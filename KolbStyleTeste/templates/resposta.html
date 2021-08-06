@@ -21,10 +21,6 @@
 
     <p>Resultado: {{resultadoSoma}}</p>
 
-    <p>Estilo: {{estilo}}</p>
-
-    <p>Forma 1: {{forma1}}</p>
-    <p>Forma 2: {{forma2}}</p>
 
     <hr>
 
@@ -32,16 +28,13 @@
 
     <hr>
 
-</form>
-<!-- tabelas -->
-<br>
-{{tabelas|safe}}
-<!-- Gráfico da resposta -->
+    <div class="container-fluid">
+        <p>Seu estilo de aprendizagem é <strong>{{estilo}}</strong></p>
 
-<br>
-{% autoescape off %}
-{{ plot_div }}
-{% endautoescape %}
+        <p>E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
+    </div>
+</form>
+
 
 {% endblock %}
 
@@ -86,7 +79,7 @@
                 ticks: {
                     beginAtZero: true,
                     min: 0,
-                    // stepSize: 5,
+                    stepSize: 5,
                     // max: 100,
                 },
                 pointLabels: {

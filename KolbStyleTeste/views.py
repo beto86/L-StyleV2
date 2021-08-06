@@ -134,7 +134,7 @@ class OpcaoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Editar Cadastro de Turma'
+        context['titulo'] = 'Editar Cadastro de Opção'
         return context
 
 
@@ -354,12 +354,14 @@ class RespostaView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['questionario'] = Questionario.objects.get(pk=1)
         #teste = Teste.objects.get(pk=1)
-        
+
         # Esse context é um objeto por causa do get
-        context['tentativas'] = Tentativa.objects.filter(aluno=self.request.user).last()
+        context['tentativas'] = Tentativa.objects.filter(
+            aluno=self.request.user).last()
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
-        context['respostas'] = Resposta.objects.filter(tentativa=context['tentativas'])
+        context['respostas'] = Resposta.objects.filter(
+            tentativa=context['tentativas'])
         # for t in context['tentativas']:
         #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
@@ -512,29 +514,5 @@ class RespostaView(TemplateView):
 
         context['forma1'] = forma1
         context['forma2'] = forma2
-
-        ########################################################
-        # teste do alex
-
-        # Questionario
-        # questionario = Questionario.objects.all().values()
-        # df_questionario = pd.DataFrame(questionario)
-        # df_questio = df_questionario.head()
-
-        # respostas
-        # respostas = Resposta.objects.all().values()
-        # df_respostas = pd.DataFrame(respostas)
-        # df_respostas['valor'] = df_respostas['valor'].fillna(
-        #     1)    # preencher valores null com '1'
-        # df_resp = df_respostas.head()
-        # qtd_resp = df_respostas.groupby(['valor'])['id'].count().reset_index()
-
-        # dict = {
-        #     df_questio.to_html(),
-        #     df_resp.to_html(),
-        #     qtd_resp.to_html(),
-        #     df_respostas.to_html(),
-        # }
-        #context['tabelas'] = dict
 
         return context

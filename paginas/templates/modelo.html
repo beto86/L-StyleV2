@@ -72,13 +72,13 @@
                         </li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'relatorio' %}">
                                 Relatório
                             </a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'quem-somos' %}">
                                 Quem somos
                             </a>
                         </li>
@@ -94,21 +94,21 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{% url 'atualizar-dados' %}">Meus dados</a></li>
-                            <li><a class="dropdown-item" href="#">Alterar Senha</a></li>
+                            <li><a class="dropdown-item" href="{% url 'alterar-senha' %}">Alterar Senha</a></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
                         </ul>
                     </li>
                     {% else %}
-                    {% comment %} <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'registrar' %}">
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                             Registrar
                         </a>
-                    </li> {% endcomment %}
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{% url 'login' %}" style="font-size: 0.9rem;">
                             <i class="fa fa-sign-in text-light" aria-hidden="true"></i>
-                            Entrar / Cadastro
+                            Entrar
                         </a>
                     </li>
                     {% endif %}
