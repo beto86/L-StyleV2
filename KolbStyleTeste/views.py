@@ -9,13 +9,9 @@ from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
 from .forms import TesteILSKolbForm
 
-# from plotly.graph_objs import Scatter
-# from plotly.offline import plot
-# import plotly.graph_objs as go
+from django.db.models import Sum
+
 from django.views.generic import TemplateView
-# import pandas as pd
-# import matplotlib.pyplot as plt
-# import numpy as np
 
 # Create your views here.
 
@@ -366,111 +362,20 @@ class RespostaView(TemplateView):
         #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
         # aqui vai calcular a quantidade de cada forma de aprendizagem traz
-        EC = 0
-        OR = 0
-        CA = 0
-        EA = 0
-        for res in context['respostas']:
-            # calculo EC
-            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 1):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 3):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 4):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 1):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 1):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 3):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 2):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 4):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 2):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 2):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 1):
-                EC = res.valor + EC
-            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 2):
-                EC = res.valor + EC
-            # calculo OR
-            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 4):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 1):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 3):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 3):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 2):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 1):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 1):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 3):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 1):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 1):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 2):
-                OR = res.valor + OR
-            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 3):
-                OR = res.valor + OR
-            # calculo CA
-            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 2):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 2):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 1):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 4):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 3):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 4):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 3):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 2):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 4):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 4):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 3):
-                CA = res.valor + CA
-            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 1):
-                CA = res.valor + CA
-            # calculo EA
-            if (res.opcao.questao.ordem == 1) and (res.opcao.ordem == 3):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 2) and (res.opcao.ordem == 4):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 3) and (res.opcao.ordem == 2):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 4) and (res.opcao.ordem == 2):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 5) and (res.opcao.ordem == 4):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 6) and (res.opcao.ordem == 2):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 7) and (res.opcao.ordem == 4):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 8) and (res.opcao.ordem == 1):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 9) and (res.opcao.ordem == 3):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 10) and (res.opcao.ordem == 3):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 11) and (res.opcao.ordem == 4):
-                EA = res.valor + EA
-            if (res.opcao.questao.ordem == 12) and (res.opcao.ordem == 4):
-                EA = res.valor + EA
+
+        context['EC'] = context['respostas'].filter(
+            opcao__forma_aprendizagem__nome='Experiência Concreta').aggregate(Sum('valor'))
+        context['OR'] = context['respostas'].filter(
+            opcao__forma_aprendizagem__nome='Observação Reflexiva').aggregate(Sum('valor'))
+        context['CA'] = context['respostas'].filter(
+            opcao__forma_aprendizagem__nome='Conceituação Abstrato').aggregate(Sum('valor'))
+        context['EA'] = context['respostas'].filter(
+            opcao__forma_aprendizagem__nome='Experimentação Ativa').aggregate(Sum('valor'))
+
+        EC = int(context['EC'].get('valor__sum'))
+        OR = int(context['OR'].get('valor__sum'))
+        CA = int(context['CA'].get('valor__sum'))
+        EA = int(context['EA'].get('valor__sum'))
 
         context['EC'] = EC
         context['OR'] = OR

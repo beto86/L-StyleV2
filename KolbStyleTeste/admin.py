@@ -27,7 +27,8 @@ class QuestaoAdmin(admin.ModelAdmin):
 
 @admin.register(Opcao)
 class OpcaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'questao', 'descricao', 'imagem', 'video', 'ordem')
+    list_display = ('id', 'questao', 'descricao', 'imagem',
+                    'video', 'ordem', 'forma_aprendizagem')
 
 
 @admin.register(Resposta)
