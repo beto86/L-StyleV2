@@ -354,6 +354,9 @@ class RespostaView(TemplateView):
         # Esse context é um objeto por causa do get
         context['tentativas'] = Tentativa.objects.filter(
             aluno=self.request.user).last()
+        
+        # Para o relatório do professor como DETAILVIEW de tentativa            
+        # context['tentativas'] = Tentativa.objects.get(pk=self.object.pk, teste__professor=self.request.user)
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
         context['respostas'] = Resposta.objects.filter(

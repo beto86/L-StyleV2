@@ -36,16 +36,16 @@
 
             <h5>{{ opc.ordem }} - {{ opc.descricao }}</h5>
             
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" class="coluna1">
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" class="coluna1" questao="{{opc.questao.ordem}}">
             <label for="opc_{{opc.pk}}_1" class="me-4">1</label>&nbsp;
 
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" class="coluna2">
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" class="coluna2" questao="{{opc.questao.ordem}}">
             <label for="opc_{{opc.pk}}_2" class="me-4">2</label>&nbsp;
 
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" class="coluna3">
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" class="coluna3" questao="{{opc.questao.ordem}}">
             <label for="opc_{{opc.pk}}_3" class="me-4">3</label>&nbsp;
 
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" class="coluna4">
+            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" class="coluna4" questao="{{opc.questao.ordem}}">
             <label for="opc_{{opc.pk}}_4" class="me-4">4</label>&nbsp;
 
             
@@ -53,9 +53,9 @@
         {% endfor %}
 
         {% if q.ordem < 12 %}
-        <button type="button" class="btn btn-primary mt-4 btn_proximo" ordem="{{q.ordem}}">Próximo</button>     
+        <button type="button" class="btn btn-primary mt-4 btn_proximo" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>     
         {% else %}
-        <button type="submit" class="btn btn-success mt-4" ordem="{{q.ordem}}">Enviar respostas</button>     
+        <button type="submit" class="btn btn-success mt-4" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>     
         {% endif %}
         
     </div>
@@ -78,6 +78,33 @@
             
             // Recebe a ordem da questão atual que está no botão
             var ordem = $(this).attr("ordem");
+
+            // Verificar se as respostas são iguais
+            var questao = $(this).attr("questao");
+            
+            // Recebe o valor de cada opção marcada
+            var r1 = $('input[name=opc_' + questao + '_1]:checked').val();
+            var r2 = $('input[name=opc_' + questao + '_2]:checked').val();
+            var r3 = $('input[name=opc_' + questao + '_3]:checked').val();
+            var r4 = $('input[name=opc_' + questao + '_4]:checked').val();
+
+            // Guarda eles em uma lista
+            let respostas = [r1, r2, r3, r4];
+
+            // Verifica se o usuário respondeu todas as questões
+            if(typeof respostas[0] == "undefined" || typeof respostas[1] == "undefined" || typeof respostas[2] == "undefined" || typeof respostas[3] == "undefined"){
+                alert("Você precisa atribuir notas para todas as opções!");
+                return false;
+            }
+
+            // Verifica se tem valores repetidos
+            let hasDuplicate = respostas.some((val, i) => respostas.indexOf(val) !== i);
+
+            // Se sim, avisa o usuário
+            if(hasDuplicate){
+                alert("Você não pode atribuir a mesma nota para mais de uma opção.");
+                return false;
+            } 
 
             if(ordem<12){
                 var atual = ".questoes[ordem="+ ordem + "]";
