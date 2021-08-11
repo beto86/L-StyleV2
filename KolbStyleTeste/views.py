@@ -294,7 +294,7 @@ class TesteILSKolbView(FormView):
 
         # Se não preencheu tudo, retorna ao formulário com as mensagens de erro encontradas
         # if(respostas == False):
-        #    return self.form_invalid(form)
+        #     return self.form_invalid(form)
         # else:
             # Caso esteja tudo certo...
 
@@ -306,7 +306,8 @@ class TesteILSKolbView(FormView):
         # para cada tentativa, criar uma Resposta
         # Para cada número das questões
         for q in questoes:
-            questao = Questao.objects.get(questionario=questionario, ordem=q)
+            questao = Questao.objects.get(
+                questionario=questionario, ordem=q)
             # Para cada opção que a gente tem de cada questão
             for opc in opcoes:
                 # Gera o name igual lá no template
@@ -354,8 +355,8 @@ class RespostaView(TemplateView):
         # Esse context é um objeto por causa do get
         context['tentativas'] = Tentativa.objects.filter(
             aluno=self.request.user).last()
-        
-        # Para o relatório do professor como DETAILVIEW de tentativa            
+
+        # Para o relatório do professor como DETAILVIEW de tentativa
         # context['tentativas'] = Tentativa.objects.get(pk=self.object.pk, teste__professor=self.request.user)
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
@@ -422,5 +423,10 @@ class RespostaView(TemplateView):
 
         context['forma1'] = forma1
         context['forma2'] = forma2
+
+        context['desc_estilo'] = estilo.descricao + \
+            forma1.descricao + forma2.descricao
+        context['rec_estilo'] = estilo.recomendacao + \
+            forma1.recomendacao + forma2.recomendacao
 
         return context

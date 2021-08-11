@@ -20,13 +20,11 @@
 <form action="" method="POST">
     {% csrf_token %}
 
-    <button type="submit">ENviar</button>
-
     <!-- bloco de perguntas -->
     {% for q in questoes %}
 
     <!-- Adicionar essa classe abaixo: d-none -->
-    <div class="questoes mt-4 border border-warning shadow-sm p-4" ordem="{{q.ordem}}">
+    <div class="questoes mt-4 border border-warning shadow-sm p-4 d-none" ordem="{{q.ordem}}">
         
         <h4 class="mb-3 border-bottom border-light">{{q.ordem}} - {{ q.descricao }}</h4>
         
@@ -55,7 +53,7 @@
         {% if q.ordem < 12 %}
         <button type="button" class="btn btn-primary mt-4 btn_proximo" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>     
         {% else %}
-        <button type="submit" class="btn btn-success mt-4" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>     
+        <button type="submit" class="btn btn-success mt-4 btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>     
         {% endif %}
         
     </div>
@@ -74,7 +72,7 @@
         $(".questoes[ordem=1]").removeClass("d-none");
         
         // Ao clicar nos botões de próximo
-        $(".btn_proximo").click(function (e) { 
+        $(".btn_proximo, .btn_enviar").click(function (e) { 
             
             // Recebe a ordem da questão atual que está no botão
             var ordem = $(this).attr("ordem");
@@ -115,6 +113,8 @@
             }
             
         });
+
+        
         
     });    
 
