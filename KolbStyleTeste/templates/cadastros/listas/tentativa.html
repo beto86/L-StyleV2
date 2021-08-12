@@ -14,6 +14,7 @@
                     <th>Aluno</th>
                     <th>Data</th>
                     <th>Concluiu</th>
+                    <th>Opção</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,11 @@
                     <td>{{tentativa.aluno}}</td>
                     <td>{{tentativa.data}}</td>
                     <td>{{tentativa.concluiu}}</td>
+                    <td>
+                        <a href="{% url 'relatorio-aluno' tentativa.pk %}" class="btn btn-info btn-sm" title="Resposta">
+                            <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                        </a>
+                    </td>
                 </tr>
                 {% empty %}
                 <td colspan="3">Nenhuma tentativa registrada.</td>
@@ -47,12 +53,12 @@
         "language": {
             "decimal": "",
             "emptyTable": "Sem dados disponíveis",
-            "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-            "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
-            "infoFiltered": "(filtrado de _MAX_ registos no total)",
+            "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "infoEmpty": "Mostrando de 0 até 0 de 0 registros",
+            "infoFiltered": "(filtrado de _MAX_ registros no total)",
             "infoPostFix": "",
             "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ registos",
+            "lengthMenu": "Mostrar _MENU_ registros",
             "loadingRecords": "A carregar dados...",
             "processing": "A processar...",
             "search": "Procurar:",

@@ -1,0 +1,105 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+{% load filtros %}
+
+{% block titulo %}
+<title>Relatório do aluno</title>
+{% endblock %}
+
+{% block conteudo %}
+<h2> {{questionario}} </h2>
+
+<form action="" method="POST">
+
+    
+
+    <p>EC: {{EC}}</p>
+    <p>OR: {{OR}}</p>
+    <p>CA: {{CA}}</p>
+    <p>EA: {{EA}}</p>
+
+    <p>Resultado: {{resultadoSoma}}</p>
+
+
+    <hr>
+
+    <canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>
+
+    <hr>
+
+    <div class="container-fluid">
+        <p>Seu estilo de aprendizagem é <strong>{{estilo}}</strong></p>
+
+        <p>E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
+
+        <p>Descrição do estilo e forma de aprender: {{desc_estilo}}</p>
+
+        <p>Recomendações do estilo e forma de aprender: {{rec_estilo}}</p>
+    </div>
+</form>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/Chart.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        
+        var ctx = $('#myChart');
+
+        var dados = {
+            labels: ['Experiência Concreta', 'Observação Reflexiva', 'Concentuação Abstrata', 'Experimentação Ativa'],
+            datasets: [
+                { // Aqui vai os dados da pessoa
+                    label: 'Seu estilo',
+                    data: [{{ EC }}, {{ OR }}, {{ CA }}, {{ EA }}],
+                    fill: true,
+                    backgroundColor: 'rgba(241, 194, 0, 0.2)',
+                    borderColor: 'rgb(241, 194, 0)',
+                    pointBackgroundColor: 'rgb(241, 194, 0)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(241, 194, 0)'
+                },
+                { // Depois os dados/média da turma
+                    label: 'Geral da Turma',
+                    data: [40, 20, 10, 15],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                }
+            ] // fim dos conjuntos
+        };
+
+        var config = {
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    stepSize: 5,
+                    // max: 100,
+                },
+                pointLabels: {
+                    fontSize: 13
+                }
+            },
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'radar',
+            data: dados,
+            options: config,
+        });
+
+    });
+    // var myChart = new Chart(ctx, { ...});
+</script>
+
+{% endblock %}
