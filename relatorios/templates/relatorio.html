@@ -9,7 +9,224 @@
 {% block conteudo %}
 
 <h3>Pagina de Relatórios</h3>
+<hr>
+<canvas id="mediaTurma" style="max-width: 600px; max-height: 600px;"></canvas>
+<hr>
+<canvas id="mediaPorPeriodo" style="max-width: 600px; max-height: 600px;"></canvas>
+<hr>
+<canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
+<hr>
+<canvas id="mediaPorInstituicao" style="max-width: 600px; max-height: 600px;"></canvas>
+<hr>
+{% endblock %}
 
+{% block scripts %}
+<script src="{% static 'js/Chart.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        //relatório para a media da turma de estilo de aprendizagem
+        var ctx = $('#mediaTurma');
 
+        var dados = {
+            labels: ['Assimilador', 'Convergente', 'Divergente', 'Acomodador'],
+            datasets: [
+                { // Depois os dados/média da turma
+                    label: 'Geral da Turma',
+                    data: [40, 20, 10, 15],
+                    fill: true,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }
+            ] // fim dos conjuntos
+        };
+
+        var config = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Média da turma',
+                fontSize: 30,
+                fontColor: '#273c75'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: dados,
+            options: config,
+        });
+
+        //relatório para a media por período de estilo de aprendizagem
+        var ctx = $('#mediaPorPeriodo');
+
+        var dados = {
+            labels: ['Assimilador', 'Convergente', 'Divergente', 'Acomodador'],
+            datasets: [
+                { // Depois os dados/média da turma
+                    label: 'Geral da Turma',
+                    data: [40, 20, 10, 15],
+                    fill: true,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }
+            ] // fim dos conjuntos
+        };
+
+        var config = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Média por Período',
+                fontSize: 30,
+                fontColor: '#273c75'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        };
+
+        var ChartPeriodo = new Chart(ctx, {
+            type: 'bar',
+            data: dados,
+            options: config,
+        });
+
+        //relatório para a media por curso de estilo de aprendizagem
+        var ctx = $('#mediaPorCurso');
+
+        var dados = {
+            labels: ['Assimilador', 'Convergente', 'Divergente', 'Acomodador'],
+            datasets: [
+                { // Depois os dados/média da turma
+                    label: 'Geral da Turma',
+                    data: [40, 20, 10, 15],
+                    fill: true,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }
+            ] // fim dos conjuntos
+        };
+
+        var config = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Média por Curso',
+                fontSize: 30,
+                fontColor: '#273c75'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        };
+
+        var ChartCurso = new Chart(ctx, {
+            type: 'bar',
+            data: dados,
+            options: config,
+        });
+
+        //relatório para a media por Instituição de estilo de aprendizagem
+        var ctx = $('#mediaPorInstituicao');
+
+        var dados = {
+            labels: ['Assimilador', 'Convergente', 'Divergente', 'Acomodador'],
+            datasets: [
+                { // Depois os dados/média da turma
+                    label: 'Geral da Turma',
+                    data: [40, 20, 10, 15],
+                    fill: true,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }
+            ] // fim dos conjuntos
+        };
+
+        var config = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Média por Instituição',
+                fontSize: 30,
+                fontColor: '#273c75'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        };
+
+        var ChartInstituicao = new Chart(ctx, {
+            type: 'bar',
+            data: dados,
+            options: config,
+        });
+
+    });
+    // var myChart = new Chart(ctx, { ...});
+
+</script>
 
 {% endblock %}

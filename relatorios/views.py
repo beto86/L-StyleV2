@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic import DetailView
-from KolbStyleTeste.models import Resposta, Questionario, Tentativa, Estilo, FormaAprendizagem
+from KolbStyleTeste.models import Resposta, Questionario, Tentativa, Estilo, FormaAprendizagem, Turma
 from django.db.models import Sum
 
 # Create your views here.
@@ -27,7 +27,6 @@ class RelatorioPorAlunoView(DetailView):
         # Para o relatório do professor como DETAILVIEW de tentativa
         context['tentativas'] = Tentativa.objects.get(
             pk=self.object.pk, teste__professor=self.request.user)
-        print(context['tentativas'])
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
         context['respostas'] = Resposta.objects.filter(
@@ -99,4 +98,13 @@ class RelatorioPorAlunoView(DetailView):
         context['rec_estilo'] = estilo.recomendacao + \
             forma1.recomendacao + forma2.recomendacao
 
+        ##############################
+        # para a média da turma
+        #mediaTurma = Tentativa.objects.filter(teste)
+        #context['mediaTurma'] = mediaTurma
+
         return context
+
+
+class RelatorioTurma(TemplateView):
+    template_name = 'relatorio.html'

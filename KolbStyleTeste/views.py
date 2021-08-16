@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
 from .forms import TesteILSKolbForm
+from django.contrib.auth.models import User
 
 from django.db.models import Sum
 
@@ -61,11 +62,16 @@ class OpcaoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 
 class TentativaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor", u"Aluno"]
     model = Tentativa
     fields = ['teste', 'aluno', 'concluiu']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-tentativas')
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -75,12 +81,16 @@ class TentativaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 
 class TesteCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Teste
-    fields = ['descricao', 'professor',
-              'questionario', 'turma', 'chave_acesso', 'ativo']
+    fields = ['descricao', 'questionario', 'turma', 'chave_acesso', 'ativo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-testes')
+
+    def form_valid(self, form):
+        form.instance.professor = self.request.user
+        url = super().form_valid(form)
+        return url
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -136,12 +146,16 @@ class OpcaoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
 
 class TesteUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Teste
-    fields = ['descricao', 'professor',
-              'questionario', 'turma', 'chave_acesso', 'ativo']
+    fields = ['descricao', 'questionario', 'turma', 'chave_acesso', 'ativo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-testes')
+
+    def get_object(self):
+        self.object = get_object_or_404(
+            Teste, pk=self.kwargs['pk'], professor=self.request.user)
+        return self.object
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -196,10 +210,15 @@ class OpcaoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
 
 class TesteDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Teste
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-testes')
+
+    def get_object(self):
+        self.object = get_object_or_404(
+            Teste, pk=self.kwargs['pk'], professor=self.request.user)
+        return self.object
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -212,44 +231,56 @@ class TesteDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
 
 class QuestionarioList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Questionario
     template_name = 'cadastros/listas/questionario.html'
 
 
 class QuestaoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Questao
     template_name = 'cadastros/listas/questao.html'
 
 
 class OpcaoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Opcao
     template_name = 'cadastros/listas/opcao.html'
 
 
 class TentativaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor", u"Aluno"]
     model = Tentativa
     template_name = 'cadastros/listas/tentativa.html'
+
+    def get_queryset(self):
+        self.object_list = Tentativa.objects.filter(usuario=self.request.user)
+        return self.object_list
 
 
 class TesteList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Teste
     template_name = 'cadastros/listas/teste.html'
+
+    def get_queryset(self):
+        self.object_list = Teste.objects.filter(professor=self.request.user)
+        return self.object_list
 
 
 class RespostaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    group_required = u"Administrador"
+    group_required = [u"Administrador", u"Professor"]
     model = Resposta
     template_name = 'cadastros/listas/resposta.html'
+
+    def get_queryset(self):
+        self.object_list = Resposta.objects.filter(usuario=self.request.user)
+        return self.object_list
 
 ############# OUTRAS PAGINAS DO TESTE ##############
 

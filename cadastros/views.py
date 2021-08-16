@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from .models import Instituicao, Turma
@@ -18,6 +18,11 @@ class InstituicaoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-instituicoes')
 
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Cadastro de Instituição'
@@ -32,6 +37,11 @@ class TurmaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
               'ano', 'curso', 'turno', 'instituicao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-turmas')
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,19 +59,30 @@ class InstituicaoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-instituicoes')
 
+    def get_object(self):
+        self.object = get_object_or_404(
+            Instituicao, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Editar Cadastro de Instituição'
         return context
 
 
-class TurmaUpdate(LoginRequiredMixin, UpdateView):
+class TurmaUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
     model = Turma
     fields = ['nome', 'ra', 'periodo',
               'ano', 'curso', 'turno', 'instituicao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-turmas')
+
+    def get_object(self):
+        self.object = get_object_or_404(
+            Turma, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -79,6 +100,11 @@ class InstituicaoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-instituicoes')
 
+    def get_object(self):
+        self.object = get_object_or_404(
+            Instituicao, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Excluir instituição'
@@ -92,6 +118,11 @@ class TurmaDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Turma
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-turmas')
+
+    def get_object(self):
+        self.object = get_object_or_404(
+            Turma, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -109,9 +140,18 @@ class InstituicaoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Instituicao
     template_name = 'cadastros/listas/instituicao.html'
 
+    def get_queryset(self):
+        self.object_list = Instituicao.objects.filter(
+            usuario=self.request.user)
+        return self.object_list
+
 
 class TurmaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     group_required = [u"Administrador", u"Professor"]
     model = Turma
     template_name = 'cadastros/listas/turma.html'
+
+    def get_queryset(self):
+        self.object_list = Turma.objects.filter(usuario=self.request.user)
+        return self.object_list

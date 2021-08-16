@@ -20,10 +20,10 @@ admin.site.register(Turma)
 
 @admin.register(Instituicao)
 class InstituicaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome', 'endereco')
+    list_display = ('id', 'nome', 'endereco', 'usuario')
 
 
 @admin.register(Turma)
 class TurmaAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome', 'ra', 'periodo', 'ano',
-                    'curso', 'turno', 'instituicao')
+                    'curso', 'turno', 'instituicao', 'usuario')
