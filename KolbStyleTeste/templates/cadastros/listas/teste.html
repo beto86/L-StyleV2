@@ -11,12 +11,12 @@
             <thead>
                 <tr>
                     <th>Descrição</th>
-                    <th>Professor</th>
+                    <!-- <th>Professor</th> -->
                     <th>Questionário</th>
                     <th>Turma</th>
-                    <th>Data</th>
-                    <th>Hora</th>
-                    <th>chave de Acesso</th>
+                    <th>Criado em</th>
+                    <!-- <th>Hora</th> -->
+                    <th>Dados de acesso</th>
                     <th>Ativo</th>
                     <th>Opções</th>
                 </tr>
@@ -25,12 +25,15 @@
                 {% for teste in object_list %}
                 <tr>
                     <td>{{teste.descricao}}</td>
-                    <td>{{teste.professor}}</td>
+                    <!-- <td>{{teste.professor}}</td> -->
                     <td>{{teste.questionario.descricao}}</td>
                     <td>{{teste.turma}}</td>
                     <td>{{teste.data}}</td>
-                    <td>{{teste.hora}}</td>
-                    <td>{{teste.chave_acesso}}</td>
+                    <!-- <td>{{teste.hora}}</td> -->
+                    <td>
+                        <strong>Código:</strong> {{teste.pk}} <br>
+                        <strong>Chave de acesso:</strong> {{teste.chave_acesso}}
+                    </td>
                     <td>{{teste.ativo}}</td>
                     <td>
                         <a href="{% url 'editar-teste' teste.pk %}" class="btn btn-warning btn-sm" title="Editar">

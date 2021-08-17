@@ -285,6 +285,10 @@ class RespostaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
 ############# OUTRAS PAGINAS DO TESTE ##############
 
 
+class IniciarTesteView(TemplateView):
+    template_name = 'iniciar-teste.html'
+
+
 class TesteILSKolbView(FormView):
     template_name = "teste-ils-kolb.html"
     form_class = TesteILSKolbForm
@@ -330,7 +334,7 @@ class TesteILSKolbView(FormView):
             # Caso esteja tudo certo...
 
             # Criar uma Tentativa
-        teste = Teste.objects.get(pk=self.kwargs['pk_teste'])
+        teste = get_object_or_404(Teste, pk=self.kwargs['pk_teste'], chave_acesso=self.kwargs['chave'], ativo=True)
         tentativa = Tentativa.objects.create(
             teste=teste, usuario=self.request.user)
 
@@ -357,7 +361,7 @@ class TesteILSKolbView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['teste'] = get_object_or_404(Teste, pk=self.kwargs['pk_teste'], ativo=True)
+        context['teste'] = get_object_or_404(Teste, pk=self.kwargs['pk_teste'], chave_acesso=self.kwargs['chave'], ativo=True)
 
         context['questionario'] = Questionario.objects.get(pk=1)
 

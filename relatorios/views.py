@@ -13,8 +13,11 @@ class RelatorioPorAlunoView(DetailView):
     # success_url = reverse_lazy("index")
 
     def get_object(self):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Tentativa, id=id_)
+        # Consultar o grupo do usuário, se for aluno faz isso...
+        # return get_object_or_404(Tentativa, pk=self.kwargs.get("id"), usuario=self.request.user)
+        return get_object_or_404(Tentativa, pk=self.kwargs["id"])
+        # Se não for aluno
+        # return get_object_or_404(Tentativa, pk=self.kwargs.get("id"))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,8 +28,7 @@ class RelatorioPorAlunoView(DetailView):
         # context['tentativas'] = Tentativa.objects.filter(aluno=self.request.user).last()
 
         # Para o relatório do professor como DETAILVIEW de tentativa
-        context['tentativas'] = Tentativa.objects.get(
-            pk=self.object.pk, teste__professor=self.request.user)
+        context['tentativas'] = self.object
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
         context['respostas'] = Resposta.objects.filter(

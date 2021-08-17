@@ -1,0 +1,61 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+{% load filtros %}
+
+{% block titulo %}
+<title>Pesquisar Teste</title>
+{% endblock %}
+
+{% block conteudo %}
+<h2>Responder um teste</h2>
+
+<p class="text-secondary">
+    Informe corretamente o código e a chave de acesso do teste informados pelo seu professor.
+</p>
+<hr>
+
+<form action="">
+
+    <label for="codigo">Código:</label>
+    <input type="number" id="codigo" required>
+    
+    <br>
+    
+    <label for="codigo">Chave de acesso:</label>
+    <input type="text" id="chave" required>
+    
+    <hr>
+    
+    <button type="submit" class="btn btn-success" id="btnSubmit">Iniciar teste</button>
+    
+</form>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        
+        var url = "{% url 'teste-ils-kolb' 111 'abc' %}";
+
+        $("form").submit(function (e) { 
+            e.preventDefault();
+
+            var codigo = $("#codigo").val().trim();
+            var chave = $("#chave").val().trim();
+
+            if(codigo == "" || chave == ""){
+                alert("Preencha corretamente o Código e a Chave do teste.");
+                return false;
+            }
+
+            var url_final = url.replace('111', codigo).replace('abc', chave)
+            window.location.href = url_final;
+
+        });
+    });
+</script>
+{% endblock %}

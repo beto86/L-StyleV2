@@ -52,8 +52,7 @@ class Teste(models.Model):
         Turma, related_name='turmas', on_delete=models.CASCADE, blank=True, null=True)
     data = models.DateField(auto_now_add=True)
     hora = models.DateTimeField(auto_now_add=True)
-    chave_acesso = models.CharField(
-        max_length=30, verbose_name='Chave de Acesso', blank=True, null=True)
+    chave_acesso = models.CharField(max_length=30, verbose_name='Chave de Acesso', help_text='Informe uma chave de acesso que também deverá ser fornecida aos usuários que irão responder o teste criado por você.')
     ativo = models.BooleanField(default=False)
 
     class Meta:
