@@ -31,8 +31,7 @@ class RelatorioPorAlunoView(DetailView):
         context['tentativas'] = self.object
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
-        context['respostas'] = Resposta.objects.filter(
-            tentativa=context['tentativas'])
+        context['respostas'] = Resposta.objects.filter(tentativa=context['tentativas'])
         # for t in context['tentativas']:
         #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 

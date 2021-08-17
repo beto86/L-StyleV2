@@ -257,7 +257,10 @@ class TentativaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'cadastros/listas/tentativa.html'
 
     def get_queryset(self):
+        # Se for aluno faz isso
         self.object_list = Tentativa.objects.filter(usuario=self.request.user)
+        # Se não, faz isso
+        # self.object_list = Tentativa.objects.filter(teste__professor=self.request.user)
         return self.object_list
 
 

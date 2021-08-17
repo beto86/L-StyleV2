@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th>Teste</th>
-                    <th>Aluno</th>
+                    <th>Quem respondeu</th>
                     <th>Data</th>
                     <th>Concluiu</th>
                     <th>Opção</th>
@@ -21,7 +21,7 @@
                 {% for tentativa in object_list %}
                 <tr>
                     <td>{{tentativa.teste.descricao}}</td>
-                    <td>{{tentativa.aluno}}</td>
+                    <td>{{tentativa.usuario.perfil.nome_completo|default_if_none:tentativa.usuario}}</td>
                     <td>{{tentativa.data}}</td>
                     <td>{{tentativa.concluiu}}</td>
                     <td>
