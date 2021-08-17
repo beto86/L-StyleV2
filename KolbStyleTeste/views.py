@@ -279,7 +279,7 @@ class RespostaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'cadastros/listas/resposta.html'
 
     def get_queryset(self):
-        self.object_list = Resposta.objects.filter(usuario=self.request.user)
+        self.object_list = Resposta.objects.filter(tentativa__usuario=self.request.user)
         return self.object_list
 
 ############# OUTRAS PAGINAS DO TESTE ##############
@@ -332,7 +332,7 @@ class TesteILSKolbView(FormView):
             # Criar uma Tentativa
         teste = Teste.objects.get(pk=self.kwargs['pk_teste'])
         tentativa = Tentativa.objects.create(
-            teste=teste, aluno=self.request.user)
+            teste=teste, usuario=self.request.user)
 
         # para cada tentativa, criar uma Resposta
         # Para cada número das questões
@@ -350,12 +350,15 @@ class TesteILSKolbView(FormView):
                 # Criar um objeto Resposta para cada um com a tentativa, teste, opção, etc
 
                 resp = Resposta.objects.create(
-                    tentativa=tentativa, opcao=opcao, valor=valor, aluno=self.request.user)
+                    tentativa=tentativa, opcao=opcao, valor=valor)
 
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['teste'] = get_object_or_404(Teste, pk=self.kwargs['pk_teste'], ativo=True)
+
         context['questionario'] = Questionario.objects.get(pk=1)
 
         context['questoes'] = Questao.objects.filter(
@@ -385,7 +388,7 @@ class RespostaView(TemplateView):
 
         # Esse context é um objeto por causa do get
         context['tentativas'] = Tentativa.objects.filter(
-            aluno=self.request.user).last()
+            usuario=self.request.user).last()
 
         # Para o relatório do professor como DETAILVIEW de tentativa
         # context['tentativas'] = Tentativa.objects.get(pk=self.object.pk, teste__professor=self.request.user)

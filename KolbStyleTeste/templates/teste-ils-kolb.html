@@ -10,6 +10,8 @@
 {% block conteudo %}
 <h2> {{ questionario }} </h2>
 
+<h4>{{ teste }} - Turma: {{teste.turma}}</h4>
+
 <!-- Como pegar a mensagem de validação de form -->
 {% if form.errors %}
 <ul class="alert alert-danger">
