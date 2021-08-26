@@ -2,7 +2,7 @@ from django.urls import path
 from .views import QuestionarioCreate, QuestaoCreate, OpcaoCreate, TentativaCreate, TesteCreate
 from .views import QuestionarioUpdate, QuestaoUpdate, OpcaoUpdate, TesteUpdate
 from .views import QuestionarioDelete, QuestaoDelete, OpcaoDelete, TesteDelete
-from .views import QuestionarioList, QuestaoList, OpcaoList, TentativaList, TesteList, RespostaList
+from .views import QuestionarioList, QuestaoList, OpcaoList, TentativaList, TesteList
 from .views import TesteILSKolbView, RespostaView, IniciarTesteView
 
 urlpatterns = [
@@ -39,14 +39,13 @@ urlpatterns = [
     path('listar/opcoes', OpcaoList.as_view(), name='listar-opcoes'),
     path('listar/tentativas', TentativaList.as_view(), name='listar-tentativas'),
     path('listar/testes', TesteList.as_view(), name='listar-testes'),
-    path('listar/respostas', RespostaList.as_view(), name='listar-respostas'),
 
-    path('teste-ils-kolb/<int:pk_teste>/<str:chave>/',
+    path('teste-ils-kolb/<str:chave>/',
          TesteILSKolbView.as_view(), name='teste-ils-kolb'),
-    
+
     path('resposta/',
          RespostaView.as_view(), name='resposta'),
-         
+
     path('iniciar-teste/',
          IniciarTesteView.as_view(), name='iniciar-teste'),
 

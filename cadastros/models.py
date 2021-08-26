@@ -25,7 +25,6 @@ class Turma(models.Model):
         ('Noturno', 'Noturno'),
     )
     nome = models.CharField(max_length=45)
-    ra = models.CharField(max_length=10, unique=True, verbose_name='RA')
     periodo = models.IntegerField(verbose_name='Período')
     ano = models.IntegerField()
     curso = models.CharField(max_length=45)

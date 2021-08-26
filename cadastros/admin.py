@@ -25,5 +25,5 @@ class InstituicaoAdmin(admin.ModelAdmin):
 
 @admin.register(Turma)
 class TurmaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome', 'ra', 'periodo', 'ano',
+    list_display = ('id', 'nome', 'periodo', 'ano',
                     'curso', 'turno', 'instituicao', 'usuario')

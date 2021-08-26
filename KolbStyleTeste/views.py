@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Questionario, Questao, Teste, Tentativa, Opcao, Resposta, Estilo, FormaAprendizagem
+from .models import Questionario, Questao, Teste, Tentativa, Opcao, Estilo, FormaAprendizagem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -275,16 +275,6 @@ class TesteList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         return self.object_list
 
 
-class RespostaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
-    login_url = reverse_lazy('login')
-    group_required = [u"Administrador", u"Professor"]
-    model = Resposta
-    template_name = 'cadastros/listas/resposta.html'
-
-    def get_queryset(self):
-        self.object_list = Resposta.objects.filter(tentativa__usuario=self.request.user)
-        return self.object_list
-
 ############# OUTRAS PAGINAS DO TESTE ##############
 
 
@@ -337,7 +327,8 @@ class TesteILSKolbView(FormView):
             # Caso esteja tudo certo...
 
             # Criar uma Tentativa
-        teste = get_object_or_404(Teste, pk=self.kwargs['pk_teste'], chave_acesso=self.kwargs['chave'], ativo=True)
+        teste = get_object_or_404(
+            Teste, chave_acesso=self.kwargs['chave'], ativo=True)
         tentativa = Tentativa.objects.create(
             teste=teste, usuario=self.request.user)
 
@@ -364,7 +355,8 @@ class TesteILSKolbView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['teste'] = get_object_or_404(Teste, pk=self.kwargs['pk_teste'], chave_acesso=self.kwargs['chave'], ativo=True)
+        context['teste'] = get_object_or_404(
+            Teste, chave_acesso=self.kwargs['chave'], ativo=True)
 
         context['questionario'] = Questionario.objects.get(pk=1)
 

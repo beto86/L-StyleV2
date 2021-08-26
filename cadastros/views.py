@@ -33,7 +33,7 @@ class TurmaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     group_required = [u"Administrador", u"Professor"]
     model = Turma
-    fields = ['nome', 'ra', 'periodo',
+    fields = ['nome', 'periodo',
               'ano', 'curso', 'turno', 'instituicao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-turmas')
@@ -74,7 +74,7 @@ class TurmaUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     group_required = [u"Administrador", u"Professor"]
     model = Turma
-    fields = ['nome', 'ra', 'periodo',
+    fields = ['nome', 'periodo',
               'ano', 'curso', 'turno', 'instituicao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-turmas')
