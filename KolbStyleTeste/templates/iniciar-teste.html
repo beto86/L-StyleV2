@@ -11,14 +11,13 @@
 <h2>Responder um teste</h2>
 
 <p class="text-secondary">
-    Informe corretamente o código e a chave de acesso do teste informados pelo seu professor.
+    Informe corretamente a chave de acesso do teste informados pelo seu professor.
 </p>
 <hr>
 
 <form action="">
 
-    <label for="codigo">Código:</label>
-    <input type="number" id="codigo" required>
+
     
     <br>
     
@@ -39,20 +38,20 @@
 <script>
     $(document).ready(function () {
         
-        var url = "{% url 'teste-ils-kolb' 111 'abc' %}";
+        var url = "{% url 'teste-ils-kolb' 'abc' %}";
 
         $("form").submit(function (e) { 
             e.preventDefault();
 
-            var codigo = $("#codigo").val().trim();
+            //var codigo = $("#codigo").val().trim();
             var chave = $("#chave").val().trim();
 
-            if(codigo == "" || chave == ""){
-                alert("Preencha corretamente o Código e a Chave do teste.");
+            if(chave == ""){
+                alert("Preencha corretamente o a Chave do teste.");
                 return false;
             }
 
-            var url_final = url.replace('111', codigo).replace('abc', chave)
+            var url_final = url.replace('abc', chave)
             window.location.href = url_final;
 
         });

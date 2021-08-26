@@ -52,8 +52,9 @@ class Teste(models.Model):
         Turma, related_name='turmas', on_delete=models.CASCADE, blank=True, null=True)
     data = models.DateField(auto_now_add=True)
     hora = models.DateTimeField(auto_now_add=True)
-    chave_acesso = models.CharField(max_length=30, verbose_name='Chave de Acesso', help_text='Informe uma chave de acesso que também deverá ser fornecida aos usuários que irão responder o teste criado por você.')
-    ativo = models.BooleanField(default=False)
+    chave_acesso = models.CharField(max_length=30, verbose_name='Chave de Acesso', unique=True,
+                                    help_text='Informe uma chave de acesso que também deverá ser fornecida aos usuários que irão responder o teste criado por você.')
+    ativo = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Teste'
@@ -66,7 +67,6 @@ class Tentativa(models.Model):
     teste = models.ForeignKey(
         Teste, related_name='testes', on_delete=models.CASCADE)
     data = models.DateTimeField(auto_now_add=True)
-    # Remover atributo
     concluiu = models.BooleanField(default=True)
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 

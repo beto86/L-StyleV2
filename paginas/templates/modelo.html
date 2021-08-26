@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questionario.css' %}">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 
@@ -61,7 +62,6 @@
                                 <li><a class="dropdown-item" href="{% url 'listar-opcoes' %}">Opção</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-tentativas' %}">Tentativa</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-testes' %}">Teste</a></li>
-                                <li><a class="dropdown-item" href="{% url 'listar-respostas' %}">Resposta</a></li>
                             </ul>
                         </li>
                         {% endif %}

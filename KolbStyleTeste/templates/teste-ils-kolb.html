@@ -8,65 +8,109 @@
 {% endblock %}
 
 {% block conteudo %}
-<h2> {{ questionario }} </h2>
+<h2 style="display: none;"> {{ questionario }} </h2>
 
 <h4>{{ teste }} - Turma: {{teste.turma}}</h4>
 
 <!-- Como pegar a mensagem de validação de form -->
 {% if form.errors %}
 <ul class="alert alert-danger">
-    {{ form.as_p }}
+    {{ form.errors }}
 </ul>
 {% endif %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-
-    <!-- bloco de perguntas -->
-    {% for q in questoes %}
-
-    <!-- Adicionar essa classe abaixo: d-none -->
-    <div class="questoes mt-4 border border-warning shadow-sm p-4 d-none" ordem="{{q.ordem}}">
-        
-        <h4 class="mb-3 border-bottom border-light">{{q.ordem}} - {{ q.descricao }}</h4>
-        
-        <!-- Colocar as opções  -->
-        {% for opc in opcoes|get_opcoes_questao:q.pk %}
-        <div class="opcoes my-2" ordem="{{opc.ordem}}">
-
-            <h5>{{ opc.ordem }} - {{ opc.descricao }}</h5>
-            
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" class="coluna1" questao="{{opc.questao.ordem}}">
-            <label for="opc_{{opc.pk}}_1" class="me-4">1</label>&nbsp;
-
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" class="coluna2" questao="{{opc.questao.ordem}}">
-            <label for="opc_{{opc.pk}}_2" class="me-4">2</label>&nbsp;
-
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" class="coluna3" questao="{{opc.questao.ordem}}">
-            <label for="opc_{{opc.pk}}_3" class="me-4">3</label>&nbsp;
-
-            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" class="coluna4" questao="{{opc.questao.ordem}}">
-            <label for="opc_{{opc.pk}}_4" class="me-4">4</label>&nbsp;
-
-            
-        </div>
-        {% endfor %}
-
-        {% if q.ordem < 12 %}
-        <button type="button" class="btn btn-primary mt-4 btn_proximo" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>     
-        {% else %}
-        <button type="submit" class="btn btn-success mt-4 btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>     
-        {% endif %}
-        
+<!--Começo do conteudo do questionario-->
+<div class="question-main">
+    <div class="question-info">
+        <h2>Onde estou?</h2>
+        <ul>
+            <div class="vertical-line"></div>
+            <div class="active-circle">
+                <div></div>
+            </div>
+            <li>
+                <p>1 - Quando aprendo</p>
+                <span class="done">Respondida</span>
+            </li>
+            <li>
+                <p>2 - Aprendo melhor quando</p>
+                <span class="done">Respondida</span>
+            </li>
+            <li>
+                <p>3 - Quando estou aprendendo</p>
+            </li>
+            <li>
+                <p>4 - Eu aprendo</p>
+            </li>
+            <li>
+                <p>5 - Quando aprendo</p>
+            </li>
+            <li>
+                <p>6 - Quando estou aprendendo</p>
+            </li>
+        </ul>
     </div>
-    {% endfor %}
+    <div class="questionary">
+        <div class="inner now">
+            <div class="hero">
+                <img class="hero-img" src="{% static 'img/perguntas/default.svg' %}">
+            </div>
+            <div class="question-self">
+                
+        <form action="" method="POST">
+            {% csrf_token %}
 
-</form>
+            <!-- bloco de perguntas -->
+            {% for q in questoes %}
+
+            <!-- Adicionar essa classe abaixo: d-none -->
+            <div class="questoes mt-4 border border-warning shadow-sm p-4 d-none" ordem="{{q.ordem}}">
+                
+                <h4 class="mb-3 border-bottom border-light">{{q.ordem}} - {{ q.descricao }}</h4>
+                
+                <!-- Colocar as opções  -->
+                {% for opc in opcoes|get_opcoes_questao:q.pk %}
+                <div class="opcoes my-2" ordem="{{opc.ordem}}">
+
+                    <h5>{{ opc.ordem }} - {{ opc.descricao }}</h5>
+                    
+                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" class="coluna1" questao="{{opc.questao.ordem}}">
+                    <label for="opc_{{opc.pk}}_1" class="me-4">1</label>&nbsp;
+
+                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" class="coluna2" questao="{{opc.questao.ordem}}">
+                    <label for="opc_{{opc.pk}}_2" class="me-4">2</label>&nbsp;
+
+                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" class="coluna3" questao="{{opc.questao.ordem}}">
+                    <label for="opc_{{opc.pk}}_3" class="me-4">3</label>&nbsp;
+
+                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" class="coluna4" questao="{{opc.questao.ordem}}">
+                    <label for="opc_{{opc.pk}}_4" class="me-4">4</label>&nbsp;
+
+                    
+                </div>
+                {% endfor %}
+
+                {% if q.ordem < 12 %}
+                <button type="button" class="btn btn-primary mt-4 btn_proximo" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>     
+                {% else %}
+                <button type="submit" class="btn btn-success mt-4 btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>     
+                {% endif %}
+                
+            </div>
+            {% endfor %}
+
+        </form>
+
+    </div>
+</div>
+</div>
+</div>
 
 {% endblock %}
 
 
 {% block scripts %}
+<script src="{% static 'js/question.js' %}"></script>
 <script>
     $(document).ready(function () {
         
