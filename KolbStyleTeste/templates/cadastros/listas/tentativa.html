@@ -4,7 +4,6 @@
 
 {% block conteudo %}
     <h3>Lista de tentativas registradas</h3>
-    <a href="{% url 'cadastrar-tentativa' %}" class="btn btn-primary btn-sm">Adicionar Tentativa</a>
     <hr>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
@@ -12,6 +11,7 @@
                 <tr>
                     <th>Teste</th>
                     <th>Quem respondeu</th>
+                    <th>Turma</th>
                     <th>Data</th>
                     <th>Concluiu</th>
                     <th>Opção</th>
@@ -21,7 +21,8 @@
                 {% for tentativa in object_list %}
                 <tr>
                     <td>{{tentativa.teste.descricao}}</td>
-                    <td>{{tentativa.usuario.perfil.nome_completo|default_if_none:tentativa.usuario}}</td>
+                    <td>{{tentativa.usuario|default_if_none:tentativa.usuario}}</td>
+                    <td>{{tentativa.turma}}</td>
                     <td>{{tentativa.data}}</td>
                     <td>{{tentativa.concluiu}}</td>
                     <td>

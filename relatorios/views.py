@@ -31,7 +31,8 @@ class RelatorioPorAlunoView(DetailView):
         context['tentativas'] = self.object
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
-        context['respostas'] = Resposta.objects.filter(tentativa=context['tentativas'])
+        context['respostas'] = Resposta.objects.filter(
+            tentativa=context['tentativas'])
         # for t in context['tentativas']:
         #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
@@ -109,3 +110,14 @@ class RelatorioPorAlunoView(DetailView):
 
 class RelatorioTurma(TemplateView):
     template_name = 'relatorio.html'
+    fields = ['turma']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        turmas = Turma.objects.filter(usuario=self.request.user)
+        context['turma'] = turmas
+        mediaTurma = Tentativa.objects.all()
+        context['mediaTurma'] = mediaTurma
+
+        return context

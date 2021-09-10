@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
 from .forms import TesteILSKolbForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 from django.db.models import Sum
 
@@ -203,8 +203,8 @@ class OpcaoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Excluir Opcão'
-        context['titulo2'] = 'a opcão'
+        context['titulo'] = 'Excluir Opção'
+        context['titulo2'] = 'a opção'
         return context
 
 

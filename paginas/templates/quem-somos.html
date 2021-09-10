@@ -9,7 +9,11 @@
 {% block conteudo %}
 
 <h3>Pagina de Quem somos</h3>
-
+{% if request.user.group.1.name == "Administrador" %}
+    <h3>Olá Admin</h3>
+{% else %}
+    <h3>Olá usuário comum</h3>
+{% endif %}
 
 
 {% endblock %}

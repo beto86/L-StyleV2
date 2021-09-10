@@ -64,7 +64,7 @@
             {% for q in questoes %}
 
             <!-- Adicionar essa classe abaixo: d-none -->
-            <div class="questoes mt-4 border border-warning shadow-sm p-4 d-none" ordem="{{q.ordem}}">
+            <div class="questoes mt-4 shadow-sm p-4 d-none" ordem="{{q.ordem}}">
                 
                 <h4 class="mb-3 border-bottom border-light">{{q.ordem}} - {{ q.descricao }}</h4>
                 
@@ -72,7 +72,7 @@
                 {% for opc in opcoes|get_opcoes_questao:q.pk %}
                 <div class="opcoes my-2" ordem="{{opc.ordem}}">
 
-                    <h5>{{ opc.ordem }} - {{ opc.descricao }}</h5>
+                    <h5>{{ opc.descricao }}</h5>
                     
                     <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" class="coluna1" questao="{{opc.questao.ordem}}">
                     <label for="opc_{{opc.pk}}_1" class="me-4">1</label>&nbsp;
