@@ -4,6 +4,7 @@ from django.views.generic import DetailView
 from KolbStyleTeste.models import Resposta, Questionario, Tentativa, Estilo, FormaAprendizagem, Turma
 from django.db.models import Sum
 
+
 # Create your views here.
 
 
@@ -102,22 +103,59 @@ class RelatorioPorAlunoView(DetailView):
 
         ##############################
         # para a média da turma
-        #mediaTurma = Tentativa.objects.filter(teste)
-        #context['mediaTurma'] = mediaTurma
 
-        return context
+        # aqui filtra a turma de acordo com o id
+        # mediaTurma = Tentativa.objects.filter(
+        #    usuario=self.request.user, turma_id=1)
+        #context['mediaTurma'] = mediaTurma
 
 
 class RelatorioTurma(TemplateView):
     template_name = 'relatorio.html'
-    fields = ['turma']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # aqui traz todas turmas do usuario logado
         turmas = Turma.objects.filter(usuario=self.request.user)
-        context['turma'] = turmas
-        mediaTurma = Tentativa.objects.all()
+        context['turmas'] = turmas
+
+        # pega o id da tentativa selecionada do comboBox
+        nome_turma = self.request.GET.get("turmas")
+        #context['nome_turma'] = nome_turma
+
+        # aqui filtra a turma de acordo com o id
+        mediaTurma = Tentativa.objects.filter(
+            usuario=self.request.user, turma__nome=nome_turma)
         context['mediaTurma'] = mediaTurma
+
+        # aqui conta os estilos de cada turma
+        context['Acomodador'] = context['mediaTurma'].filter(
+            estilo__nome='Acomodador').count()
+        context['Assimilador'] = context['mediaTurma'].filter(
+            estilo__nome='Assimilador').count()
+        context['Convergente'] = context['mediaTurma'].filter(
+            estilo__nome='Convergente').count()
+        context['Divergente'] = context['mediaTurma'].filter(
+            estilo__nome='Divergente').count()
+
+        # pega o id da tentativa selecionada do comboBox
+        nome_turma_curso = self.request.GET.get("cursos")
+        context['nome_turma_curso'] = nome_turma_curso
+
+        # aqui filtra a turma de acordo com o curso
+        mediaCurso = Tentativa.objects.filter(
+            usuario=self.request.user, turma__curso=nome_turma_curso)
+        context['mediaCurso'] = mediaCurso
+
+        # aqui conta os estilos de cada curso
+        context['AcomodadorCurso'] = context['mediaCurso'].filter(
+            estilo__nome='Acomodador').count()
+        context['AssimiladorCurso'] = context['mediaCurso'].filter(
+            estilo__nome='Assimilador').count()
+        context['ConvergenteCurso'] = context['mediaCurso'].filter(
+            estilo__nome='Convergente').count()
+        context['DivergenteCurso'] = context['mediaCurso'].filter(
+            estilo__nome='Divergente').count()
 
         return context

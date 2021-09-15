@@ -7,29 +7,43 @@
 {% endblock %}
 
 {% block conteudo %}
-<form action="" method="POST">
-    {% csrf_token %}
 
-    {{ form }}
 
-    
+<form action="" method="GET">
+    <label for="turmas">Escolha uma Turma:</label>
 
-    
+
+    <select name="turmas" id="turmas">
+        {% for t in turmas %}
+        <option value="{{ t }}">{{ t }}</option>
+        {% endfor %}
+    </select>
+    <input type = 'submit' value="Submit">
 </form>
 
-{{turma}}
-<hr>
-{{mediaTurma}}
 <hr><hr>
 <h3>Pagina de Relatórios</h3>
 <hr>
 <canvas id="mediaTurma" style="max-width: 600px; max-height: 600px;"></canvas>
 <hr>
-<canvas id="mediaPorPeriodo" style="max-width: 600px; max-height: 600px;"></canvas>
+<form action="" method="GET">
+    {% csrf_token %}
+    <label for="turmas">Escolha um Curso:</label>
+
+    <select name="cursos" id="cursos">
+        {% for t in turmas %}
+        <option value="{{ t.curso }}">{{ t.curso }}</option>
+        {% endfor %}
+    </select>
+    <input type = 'submit' value="Submit">
+</form>
+<hr>
+{{nome_turma_curso}}
+
 <hr>
 <canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
 <hr>
-<canvas id="mediaPorInstituicao" style="max-width: 600px; max-height: 600px;"></canvas>
+<canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>
 <hr>
 {% endblock %}
 
@@ -45,7 +59,7 @@
             datasets: [
                 { // Depois os dados/média da turma
                     label: 'Geral da Turma',
-                    data: [40, 20, 10, 15],
+                    data: [{{ Assimilador }}, {{ Convergente }}, {{ Divergente }}, {{ Acomodador }}],
                     fill: true,
                     backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -95,7 +109,7 @@
             datasets: [
                 { // Depois os dados/média da turma
                     label: 'Geral da Turma',
-                    data: [40, 20, 10, 15],
+                    data: [{{ AssimiladorCurso }}, {{ ConvergenteCurso }}, {{ DivergenteCurso }}, {{ AcomodadorCurso }}],
                     fill: true,
                     backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -137,6 +151,39 @@
             options: config,
         });
 
+        //Relatório por turma contendo a evolução da turma, gráfico de linha
+        var ctx = $('#evolucaoTurma');
+
+        var dados = {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            datasets: [
+                { // Depois os dados/média da turma
+                    label: '{{turma}}',
+                    data: [{{ AssimiladorCurso }}, {{ ConvergenteCurso }}, {{ DivergenteCurso }}, {{ AcomodadorCurso }}],
+                    fill: false,
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 3,
+                }
+            ] // fim dos conjuntos
+        };
+
+        var config = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Evolução da Turma',
+                fontSize: 30,
+                fontColor: '#273c75'
+            }
+        };
+
+        var ChartCurso = new Chart(ctx, {
+            type: 'line',
+            data: dados,
+            options: config,
+        });
         
     });
     // var myChart = new Chart(ctx, { ...});

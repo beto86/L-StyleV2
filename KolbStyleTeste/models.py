@@ -70,6 +70,7 @@ class Tentativa(models.Model):
     concluiu = models.BooleanField(default=True)
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE, null=True)
+    estilo = models.ForeignKey(Estilo, on_delete=models.PROTECT, null=True)
 
     class Meta:
         verbose_name = 'Tentativa'
