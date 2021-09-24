@@ -29,7 +29,7 @@ class QuestaoAdmin(admin.ModelAdmin):
 @admin.register(Opcao)
 class OpcaoAdmin(admin.ModelAdmin):
     list_display = ('id', 'questao', 'descricao', 'imagem',
-                    'video', 'ordem', 'forma_aprendizagem')
+                    'video', 'ordem', 'forma_aprendizagem', 'img')
 
 
 @admin.register(Resposta)

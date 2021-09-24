@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'relatorios',
     'crispy_forms',
     'crispy_bootstrap5',
+    'easy_pdf',
     # 'paginas.apps.PaginasConfig',
 ]
 # crispy_forms

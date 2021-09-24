@@ -68,9 +68,11 @@ class Tentativa(models.Model):
         Teste, related_name='testes', on_delete=models.CASCADE)
     data = models.DateTimeField(auto_now_add=True)
     concluiu = models.BooleanField(default=True)
-    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
-    turma = models.ForeignKey(Turma, on_delete=models.CASCADE, null=True)
-    estilo = models.ForeignKey(Estilo, on_delete=models.PROTECT, null=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    turma = models.ForeignKey(
+        Turma, on_delete=models.CASCADE, blank=True, null=True)
+    estilo = models.ForeignKey(
+        Estilo, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Tentativa'
@@ -100,6 +102,7 @@ class Opcao(models.Model):
     questao = models.ForeignKey(
         Questao, related_name='questaos', on_delete=models.CASCADE, verbose_name='Questão')
     descricao = models.CharField(max_length=100, verbose_name='Descrição')
+    img = models.CharField(max_length=100, null=True, blank=True)
     imagem = models.URLField(null=True, blank=True)
     video = models.URLField(null=True, blank=True)
     ordem = models.IntegerField()

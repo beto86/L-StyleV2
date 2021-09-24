@@ -1,19 +1,103 @@
-{% extends 'modelo.html' %}
-
-{% load static %}
-
+{% extends 'modelo.html' %} {% load static %} 
 {% block titulo %}
 <title>Quem somos</title>
-{% endblock %}
-
+{% endblock %} 
 {% block conteudo %}
-
-<h3>Pagina de Quem somos</h3>
-{% if request.user.group.1.name == "Administrador" %}
-    <h3>Olá Admin</h3>
-{% else %}
-    <h3>Olá usuário comum</h3>
-{% endif %}
-
-
+<div class="about">
+  <aside>
+    <h1 class="border-custom-primary">Quem somos</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat
+      mauris non ipsum egestas, vitae commodo lorem lobortis. Morbi eget arcu
+      commodo, egestas velit eget, dictum mi. Ut interdum odio ante. Suspendisse
+      quis enim sit amet dui lacinia gravida condimentum in est. Nullam lacinia
+      eleifend mattis. In feugiat ligula metus, et pharetra turpis semper eget.
+      Quisque est nulla, posuere ac molestie nec, pharetra non felis. Aliquam
+      sit amet nunc ligula. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Nullam consequat mauris non ipsum
+    </p>
+    <b>Ainda possui alguma duvida que gostaria de tirar?</b>
+    <button class="btn-contato bg-color-custom-primary">
+      Entre em contato
+    </button>
+  </aside>
+  <section class="time">
+    <div class="time-item">
+      <div class="top">
+        <div class="hr"></div>
+        <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
+        <h2>Roberto</h2>
+        <p>Graduando em ciência da computação</p>
+      </div>
+      <div class="corpo">
+        metus, et pharetra turpis semper eget.
+        Quisque est nulla, posuere ac molestie nec, pharetra non felis. Aliquam
+        sit amet nunc ligula. Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Nullam consequat mauris non ipsum
+      </div>
+      <div class="footer">
+        <img src="{% static 'img/sobre/contato/facebook.png' %}" />
+        <img src="{% static 'img/sobre/contato/linkedin.png' %}" />
+        <img src="{% static 'img/sobre/contato/gmail.png' %}" />
+      </div>
+    </div>
+    <div class="time-item">
+      <div class="top">
+        <div class="hr"></div>
+        <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
+        <h2>Guilherme W S Brasil</h2>
+        <p>Graduando em ciência da computação</p>
+      </div>
+      <div class="corpo">
+        metus, et pharetra turpis semper eget.
+        Quisque est nulla, posuere ac molestie nec, pharetra non felis. Aliquam
+        sit amet nunc ligula. Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Nullam consequat mauris non ipsum
+      </div>
+      <div class="footer">
+        <img src="{% static 'img/sobre/contato/facebook.png' %}" />
+        <img src="{% static 'img/sobre/contato/linkedin.png' %}" />
+        <img src="{% static 'img/sobre/contato/gmail.png' %}" />
+      </div>
+    </div>
+    <div class="time-item">
+      <div class="top">
+        <div class="hr"></div>
+        <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
+        <h2>Giani Carla Ito</h2>
+        <p>Doutora em Computação Aplicada</p>
+      </div>
+      <div class="corpo">
+        metus, et pharetra turpis semper eget.
+        Quisque est nulla, posuere ac molestie nec, pharetra non felis. Aliquam
+        sit amet nunc ligula. Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Nullam consequat mauris non ipsum
+      </div>
+      <div class="footer">
+        <img src="{% static 'img/sobre/contato/facebook.png' %}" />
+        <img src="{% static 'img/sobre/contato/linkedin.png' %}" />
+        <img src="{% static 'img/sobre/contato/gmail.png' %}" />
+      </div>
+    </div>
+    <div class="time-item">
+      <div class="top">
+        <div class="hr"></div>
+        <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
+        <h2>Guilherme</h2>
+        <p>Graduando em ciência da computação</p>
+      </div>
+      <div class="corpo">
+        metus, et pharetra turpis semper eget.
+        Quisque est nulla, posuere ac molestie nec, pharetra non felis. Aliquam
+        sit amet nunc ligula. Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Nullam consequat mauris non ipsum
+      </div>
+      <div class="footer">
+        <img src="{% static 'img/sobre/contato/facebook.png' %}" />
+        <img src="{% static 'img/sobre/contato/linkedin.png' %}" />
+        <img src="{% static 'img/sobre/contato/gmail.png' %}" />
+      </div>
+    </div>
+  </section>
+</div>
 {% endblock %}
