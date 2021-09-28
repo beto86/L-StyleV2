@@ -331,7 +331,7 @@ class TesteILSKolbView(FormView):
         teste = get_object_or_404(
             Teste, chave_acesso=self.kwargs['chave'], ativo=True)
         tentativa = Tentativa.objects.create(
-            teste=teste, usuario=self.request.user)
+            teste=teste, usuario=self.request.user, turma=teste.turma)
 
         # para cada tentativa, criar uma Resposta
         # Para cada número das questões
@@ -462,6 +462,9 @@ class RespostaView(TemplateView):
             forma1.descricao + forma2.descricao
         context['rec_estilo'] = estilo.recomendacao + \
             forma1.recomendacao + forma2.recomendacao
+
+        context['tentativas'].estilo = context['estilo']
+        context['tentativas'].save()
 
         return context
 

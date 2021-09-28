@@ -110,6 +110,10 @@ class RelatorioPorAlunoView(DetailView):
         #    usuario=self.request.user, turma_id=1)
         #context['mediaTurma'] = mediaTurma
 
+        ##########################################
+        # para a lista das tentativas do aluno
+        context['tentativa'] = Tentativa.objects.filter(
+            usuario=self.request.user).order_by('data')
         return context
 
 
@@ -125,7 +129,7 @@ class RelatorioTurma(TemplateView):
 
         # pega o id da tentativa selecionada do comboBox
         nome_turma = self.request.GET.get("turmas")
-        #context['nome_turma'] = nome_turma
+        context['nome_turma'] = nome_turma
 
         # aqui filtra a turma de acordo com o id
         mediaTurma = Tentativa.objects.filter(
@@ -151,6 +155,8 @@ class RelatorioTurma(TemplateView):
             usuario=self.request.user, turma__curso=nome_turma_curso)
         context['mediaCurso'] = mediaCurso
 
+        ################################################
+        # relatorio do curso
         # aqui conta os estilos de cada curso
         context['AcomodadorCurso'] = context['mediaCurso'].filter(
             estilo__nome='Acomodador').count()
@@ -160,6 +166,16 @@ class RelatorioTurma(TemplateView):
             estilo__nome='Convergente').count()
         context['DivergenteCurso'] = context['mediaCurso'].filter(
             estilo__nome='Divergente').count()
+
+        ################################################
+        # relatorio para a tabela da turma
+        context['evlTurma'] = Tentativa.objects.filter(
+            usuario=self.request.user, turma__nome=nome_turma).order_by('data')
+
+        ################################################
+        # relatorio para a tabela da turma
+        context['evlCurso'] = Tentativa.objects.filter(
+            usuario=self.request.user, turma__curso=nome_turma_curso).order_by('data')
 
         return context
 

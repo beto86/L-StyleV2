@@ -43,7 +43,60 @@
 <hr>
 <canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
 <hr>
+<hr>
 <canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>
+<hr>
+<h1>Tentativas da Turma {{nome_turma}}</h1>
+<div class="table-responsive">
+    <table class="table table-striped" id="tabela-listar">
+        <thead>
+            <tr>
+                <th>Teste</th>
+                <th>Quem respondeu</th>
+                <th>Data</th>
+                <th>Estilo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in evlTurma %}
+            <tr>
+                <td>{{t.teste.descricao}}</td>
+                <td>{{t.usuario}}</td>
+                <td>{{t.data}}</td>
+                <td>{{t.estilo}}</td>
+            </tr>
+            {% empty %}
+            <td colspan="3">Nenhuma tentativa registrada.</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr>
+<h1>Tentativas por curso {{nome_turma_curso}}</h1>
+<div class="table-responsive">
+    <table class="table table-striped" id="tabela-listar">
+        <thead>
+            <tr>
+                <th>Teste</th>
+                <th>Quem respondeu</th>
+                <th>Data</th>
+                <th>Estilo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in evlCurso %}
+            <tr>
+                <td>{{t.teste.descricao}}</td>
+                <td>{{t.usuario}}</td>
+                <td>{{t.data}}</td>
+                <td>{{t.estilo}}</td>
+            </tr>
+            {% empty %}
+            <td colspan="3">Nenhuma tentativa registrada.</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 <hr>
 {% endblock %}
 
@@ -82,7 +135,7 @@
             maintainAspectRatio: true,
             title: {
                 display: true,
-                text: 'Média da turma',
+                text: 'Tentativas da turma',
                 fontSize: 30,
                 fontColor: '#273c75'
             },
@@ -132,7 +185,7 @@
             maintainAspectRatio: true,
             title: {
                 display: true,
-                text: 'Média por Curso',
+                text: 'Tentativas por Curso',
                 fontSize: 30,
                 fontColor: '#273c75'
             },
@@ -157,15 +210,42 @@
         var dados = {
             labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
             datasets: [
-                { // Depois os dados/média da turma
-                    label: '{{turma}}',
-                    data: [{{ AssimiladorCurso }}, {{ ConvergenteCurso }}, {{ DivergenteCurso }}, {{ AcomodadorCurso }}],
+                { 
+                    label: 'Assimilador',
+                    data: [],
                     fill: false,
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                     ],
                     borderWidth: 3,
-                }
+                },
+                { 
+                    label: 'Convergente',
+                    data: [{{evlAssimilador}}],
+                    fill: false,
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                    ],
+                    borderWidth: 3,
+                },
+                { 
+                    label: 'Divergente',
+                    data: [],
+                    fill: false,
+                    borderColor: [
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderWidth: 3,
+                },
+                { 
+                    label: 'Acomodador',
+                    data: [],
+                    fill: false,
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 3,
+                },
             ] // fim dos conjuntos
         };
 

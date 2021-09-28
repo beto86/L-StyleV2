@@ -1,8 +1,6 @@
-{% extends 'modelo.html' %} {% load static %} 
-{% block titulo %}
+{% extends 'modelo.html' %} {% load static %} {% block titulo %}
 <title>Quem somos</title>
-{% endblock %} 
-{% block conteudo %}
+{% endblock %} {% block conteudo %}
 <div class="about">
   <aside>
     <h1 class="border-custom-primary">Quem somos</h1>
@@ -16,13 +14,9 @@
       sit amet nunc ligula. Lorem ipsum dolor sit amet, consectetur adipiscing
       elit. Nullam consequat mauris non ipsum
     </p>
-    <b>Ainda possui alguma duvida que gostaria de tirar?</b>
-    <button class="btn-contato bg-color-custom-primary">
-      Entre em contato
-    </button>
   </aside>
   <section class="time">
-    <div class="time-item">
+    <div class="time-item devs-in">
       <div class="top">
         <div class="hr"></div>
         <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
@@ -41,7 +35,7 @@
         <img src="{% static 'img/sobre/contato/gmail.png' %}" />
       </div>
     </div>
-    <div class="time-item">
+    <div class="time-item devs-in" style="animation-delay: 0.8s;">
       <div class="top">
         <div class="hr"></div>
         <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
@@ -60,7 +54,7 @@
         <img src="{% static 'img/sobre/contato/gmail.png' %}" />
       </div>
     </div>
-    <div class="time-item">
+    <div class="time-item devs-in" style="animation-delay: 1.6s;">
       <div class="top">
         <div class="hr"></div>
         <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
@@ -79,7 +73,7 @@
         <img src="{% static 'img/sobre/contato/gmail.png' %}" />
       </div>
     </div>
-    <div class="time-item">
+    <div class="time-item devs-in" style="animation-delay: 2.4s;">
       <div class="top">
         <div class="hr"></div>
         <div class="img" style="background-image: url({% static 'img/sobre/fotoTeste.jpg' %});"></div>
