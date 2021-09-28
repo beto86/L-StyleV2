@@ -1,0 +1,73 @@
+.container-sobre {
+  width: 80%;
+  max-width: 1400px;
+  min-width: 300px;
+  margin: 0 auto;
+  text-align: justify;
+  line-height: 1.5;
+}
+h3 {
+  text-transform: uppercase;
+}
+h5 {
+  font-size: 14px;
+}
+.objetivos-sobre {
+  margin-bottom: 30px;
+}
+.obj-sobre-interno {
+  display: flex;
+}
+.obj-sobre-interno div {
+  width: 60%;
+  padding: 0 20px 0 0;
+  max-width: 700px;
+}
+.contribuicao-sobre {
+  max-width: 1000px;
+  width: 80%;
+  margin: 0 0 0 auto;
+  margin-bottom: 30px;
+}
+.estilo-aprendizagem-sobre {
+  max-width: 1000px;
+  width: 80%;
+  margin: 10px;
+  margin-bottom: 30px;
+}
+
+figure {
+  text-align: center;
+}
+ul.estilos-kolb {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  padding: 0;
+}
+ul.estilos-kolb li {
+  max-width: 400px;
+  width: 23%;
+  padding: 7px 7px 7px 7px;
+  text-align: justify;
+  min-height: 200px;
+  border: 1px solid #c1c1c1;
+}
+
+a {
+  color: #536dfe;
+  text-decoration: none;
+  font-weight: bold;
+}
+#tMK {
+  text-align: center;
+  font-size: 25px;
+}
+.referencia-social {
+  list-style: none;
+  padding: 10px 10px 10px 20px;
+  border: 1px solid #c1c1c1;
+}
+.referencia-social li {
+  padding: 5px 0;
+}

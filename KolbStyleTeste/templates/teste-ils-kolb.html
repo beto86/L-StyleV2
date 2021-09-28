@@ -12,10 +12,17 @@
 
 <!-- Como pegar a mensagem de validação de form -->
 {% if form.errors %}
-<ul class="alert alert-danger">
+<div class="alert alert-danger">
     {{ form.errors }}
-</ul>
+</div>
 {% endif %}
+
+<div class="validation-msg error" id="validate" onclick="this.remove()">
+    <div>
+        <i class="fas fa-exclamation"></i>
+        <p class="msg"></p>
+    </div>
+</div>
 
 <!--Começo do conteudo do questionario-->
 <div class="question-main">
@@ -30,10 +37,14 @@
                 <div></div>
             </div> -->
             {% for q in questoes %}
-            <li id="nav{{q.ordem}}" onclick="chengeQuestion(this)" ordem="{{q.ordem}}" questao="{{q.ordem}}">
-                <p>{{q.ordem}} - {{q.descricao}}</p> 
+            <li id="nav{{q.ordem}}" onclick="changeQuestion(this)" ordem="{{q.ordem}}" questao="{{q.ordem}}">
+                <p>{{q.ordem}} - {{ q.descricao }}</p>
             </li>
             {% endfor %}
+            <!-- <li>
+                    <p>2 - Aprendo melhor quando</p>
+                    <span class="done">Respondida</span>
+                </li> -->
         </ul>
         <div class="footer">
             <span id="footerInfo">0 de 12 completa</span>
@@ -54,13 +65,12 @@
 
                     <!-- Adicionar essa classe abaixo: d-none -->
                     <div class="questoes question-item d-none" id="questao{{q.ordem}}">
-                        
+
                         <div class="title">
-                            <span>{{q.ordem}}° Pergunta</span>
+                            <span>{{q.ordem}}º Pergunta</span>
                             <h1>{{ q.descricao }}</h1>
                         </div>
-                        <!-- <h4 class="mb-3 border-bottom bor,der-light">{{q.ordem}} - {{ q.descricao }}</h4> -->  
-                        
+
                         <!-- Colocar as opções  -->
                         {% for opc in opcoes|get_opcoes_questao:q.pk %}
                         <ul class="opcoes my-2" ordem="{{opc.ordem}}" data-respondido="false" data-questao="{{opc.questao.ordem}}">
@@ -76,29 +86,14 @@
                                     <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_3" value="3" questao="{{opc.questao.ordem}}" hidden>
                                     <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_4" value="4" questao="{{opc.questao.ordem}}" hidden>
                                 </div>
-                                
                             </li>
-                            
-                            <!--<input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_1" value="1" class="coluna1" questao="{{opc.questao.ordem}}">
-                            <label for="opc_{{opc.pk}}_1" class="me-4">1</label>&nbsp;
-
-                            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_2" value="2" class="coluna2" questao="{{opc.questao.ordem}}">
-                            <label for="opc_{{opc.pk}}_2" class="me-4">2</label>&nbsp;
-
-                            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_3" value="3" class="coluna3" questao="{{opc.questao.ordem}}">
-                            <label for="opc_{{opc.pk}}_3" class="me-4">3</label>&nbsp;
-
-                            <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="opc_{{opc.pk}}_4" value="4" class="coluna4" questao="{{opc.questao.ordem}}">
-                            <label for="opc_{{opc.pk}}_4" class="me-4">4</label>&nbsp;-->
-
-                            
                         </ul>
                         {% endfor %}
                         <div class="button-group">
                             {% if q.ordem < 12 %}
-                            <button type="button" class="btn_proximo btn-next" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>     
+                            <button type="button" class="btn_proximo btn-next" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>
                             {% else %}
-                            <button type="submit" class="btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>     
+                            <button type="submit" class="btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>
                             {% endif %}
                         </div>
                     </div>
@@ -114,56 +109,4 @@
 
 {% block scripts %}
 <script src="{% static 'js/question.js' %}"></script>
-<script>
-    $(document).ready(function () {
-        
-        // Remove a classe d-none da questão 1
-        $(".questoes[ordem=1]").removeClass("d-none");
-        
-        // Ao clicar nos botões de próximo
-        $(".btn_proximo, .btn_enviar").click(function (e) { 
-            
-            // Recebe a ordem da questão atual que está no botão
-            var ordem = $(this).attr("ordem");
-
-            // Verificar se as respostas são iguais
-            var questao = $(this).attr("questao");
-            
-            // Recebe o valor de cada opção marcada
-            var r1 = $('input[name=opc_' + questao + '_1]:checked').val();
-            var r2 = $('input[name=opc_' + questao + '_2]:checked').val();
-            var r3 = $('input[name=opc_' + questao + '_3]:checked').val();
-            var r4 = $('input[name=opc_' + questao + '_4]:checked').val();
-
-            // Guarda eles em uma lista
-            let respostas = [r1, r2, r3, r4];
-
-            // Verifica se o usuário respondeu todas as questões
-            if(typeof respostas[0] == "undefined" || typeof respostas[1] == "undefined" || typeof respostas[2] == "undefined" || typeof respostas[3] == "undefined"){
-                alert("Você precisa atribuir notas para todas as opções!");
-                return false;
-            }
-
-            // Verifica se tem valores repetidos
-            let hasDuplicate = respostas.some((val, i) => respostas.indexOf(val) !== i);
-
-            // Se sim, avisa o usuário
-            if(hasDuplicate){
-                alert("Você não pode atribuir a mesma nota para mais de uma opção.");
-                return false;
-            } 
-
-            if(ordem<12){
-                var atual = ".questoes[ordem="+ ordem + "]";
-                var prox = ".questoes[ordem="+ (parseInt(ordem) + 1) + "]";
-    
-                $(atual).addClass("d-none");
-                $(prox).removeClass("d-none");
-            }
-            
-        });
-    });    
-
-</script>
-
 {% endblock %}
