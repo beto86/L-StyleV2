@@ -112,8 +112,10 @@ class RelatorioPorAlunoView(DetailView):
 
         ##########################################
         # para a lista das tentativas do aluno
+        quem_respondeu = Tentativa.objects.get(pk=self.kwargs["id"])
+        context['quem_respondeu'] = quem_respondeu.usuario
         context['tentativa'] = Tentativa.objects.filter(
-            usuario=self.request.user).order_by('data')
+            usuario=quem_respondeu.usuario).order_by('data')
         return context
 
 

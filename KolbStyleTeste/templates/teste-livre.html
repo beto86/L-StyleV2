@@ -8,8 +8,11 @@
 {% endblock %}
 
 {% block conteudo %}
+    {{teste}}
+
     {% for r in respostas %}
-    <p>{{ r.opcao.ordem }}</p>
+    <p>Opção Ordem: {{ r.opcao.ordem }}</p>
+    <p>Valor do input: {{ r.valor }}</p>
     {% endfor %}
     <p>EC = {{EC}}</p>
     <p>OR = {{OR}}</p>
@@ -61,7 +64,7 @@
             </div>
             <div class="question-self">
                 
-        <form action="" method="GET">
+        <form action="" method="POST">
             {% csrf_token %}
 
             <!-- bloco de perguntas -->
@@ -94,8 +97,28 @@
                 </div>
                 {% endfor %}
 
+                <div>
+                    <hr>
+
+                    <!--<canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>-->
+                
+                    <hr>
+                
+                    <div class="container-fluid">
+                        <p>Seu estilo de aprendizagem é <strong>{{estilo}}</strong></p>
+                
+                        <p>E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
+                
+                        <p>Descrição do estilo e forma de aprender: {{desc_estilo}}</p>
+                
+                        <p>Recomendações do estilo e forma de aprender: {{rec_estilo}}</p>
+                    </div>
+                </div>
+
                 {% if q.ordem < 12 %}
                 <button type="button" class="btn btn-primary mt-4 btn_proximo" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>     
+                {% elif q.ordem == 12 %}
+                <button type="button" class="btn btn-info mt-4 btn_resposta">Ver Resposta</button>
                 {% else %}
                 <button type="submit" class="btn btn-success mt-4 btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>     
                 {% endif %}
@@ -109,27 +132,6 @@
 </div>
 </div>
 </div>
-
-<!-- conteudo para a resposta -->
-<form action="" method="GET">
-
-
-    <hr>
-
-    <canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>
-
-    <hr>
-
-    <div class="container-fluid">
-        <p>Seu estilo de aprendizagem é <strong>{{estilo}}</strong></p>
-
-        <p>E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
-
-        <p>Descrição do estilo e forma de aprender: {{desc_estilo}}</p>
-
-        <p>Recomendações do estilo e forma de aprender: {{rec_estilo}}</p>
-    </div>
-</form>
 
 {% endblock %}
 
