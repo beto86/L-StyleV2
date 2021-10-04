@@ -104,18 +104,30 @@ class RelatorioPorAlunoView(DetailView):
 
         ##############################
         # para a média da turma
+        # pega o objeto tentativa de quem respondeu
+        quem_respondeu = Tentativa.objects.get(pk=self.kwargs["id"])
+        # aqui filtra de acordo com quem respondeu
+        mediaTurma = Tentativa.objects.filter(usuario=quem_respondeu.usuario)
+        context['mediaTurma'] = mediaTurma
 
-        # aqui filtra a turma de acordo com o id
-        # mediaTurma = Tentativa.objects.filter(
-        #    usuario=self.request.user, turma_id=1)
-        #context['mediaTurma'] = mediaTurma
+        # aqui conta os estilos de cada turma
+        context['Acomodador'] = context['mediaTurma'].filter(
+            estilo__nome='Acomodador').count()
+        context['Assimilador'] = context['mediaTurma'].filter(
+            estilo__nome='Assimilador').count()
+        context['Convergente'] = context['mediaTurma'].filter(
+            estilo__nome='Convergente').count()
+        context['Divergente'] = context['mediaTurma'].filter(
+            estilo__nome='Divergente').count()
 
         ##########################################
         # para a lista das tentativas do aluno
-        quem_respondeu = Tentativa.objects.get(pk=self.kwargs["id"])
+
+        # pega o usuario da tentativa de quem respondeu
         context['quem_respondeu'] = quem_respondeu.usuario
-        context['tentativa'] = Tentativa.objects.filter(
-            usuario=quem_respondeu.usuario).order_by('data')
+        # aqui filtra de acordo com quem respondeu ordenado por data
+        context['tentativa'] = mediaTurma.order_by('data')
+
         return context
 
 
@@ -175,7 +187,7 @@ class RelatorioTurma(TemplateView):
             usuario=self.request.user, turma__nome=nome_turma).order_by('data')
 
         ################################################
-        # relatorio para a tabela da turma
+        # relatorio para a tabela do curso
         context['evlCurso'] = Tentativa.objects.filter(
             usuario=self.request.user, turma__curso=nome_turma_curso).order_by('data')
 

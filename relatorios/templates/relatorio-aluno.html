@@ -38,6 +38,7 @@
                 <th>Teste</th>
                 <th>Turma</th>
                 <th>Data</th>
+                <th>Estilo</th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +47,7 @@
                 <td>{{t.teste.descricao}}</td>
                 <td>{{t.turma}}</td>
                 <td>{{t.data}}</td>
+                <td>{{t.estilo}}</td>
             </tr>
             {% empty %}
             <td colspan="3">Nenhuma tentativa registrada.</td>
@@ -79,7 +81,7 @@
                 },
                 { // Depois os dados/média da turma
                     label: 'Geral da Turma',
-                    data: [40, 20, 10, 15],
+                    data: [{{ Assimilador }}, {{ Convergente }}, {{ Divergente }}, {{ Acomodador }}],
                     fill: true,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgb(54, 162, 235)',

@@ -26,25 +26,6 @@
 <hr>
 <canvas id="mediaTurma" style="max-width: 600px; max-height: 600px;"></canvas>
 <hr>
-<form action="" method="GET">
-    {% csrf_token %}
-    <label for="turmas">Escolha um Curso:</label>
-
-    <select name="cursos" id="cursos">
-        {% for t in turmas %}
-        <option value="{{ t.curso }}">{{ t.curso }}</option>
-        {% endfor %}
-    </select>
-    <input type = 'submit' value="Submit">
-</form>
-<hr>
-{{nome_turma_curso}}
-
-<hr>
-<canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
-<hr>
-<hr>
-<canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>
 <hr>
 <h1>Tentativas da Turma {{nome_turma}}</h1>
 <div class="table-responsive">
@@ -72,6 +53,23 @@
     </table>
 </div>
 <hr>
+<form action="" method="GET">
+    {% csrf_token %}
+    <label for="turmas">Escolha um Curso:</label>
+
+    <select name="cursos" id="cursos">
+        {% for t in turmas %}
+        <option value="{{ t.curso }}">{{ t.curso }}</option>
+        {% endfor %}
+    </select>
+    <input type = 'submit' value="Submit">
+</form>
+<hr>
+{{nome_turma_curso}}
+
+<hr>
+<canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
+<hr>
 <h1>Tentativas por curso {{nome_turma_curso}}</h1>
 <div class="table-responsive">
     <table class="table table-striped" id="tabela-listar">
@@ -98,6 +96,10 @@
     </table>
 </div>
 <hr>
+<hr>
+<!--<canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>-->
+<hr>
+
 {% endblock %}
 
 {% block scripts %}
