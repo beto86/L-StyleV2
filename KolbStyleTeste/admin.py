@@ -17,8 +17,7 @@ class TesteAdmin(admin.ModelAdmin):
 
 @admin.register(Tentativa)
 class TentativaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'teste', 'data', 'concluiu',
-                    'usuario', 'turma', 'estilo')
+    list_display = ('id', 'teste', 'data', 'usuario', 'turma', 'estilo')
 
 
 @admin.register(Questao)
@@ -28,8 +27,8 @@ class QuestaoAdmin(admin.ModelAdmin):
 
 @admin.register(Opcao)
 class OpcaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'questao', 'descricao', 'imagem',
-                    'video', 'ordem', 'forma_aprendizagem', 'img')
+    list_display = ('id', 'questao', 'descricao',
+                    'ordem', 'forma_aprendizagem', 'img')
 
 
 @admin.register(Resposta)

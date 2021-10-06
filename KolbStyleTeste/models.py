@@ -67,7 +67,6 @@ class Tentativa(models.Model):
     teste = models.ForeignKey(
         Teste, related_name='testes', on_delete=models.CASCADE)
     data = models.DateTimeField(auto_now_add=True)
-    concluiu = models.BooleanField(default=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     turma = models.ForeignKey(
         Turma, on_delete=models.CASCADE, blank=True, null=True)
@@ -103,8 +102,6 @@ class Opcao(models.Model):
         Questao, related_name='questaos', on_delete=models.CASCADE, verbose_name='Questão')
     descricao = models.CharField(max_length=100, verbose_name='Descrição')
     img = models.CharField(max_length=100, null=True, blank=True)
-    imagem = models.URLField(null=True, blank=True)
-    video = models.URLField(null=True, blank=True)
     ordem = models.IntegerField()
     forma_aprendizagem = models.ForeignKey(FormaAprendizagem, on_delete=models.PROTECT,
                                            help_text="As respostas dessa opção serão somadas para calcular o valor da forma de aprendizagem selecionada.")

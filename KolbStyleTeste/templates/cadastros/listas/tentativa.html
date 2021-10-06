@@ -13,7 +13,6 @@
                     <th>Quem respondeu</th>
                     <th>Turma</th>
                     <th>Data</th>
-                    <th>Concluiu</th>
                     <th>Opção</th>
                 </tr>
             </thead>
@@ -24,7 +23,6 @@
                     <td>{{tentativa.usuario|default_if_none:tentativa.usuario}}</td>
                     <td>{{tentativa.turma}}</td>
                     <td>{{tentativa.data}}</td>
-                    <td>{{tentativa.concluiu}}</td>
                     <td>
                         <a href="{% url 'relatorio-aluno' tentativa.pk %}" class="btn btn-info btn-sm" title="Resposta">
                             <i class="fas fa-chart-bar" aria-hidden="true"></i>
