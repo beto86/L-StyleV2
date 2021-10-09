@@ -7,9 +7,9 @@ from cadastros.models import Turma
 
 class Estilo(models.Model):
     nome = models.CharField(max_length=50)
-    descricao = models.TextField(max_length=300, verbose_name='Descrição')
+    descricao = models.TextField(max_length=800, verbose_name='Descrição')
     recomendacao = models.TextField(
-        max_length=300, verbose_name='Recomendação')
+        max_length=500, verbose_name='Recomendação', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Estilo'
@@ -20,9 +20,10 @@ class Estilo(models.Model):
 
 class FormaAprendizagem(models.Model):
     nome = models.CharField(max_length=50)
-    descricao = models.TextField(max_length=300, verbose_name='Descrição')
+    descricao = models.TextField(
+        max_length=300, verbose_name='Descrição', blank=True, null=True)
     recomendacao = models.TextField(
-        max_length=300, verbose_name='Recomendação')
+        max_length=300, verbose_name='Recomendação', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Forma de Aprendizagem'
@@ -67,7 +68,8 @@ class Tentativa(models.Model):
     teste = models.ForeignKey(
         Teste, related_name='testes', on_delete=models.CASCADE)
     data = models.DateTimeField(auto_now_add=True)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True)
     turma = models.ForeignKey(
         Turma, on_delete=models.CASCADE, blank=True, null=True)
     estilo = models.ForeignKey(

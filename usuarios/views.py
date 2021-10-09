@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.list import ListView
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
@@ -7,6 +8,8 @@ from .forms import UsuarioForm
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from .models import Perfil
+from braces.views import GroupRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -60,3 +63,15 @@ class AlterarSenha(PasswordChangeView):
         context = super().get_context_data(**kwargs)
         context['titulo'] = 'Alterar Senha'
         return context
+
+
+class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    group_required = [u"Administrador", u"Professor"]
+    model = Perfil
+    template_name = 'listas/alunos.html'
+
+    def get_queryset(self):
+        self.object_list = Perfil.objects.filter(
+            usuario__groups__id=3)
+        return self.object_list

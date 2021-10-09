@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 # Create your models here.
 
@@ -54,6 +54,7 @@ class Perfil(models.Model):
     data_nascimento = models.DateField(
         blank=True, null=True, verbose_name='Data de Nascimento')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    #grupo = models.ForeignKey(Group, on_delete=models.CASCADE, default='Aluno')
     endereco = models.CharField(
         max_length=100, null=True, verbose_name='Endereço')
     numero = models.CharField(max_length=10, null=True,

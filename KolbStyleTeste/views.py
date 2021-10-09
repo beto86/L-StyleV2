@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
-from .forms import TesteILSKolbForm, TesteLivreForm
+from .forms import TesteILSKolbForm
 from django.contrib.auth.models import User, Group
 
 from django.db.models import Sum
@@ -339,8 +339,13 @@ class TesteILSKolbView(FormView):
         # Criar uma Tentativa
         teste = get_object_or_404(
             Teste, chave_acesso=self.kwargs['chave'], ativo=True)
-        tentativa = Tentativa.objects.create(
-            teste=teste, usuario=self.request.user, turma=teste.turma)
+        # tirar usuario para o publico
+        if(self.request.user.is_authenticated):
+            tentativa = Tentativa.objects.create(
+                teste=teste, usuario=self.request.user, turma=teste.turma)
+        else:
+            tentativa = Tentativa.objects.create(
+                teste=teste, turma=teste.turma)
 
         # para cada tentativa, criar uma Resposta
         # Para cada número das questões
@@ -359,6 +364,10 @@ class TesteILSKolbView(FormView):
 
                 resp = Resposta.objects.create(
                     tentativa=tentativa, opcao=opcao, valor=valor)
+
+        if(not self.request.user.is_authenticated):
+            self.success_url = reverse_lazy(
+                'resposta-tentativa', kwargs={'pk': tentativa.pk})
 
         return super().form_valid(form)
 
@@ -396,8 +405,12 @@ class RespostaView(TemplateView):
         #teste = Teste.objects.get(pk=1)
 
         # Esse context é um objeto por causa do get
-        context['tentativas'] = Tentativa.objects.filter(
-            usuario=self.request.user).last()
+        if(self.request.user.is_authenticated):
+            context['tentativas'] = Tentativa.objects.filter(
+                usuario=self.request.user).last()
+        else:
+            context['tentativas'] = Tentativa.objects.get(
+                pk=self.kwargs['pk'], usuario__isnull=True)
 
         # Para o relatório do professor como DETAILVIEW de tentativa
         # context['tentativas'] = Tentativa.objects.get(pk=self.object.pk, teste__professor=self.request.user)
@@ -474,67 +487,5 @@ class RespostaView(TemplateView):
 
         context['tentativas'].estilo = context['estilo']
         context['tentativas'].save()
-
-        return context
-
-
-class TesteLivreView(FormView):
-    template_name = "teste-livre.html"
-    form_class = TesteLivreForm
-    success_url = "/"
-
-    def form_valid(self, form):
-
-        # traz o questionario de kolb
-        questionario = Questionario.objects.get(pk=1)
-        # Conta questões de Kolb
-        num_q = Questao.objects.filter(questionario__pk=1).count()
-        # Cria uma lista numérica com a ordem das questões
-        questoes = range(1, num_q+1)
-        # Cria uma lista numérica de opções
-        opcoes = range(1, 5)
-        # traz o teste com descricao "TESTE LIVRE"
-        teste = Teste.objects.get(pk=6)
-        # traz as tentativas
-        tentativa = Tentativa(teste=teste)
-
-        # para cada tentativa, criar uma Resposta
-        # Para cada número das questões
-        resposta = []
-
-        for q in questoes:
-            questao = Questao.objects.get(
-                questionario=questionario, ordem=q)
-            # Para cada opção que a gente tem de cada questão
-            for opc in opcoes:
-                # Gera o name igual lá no template
-                name = f"opc_{q}_{opc}"
-                opcao = Opcao.objects.get(questao=questao, ordem=opc)
-
-                # pega o valor desse input que ficou selecionado no template
-                valor = self.request.POST.get(name)
-                # Criar um objeto Resposta para cada um com a tentativa, teste, opção, etc
-
-                resp = Resposta(tentativa=tentativa,
-                                opcao=opcao, valor=valor)
-                resposta.append(resp)
-
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # context['teste'] = get_object_or_404(
-        # Teste, chave_acesso=000000, ativo=True)
-
-        context['questionario'] = Questionario.objects.get(pk=1)
-
-        context['questoes'] = Questao.objects.filter(
-            questionario=context['questionario'])
-
-        context['opcoes'] = {}
-
-        for q in context['questoes']:
-            context['opcoes'][q.pk] = Opcao.objects.filter(questao=q)
 
         return context

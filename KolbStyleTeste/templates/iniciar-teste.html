@@ -11,7 +11,7 @@
 <h2>Responder um teste</h2>
 
 <p class="text-secondary">
-    Informe corretamente a chave de acesso do teste informados pelo seu professor.
+    Informe corretamente a chave de acesso do teste informado pelo seu professor.
 </p>
 <hr>
 
@@ -23,10 +23,16 @@
     
     <label for="codigo">Chave de acesso:</label>
     <input type="text" id="chave" required>
+
     
     <hr>
     
     <button type="submit" class="btn btn-success" id="btnSubmit">Iniciar teste</button>
+
+    <hr>
+
+    <label for="codigo">Use este botão sem chave de acesso:</label><br>
+    <a href="{% url 'teste-ils-kolb' 'TesteLivre' %}"><button id="chave-publico">Iniciar Teste</button></a>
     
 </form>
 
@@ -47,7 +53,7 @@
             var chave = $("#chave").val().trim();
 
             if(chave == ""){
-                alert("Preencha corretamente o a Chave do teste.");
+                alert("Preencha corretamente a Chave do teste.");
                 return false;
             }
 
