@@ -40,7 +40,8 @@ class PerfilUpdate(UpdateView):
     template_name = 'cadastros/form.html'
     model = Perfil
     fields = ['nome_completo', 'ra', 'cpf', 'telefone',
-              'sexo', 'data_nascimento', 'endereco']
+              'sexo', 'data_nascimento', 'endereco', 'numero',
+              'cep', 'cidade', 'estado', 'pais']
     success_url = reverse_lazy("index")
 
     def get_object(self, queryset=None):

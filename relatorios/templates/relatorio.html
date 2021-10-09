@@ -8,7 +8,6 @@
 
 {% block conteudo %}
 
-
 <form action="" method="GET">
     <label for="turmas">Escolha uma Turma:</label>
 
@@ -58,7 +57,7 @@
     <label for="turmas">Escolha um Curso:</label>
 
     <select name="cursos" id="cursos">
-        {% for t in turmas %}
+        {% for t in cursos %}
         <option value="{{ t.curso }}">{{ t.curso }}</option>
         {% endfor %}
     </select>

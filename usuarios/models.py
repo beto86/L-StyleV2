@@ -56,14 +56,17 @@ class Perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     #grupo = models.ForeignKey(Group, on_delete=models.CASCADE, default='Aluno')
     endereco = models.CharField(
-        max_length=100, null=True, verbose_name='Endereço')
-    numero = models.CharField(max_length=10, null=True,
+        max_length=100, blank=True, null=True, verbose_name='Endereço')
+    numero = models.CharField(max_length=10, blank=True, null=True,
                               verbose_name='Número')
-    cep = models.CharField(max_length=45, null=True, verbose_name='CEP')
-    cidade = models.ForeignKey(Cidade, null=True, on_delete=models.CASCADE)
-    estado = models.ForeignKey(Estado, null=True, on_delete=models.CASCADE)
+    cep = models.CharField(max_length=45, blank=True,
+                           null=True, verbose_name='CEP')
+    cidade = models.ForeignKey(
+        Cidade, blank=True, null=True, on_delete=models.CASCADE)
+    estado = models.ForeignKey(
+        Estado, blank=True, null=True, on_delete=models.CASCADE)
     pais = models.ForeignKey(
-        Pais, null=True, on_delete=models.CASCADE, verbose_name='País')
+        Pais, blank=True, null=True, on_delete=models.CASCADE, verbose_name='País')
     criacao = models.DateTimeField(auto_now_add=True, verbose_name='Criação')
     atualizacao = models.DateTimeField(
         auto_now=True, verbose_name='Atualização')

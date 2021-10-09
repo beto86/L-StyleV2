@@ -3,6 +3,8 @@ from django.views.generic import TemplateView
 from django.views.generic import DetailView
 from KolbStyleTeste.models import Resposta, Questionario, Tentativa, Estilo, FormaAprendizagem, Turma
 from django.db.models import Sum
+from django.contrib.auth.mixins import LoginRequiredMixin
+from braces.views import GroupRequiredMixin
 
 from easy_pdf.views import PDFTemplateResponseMixin
 
@@ -131,8 +133,9 @@ class RelatorioPorAlunoView(DetailView):
         return context
 
 
-class RelatorioTurma(TemplateView):
+class RelatorioTurma(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = 'relatorio.html'
+    group_required = [u"Administrador", u"Professor"]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -159,6 +162,15 @@ class RelatorioTurma(TemplateView):
             estilo__nome='Convergente').count()
         context['Divergente'] = context['mediaTurma'].filter(
             estilo__nome='Divergente').count()
+
+        #################
+        # usar este comando para popular o combobox de curso com postegres
+        # cursos = Turma.objects.filter(
+        #    usuario=self.request.user).values('curso').distinct('curso')
+        queryset = Turma.objects.distinct()
+        cursos = queryset.filter(
+            usuario=self.request.user).values('curso')
+        context['cursos'] = cursos
 
         # pega o id da tentativa selecionada do comboBox
         nome_turma_curso = self.request.GET.get("cursos")

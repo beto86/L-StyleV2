@@ -54,6 +54,7 @@
                                 Cadastro
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% if not request.user.groups.all.0.name == 'Aluno'  %}
                                 <li><a class="dropdown-item" href="{% url 'listar-instituicoes' %}">Instituição</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-turmas' %}">Turma</a></li>
                                 <li>
@@ -62,12 +63,15 @@
                                 <li><a class="dropdown-item" href="{% url 'listar-questionarios' %}">Questionário</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-questoes' %}">Questão</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-opcoes' %}">Opção</a></li>
+                                {% endif %}
                                 <li><a class="dropdown-item" href="{% url 'listar-tentativas' %}">Tentativa</a></li>
+                                {% if not request.user.groups.all.0.name == 'Aluno'  %}
                                 <li><a class="dropdown-item" href="{% url 'listar-testes' %}">Teste</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{% url 'listar-alunos' %}">Alunos</a></li>
+                                {% endif %}
                             </ul>
                         </li>
                         {% endif %}
@@ -77,11 +81,13 @@
                             </a>
                         </li>
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'relatorios' %}">
-                                Relatório
-                            </a>
-                        </li>
+                            {% if not request.user.groups.all.0.name == 'Aluno'  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'relatorios' %}">
+                                    Relatório
+                                </a>
+                            </li>
+                            {% endif %}
                         {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'quem-somos' %}">
