@@ -54,7 +54,8 @@ class Perfil(models.Model):
     data_nascimento = models.DateField(
         blank=True, null=True, verbose_name='Data de Nascimento')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    #grupo = models.ForeignKey(Group, on_delete=models.CASCADE, default='Aluno')
+    grupo = models.ForeignKey(
+        Group, on_delete=models.CASCADE, null=True)
     endereco = models.CharField(
         max_length=100, blank=True, null=True, verbose_name='Endereço')
     numero = models.CharField(max_length=10, blank=True, null=True,

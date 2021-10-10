@@ -7,7 +7,7 @@ from .models import Perfil, Cidade, Estado, Pais
 @admin.register(Perfil)
 class PerfilAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome_completo', 'ra', 'cpf', 'telefone', 'sexo',
-                    'data_nascimento', 'usuario', 'endereco', 'numero',
+                    'data_nascimento', 'usuario', 'grupo', 'endereco', 'numero',
                     'cep', 'cidade', 'estado', 'pais', 'criacao', 'atualizacao')
 
 

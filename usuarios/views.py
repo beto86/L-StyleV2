@@ -39,10 +39,19 @@ class UsuarioCreate(CreateView):
 class PerfilUpdate(UpdateView):
     template_name = 'cadastros/form.html'
     model = Perfil
-    fields = ['nome_completo', 'ra', 'cpf', 'telefone',
+    fields = ['grupo', 'nome_completo', 'ra', 'cpf', 'telefone',
               'sexo', 'data_nascimento', 'endereco', 'numero',
               'cep', 'cidade', 'estado', 'pais']
     success_url = reverse_lazy("index")
+
+    def form_valid(self, form):
+        grupo_id = self.request.POST.get("grupo")
+        usuario = User.objects.get(pk=self.request.user.id)
+        self.object = form.save()
+        usuario.groups.add(grupo_id)
+        # self.object.groups.add(grupo)
+        self.object.save()
+        return super().form_valid(form)
 
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Perfil, usuario=self.request.user)
