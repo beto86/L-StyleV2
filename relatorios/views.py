@@ -222,6 +222,8 @@ class PDFAlunoDetailView(PDFTemplateResponseMixin, DetailView):
         context = super(PDFAlunoDetailView, self).get_context_data(**kwargs)
 
         context['pagesize'] = "A4"
+        context['encoding'] = u"utf-8"
+
         context['title'] = f'relatorio do aluno {self.request.user}'
 
         context['questionario'] = Questionario.objects.get(pk=1)
@@ -304,10 +306,18 @@ class PDFAlunoDetailView(PDFTemplateResponseMixin, DetailView):
 
         ##############################
         # para a média da turma
+        # pega o objeto tentativa de quem respondeu
+        quem_respondeu = Tentativa.objects.get(pk=self.kwargs["id"])
+        # aqui filtra de acordo com quem respondeu
+        mediaTurma = Tentativa.objects.filter(usuario=quem_respondeu.usuario)
+        context['mediaTurma'] = mediaTurma
 
-        # aqui filtra a turma de acordo com o id
-        # mediaTurma = Tentativa.objects.filter(
-        #    usuario=self.request.user, turma_id=1)
-        #context['mediaTurma'] = mediaTurma
+        ##########################################
+        # para a lista das tentativas do aluno
+
+        # pega o usuario da tentativa de quem respondeu
+        context['quem_respondeu'] = quem_respondeu.usuario
+        # aqui filtra de acordo com quem respondeu ordenado por data
+        context['tentativa'] = mediaTurma.order_by('data')
 
         return context

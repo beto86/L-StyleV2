@@ -4,6 +4,17 @@
 {% load static %}
 {% load filtros %}
 
+{% block extra_style %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+    <style type="text/css">
+        body {
+            font-family: "Helvetica", "sans-serif";
+            color: #333333;
+        }
+    </style>
+    
+{% endblock %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -46,6 +57,34 @@
             <p>Recomendações do estilo e forma de aprender: {{rec_estilo}}</p>
         </div>
     </form>
+
+    
+<hr>
+<h1>Evolução das tentativas do Aluno {{quem_respondeu}}</h1>
+<div class="table-responsive">
+    <table class="table table-striped" id="tabela-listar">
+        <thead>
+            <tr>
+                <th>Teste</th>
+                <th>Turma</th>
+                <th>Data</th>
+                <th>Estilo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tentativa %}
+            <tr>
+                <td>{{t.teste.descricao}}</td>
+                <td>{{t.turma}}</td>
+                <td>{{t.data}}</td>
+                <td>{{t.estilo}}</td>
+            </tr>
+            {% empty %}
+            <td colspan="3">Nenhuma tentativa registrada.</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
     {% endblock %}
 </body>
