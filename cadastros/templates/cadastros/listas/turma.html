@@ -3,46 +3,49 @@
 {% load static %}
 
 {% block conteudo %}
-<h3>Lista de turmas registrados</h3>
-<a href="{% url 'cadastrar-turma' %}" class="btn btn-primary btn-sm">Adicionar Turma</a>
-<hr>
-<div class="table-responsive">
-    <table class="table table-striped" id="tabela-listar">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Período</th>
-                <th>Ano</th>
-                <th>Curso</th>
-                <th>Turno</th>
-                <th>Instituição</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for turma in object_list %}
-            <tr>
-                <td>{{ turma.nome }}</td>
-                <td>{{ turma.periodo }}</td>
-                <td>{{ turma.ano }}</td>
-                <td>{{ turma.curso }}</td>
-                <td>{{ turma.turno }}</td>
-                <td>{{ turma.instituicao }}</td>
-                <td>
-                    <a href="{% url 'editar-turma' turma.pk %}" class="btn btn-warning btn-sm" title="Editar">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                    <a href="{% url 'excluir-turma' turma.pk %}" class="btn btn-danger btn-sm" title="Excluir">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
+<div class="lista">
+    <div class="tableHead">
+        <h3>Lista de turmas registradas</h3>
+        <a href="{% url 'cadastrar-turma' %}" class="btn btn-primary btn-sm">Adicionar Turma</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Período</th>
+                    <th>Ano</th>
+                    <th>Curso</th>
+                    <th>Turno</th>
+                    <th>Instituição</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turma in object_list %}
+                <tr>
+                    <td>{{ turma.nome }}</td>
+                    <td>{{ turma.periodo }}</td>
+                    <td>{{ turma.ano }}</td>
+                    <td>{{ turma.curso }}</td>
+                    <td>{{ turma.turno }}</td>
+                    <td>{{ turma.instituicao }}</td>
+                    <td>
+                        <a href="{% url 'editar-turma' turma.pk %}" class="btn btn-table btn-sm" title="Editar">
+                            <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
+                        </a>
+                        <a href="{% url 'excluir-turma' turma.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        </a>
 
-                </td>
-            </tr>
-            {% empty %}
-            <td colspan="3">Nenhuma turma registrada.</td>
-            {% endfor %}
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+                {% empty %}
+                <td colspan="3">Nenhuma turma registrada.</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

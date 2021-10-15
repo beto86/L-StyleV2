@@ -1,0 +1,196 @@
+.lista {
+    min-height: calc(100vh - 60px);
+}
+
+.lista thead {
+    box-shadow: 1px 3px 4px 1px rgba(0, 0, 0, 0.08);
+}
+
+.lista thead tr th {
+    border-bottom: none!important;
+}
+
+.tableHead {
+    width: 100%;
+    padding: 20px 50px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.tableHead h3 {
+    font-size: 1.3rem;
+    margin-right: 35px;
+}
+
+.tableHead .btn {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 10px 0 0 auto!important;
+}
+
+.lista .table-responsive .row:first-of-type {
+    padding: 0 50px 10px;
+}
+
+.lista .table-responsive .row:first-of-type div {
+    width: fit-content;
+}
+
+.lista .table-responsive .row:first-of-type div:first-of-type {
+    order: 2;
+}
+
+.lista .table-responsive .row:first-of-type div:last-of-type {
+    order: 1;
+    padding-left: 0;
+    margin-right: 15px;
+}
+
+.lista .table-responsive .row:nth-of-type(2) th {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    padding-bottom: 20px;
+}
+
+.lista .table-responsive .row:nth-of-type(2) th, .lista .table-responsive .row:nth-of-type(2) td {
+    padding-left: 50px;
+}
+
+.lista .table-responsive .row:nth-of-type(2) td {
+    max-width: 200px;
+    padding-left: 50px;
+    overflow: auto;
+}
+
+.lista .table-responsive .row:nth-of-type(2) tbody {
+    vertical-align: middle;
+}
+
+.lista .table-responsive .row:nth-of-type(2) tbody tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.065)!important;
+    height: 50px!important;
+}
+
+.lista .table-responsive .row:nth-of-type(2) td .btn {
+    width: 100px;
+    margin: 15px 0;
+}
+
+.lista .table-responsive .row:nth-of-type(2) td .btn i {
+    color: #fff;
+}
+
+.lista .table-responsive .row:nth-of-type(2) td .btn:nth-of-type(2) {
+    margin-bottom: 15px;
+}
+
+.lista .table-responsive .row:last-of-type {
+    height: 100px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.lista .table-responsive .row:last-of-type div {
+    width: fit-content;
+}
+
+.lista .table-responsive .row:last-of-type div:nth-of-type(1) {
+    order: 2;
+    margin-left: auto;
+}
+
+#tabela-listar_info {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    padding-top: 0;
+}
+
+.lista .table-responsive .row:last-of-type div:nth-of-type(2) {
+    order: 1;
+}
+
+.btn-table {
+    background: #fff;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.15);
+}
+
+.btn-table i {
+    font-size: 1.1rem;
+}
+
+.btn-table:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/*lista form*/
+
+.lista-form {
+    min-height: calc(100vh - 60px);
+    max-width: 800px;
+    margin: auto;
+    padding: 75px 0;
+}
+
+.lista-form .btn {
+    width: 125px;
+    height: 50px;
+    color: #fff;
+}
+
+.lista-form .lead {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 1000px) {
+    .lista-form {
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .lista-form {
+        padding-left: 10px;
+        padding-right: 10px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .lista .table-responsive .row:first-of-type div:last-of-type {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .tableHead {
+        flex-wrap: wrap;
+    }
+    .tableHead .btn {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin: 10px 0!important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .lista-form h3 {
+        font-size: 1.3rem;
+    }
+    .tableHead {
+        padding: 20px 15px 10px;
+    }
+    .lista .table-responsive .row:first-of-type {
+        padding: 0 15px 10px;
+    }
+}
+
+@media screen and (max-width: 275px) {
+    .lista-form .lead, .lista-form h3 {
+        text-align: center;
+    }
+    div.dataTables_wrapper div.dataTables_filter input{
+        width: 80%!important;
+    }
+}

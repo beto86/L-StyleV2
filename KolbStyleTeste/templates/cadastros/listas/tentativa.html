@@ -3,8 +3,10 @@
 {% load static %}
 
 {% block conteudo %}
-    <h3>Lista de tentativas registradas</h3>
-    <hr>
+<div class="lista">
+    <div class="tableHead">
+        <h3>Lista de tentativas registradas</h3>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
             <thead>
@@ -13,6 +15,7 @@
                     <th>Quem respondeu</th>
                     <th>Turma</th>
                     <th>Data</th>
+                    <th>Concluiu</th>
                     <th>Opção</th>
                 </tr>
             </thead>
@@ -23,12 +26,13 @@
                     <td>{{tentativa.usuario|default_if_none:tentativa.usuario}}</td>
                     <td>{{tentativa.turma}}</td>
                     <td>{{tentativa.data}}</td>
+                    <td>{{tentativa.concluiu}}</td>
                     <td>
-                        <a href="{% url 'relatorio-aluno' tentativa.pk %}" class="btn btn-info btn-sm" title="Resposta">
-                            <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                        <a href="{% url 'relatorio-aluno' tentativa.pk %}" class="btn btn-table btn-sm" title="Resposta">
+                            <i class="fas fa-chart-bar text-info" aria-hidden="true"></i>
                         </a>
-                        <a href="{% url 'pdfAluno-detail' tentativa.pk %}" class="btn btn-info btn-sm" title="PDF">
-                            <i class="fas fa-download" aria-hidden="true"></i>
+                        <a href="{% url 'pdfAluno-detail' tentativa.pk %}" class="btn btn-table btn-sm" title="PDF">
+                            <i class="fas fa-download text-info" aria-hidden="true"></i>
                         </a>
                     </td>
                 </tr>
@@ -38,8 +42,8 @@
             </tbody>
         </table>
     </div>
-
-     
+</div>
+ 
 
 {% endblock %}
 

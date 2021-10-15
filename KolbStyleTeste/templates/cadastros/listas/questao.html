@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block conteudo %}
-    <h3>Lista de questões registradas</h3>
-    {% if not request.user.groups.all.0.name == 'Professor'  %}
-    <a href="{% url 'cadastrar-questao' %}" class="btn btn-primary btn-sm">Adicionar Questão</a>
-    {% endif %}
-    <hr>
+<div class="lista">
+    <div class="tableHead">
+        <h3>Lista de questões registradas</h3>
+        <a href="{% url 'cadastrar-questao' %}" class="btn btn-primary btn-sm">Adicionar Questão</a>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
             <thead>
@@ -24,17 +24,15 @@
                     <td>{{ questao.questionario.descricao }}</td>
                     <td>{{ questao.descricao }}</td>
                     <td>{{ questao.ordem }}</td>
-                    {% if not request.user.groups.all.0.name == 'Professor'  %}
                     <td>
-                        <a href="{% url 'editar-questao' questao.pk %}" class="btn btn-warning btn-sm" title="Editar">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <a href="{% url 'editar-questao' questao.pk %}" class="btn btn-table btn-sm" title="Editar">
+                            <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
                         </a>
-                        <a href="{% url 'excluir-questao' questao.pk %}" class="btn btn-danger btn-sm" title="Excluir">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        <a href="{% url 'excluir-questao' questao.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                         </a>
                         
                     </td>
-                    {% endif %}
                 </tr>
                 {% empty %}
                 <td colspan="3">Nenhuma questao registrada.</td>
@@ -42,7 +40,7 @@
             </tbody>
         </table>
     </div>
-
+</div>
     
 
 {% endblock %}

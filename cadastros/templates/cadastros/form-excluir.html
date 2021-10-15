@@ -5,6 +5,7 @@
 
 
 {% block conteudo %}
+<div class="lista-form">
     <h3>{{titulo}}</h3>
     <p class="lead">
         Confirme {{titulo2}} para excluir definitivamente.
@@ -22,10 +23,10 @@
 
         {{ form.as_p }}
 
-        <button type="submit" class="btn btn-primary">Excluir</button>
+        <button type="submit" class="btn btn-danger">Excluir</button>
 
         
     </form>
-    
+</div>
 
 {% endblock %}

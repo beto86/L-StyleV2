@@ -3,9 +3,11 @@
 {% load static %}
 
 {% block conteudo %}
-    <h3>Lista de instituições de ensino registrados</h3>
-    <a href="{% url 'cadastrar-instituicao' %}" class="btn btn-primary btn-sm">Adicionar Instituição</a>
-    <hr>
+<div class="lista">
+    <div class="tableHead">
+        <h3>Lista de instituições de ensino registrados</h3>
+        <a href="{% url 'cadastrar-instituicao' %}" class="btn btn-primary btn-sm">Adicionar Instituição</a>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
             <thead>
@@ -21,13 +23,12 @@
                     <td>{{ instituicao.nome }}</td>
                     <td>{{ instituicao.endereco }}</td>
                     <td>                     
-                        <a href="{% url 'editar-instituicao' instituicao.pk %}" class="btn btn-warning btn-sm" title="Editar">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <a href="{% url 'editar-instituicao' instituicao.pk %}" class="btn btn-table btn-sm" title="Editar">
+                            <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
                         </a>
-                        <a href="{% url 'excluir-instituicao' instituicao.pk %}" class="btn btn-danger btn-sm" title="Excluir">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                            
+                        <a href="{% url 'excluir-instituicao' instituicao.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        </a>                            
                     </td>
                 </tr>
                 {% empty %}
@@ -36,7 +37,7 @@
             </tbody>
         </table>
     </div>
-
+</div>
 {% endblock %}
 
 {% block scripts %}

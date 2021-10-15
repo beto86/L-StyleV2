@@ -55,7 +55,7 @@ document.getElementsByTagName("body")[0].onload = () => {
 
             if (allow == 4) {
                 if (document.querySelector('#nav12 .done') == null) {
-                    document.getElementById('nav12').innerHTML += '<span class="done">Respondida</span>';
+                    document.getElementById('nav12').innerHTML += '<span class="done"><i class="fas fa-check"></i></span>';
                     document.getElementById('footerInfo').innerHTML = completas + " de 12 completa";
                     completas++;
                 }
@@ -77,7 +77,7 @@ document.getElementsByTagName("body")[0].onload = () => {
                         document.querySelector(className + ' .question-times').remove();
                     }
 
-                    document.querySelector(className).innerHTML += '<span class="question-times">Não respondido</span>';
+                    document.querySelector(className).innerHTML += '<span class="question-times"><i class="fas fa-times"></span>';
                 });
 
                 msgError("error", "Existem campos sem resposta");
@@ -93,6 +93,7 @@ document.getElementsByTagName("body")[0].onload = () => {
 
     /*pre-set*/
     document.getElementsByClassName('page-footer')[0].remove();
+    document.getElementsByClassName('main-menu')[0].remove();
 }
 
 function changeQuestion(element, source = "") {
@@ -156,7 +157,7 @@ function changeQuestion(element, source = "") {
             }
 
             if (document.querySelector('#' + navTab + ' .done') == null) {
-                document.getElementById(navTab).innerHTML += '<span class="done">Respondida</span>';
+                document.getElementById(navTab).innerHTML += '<span class="done"><i class="fas fa-check"></span>';
                 document.getElementById('footerInfo').innerHTML = completas + " de 12 completa";
                 completas++;
             }

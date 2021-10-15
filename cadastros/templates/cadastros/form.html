@@ -5,6 +5,7 @@
 {% load crispy_forms_tags %}
 
 {% block conteudo %}
+<div class="lista-form">
     <h3>{{titulo}}</h3>
     <p class="lead">
         Preencha todos os campos obrigatórios.
@@ -17,10 +18,11 @@
 
         {{ form|crispy }}
 
-        <button type="submit" class="btn btn-primary mt-3" >Cadastrar</button>
+        <button type="submit" class="btn bg-color-custom-primary mt-3" >Cadastrar</button>
 
         
     </form>
+</div> 
     
 {% endblock %}
 

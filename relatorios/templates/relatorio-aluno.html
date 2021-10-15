@@ -8,55 +8,65 @@
 {% endblock %}
 
 {% block conteudo %}
-<h2> {{questionario}} </h2>
+<div class="feedback">
+    <div class="top">
+        <h2 class="title border-custom-primary"> {{questionario}} </h2>
 
-<form action="" method="POST">
+							  
 
-    <hr>
+		
 
-    <canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>
+        <form action="" method="POST" class="info">
 
-    <hr>
+            <canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>
+            <div class="msg alert alert-warning" role="alert">
+                Veja grafico na versão desktop
+            </div>
+            
 
-    <div class="container-fluid">
-        <p>Seu estilo de aprendizagem é <strong>{{estilo}}</strong></p>
+            <div class="container-fluid">
+                <p class="type"> Você é um <strong>{{estilo}}</strong></p>
 
-        <p>E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
+                <p class="wayLearning">E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
 
-        <p>Descrição do estilo e forma de aprender: {{desc_estilo}}</p>
+                <h2 class="desc-title">Descrição do estilo e forma de aprender </h2>
+                <p class="desc-text">{{desc_estilo}}</p>
 
-        <p>Recomendações do estilo e forma de aprender: {{rec_estilo}}</p>
+                <h2 class="desc-title">Recomendações do estilo e forma de aprender</h2>
+                <p class="desc-text">{{rec_estilo}}</p>
+            </div>
+        </form>
     </div>
-</form>
+	   
 
-<hr>
-<h1>Evolução das tentativas do Aluno {{quem_respondeu}}</h1>
-<div class="table-responsive">
-    <table class="table table-striped" id="tabela-listar">
-        <thead>
-            <tr>
-                <th>Teste</th>
-                <th>Turma</th>
-                <th>Data</th>
-                <th>Estilo</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for t in tentativa %}
-            <tr>
-                <td>{{t.teste.descricao}}</td>
-                <td>{{t.turma}}</td>
-                <td>{{t.data}}</td>
-                <td>{{t.estilo}}</td>
-            </tr>
-            {% empty %}
-            <td colspan="3">Nenhuma tentativa registrada.</td>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="list">
+        <h1 class="title border-custom-primary">Evolução das tentativas do Aluno {{quem_respondeu}}</h1>
+        <div class="table-responsive">
+            <table class="table table-striped" id="tabela-listar">
+                <thead>
+                    <tr>
+                        <th>Teste</th>
+                        <th>Turma</th>
+                        <th>Data</th>
+                        <th>Estilo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in tentativa %}
+                    <tr>
+                        <td>{{t.teste.descricao}}</td>
+                        <td>{{t.turma}}</td>
+                        <td>{{t.data}}</td>
+                        <td>{{t.estilo}}</td>
+                    </tr>
+                    {% empty %}
+                    <td colspan="3">Nenhuma tentativa registrada.</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
-
 {% endblock %}
 
 

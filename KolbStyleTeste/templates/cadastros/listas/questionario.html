@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block conteudo %}
-    <h3>Lista de questionários registrados</h3>
-    {% if not request.user.groups.all.0.name == 'Professor'  %}
-    <a href="{% url 'cadastrar-questionario' %}" class="btn btn-primary btn-sm">Adicionar Questionário</a>
-    {% endif %}
-    <hr>
+<div class="lista">
+    <div class="tableHead">
+        <h3>Lista de questionários registrados</h3>
+        <a href="{% url 'cadastrar-questionario' %}" class="btn btn-primary btn-sm">Adicionar Questionário</a>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
             <thead>
@@ -20,17 +20,15 @@
                 {% for questionario in object_list %}
                 <tr>
                     <td>{{ questionario.descricao }}</td>
-                    {% if not request.user.groups.all.0.name == 'Professor'  %}
                     <td>
-                        <a href="{% url 'editar-questionario' questionario.pk %}" class="btn btn-warning btn-sm" title="Editar">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <a href="{% url 'editar-questionario' questionario.pk %}" class="btn btn-table btn-sm" title="Editar">
+                            <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
                         </a>
-                        <a href="{% url 'excluir-questionario' questionario.pk %}" class="btn btn-danger btn-sm" title="Excluir">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        <a href="{% url 'excluir-questionario' questionario.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                         </a>
                         
                     </td>
-                    {% endif %}
                 </tr>
                 {% empty %}
                 <td colspan="3">Nenhuma questionário registrado.</td>
@@ -38,7 +36,7 @@
             </tbody>
         </table>
     </div>
-
+</div>
     
 
 {% endblock %}
