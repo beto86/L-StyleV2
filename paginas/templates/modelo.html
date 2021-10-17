@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/lista.css' %}">
     <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
     <link rel="stylesheet" href="{% static 'css/relatorio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/StyleLogins.css' %}">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 
@@ -78,6 +79,9 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{% url 'listar-alunos' %}">Alunos</a></li>
+                                {% if request.user.groups.all.0.name == 'Administrador'  %}
+                                <li><a class="dropdown-item" href="{% url 'listar-professores' %}">Professores</a></li>
+                                {% endif %}
                                 {% endif %}
                             </ul>
                         </li>
@@ -103,6 +107,7 @@
                         </li>
                     </ul>
                 </div>
+                {% if request.user.is_authenticated %}
                 <ul class="quiz-nav navbar-nav color-custom-primary border-custom-primary">
                     <li class="nav-item">
                         <a class="nav-link color-custom-primary" href="{% url 'iniciar-teste' %}" style="font-size: 0.9rem;">
@@ -110,7 +115,7 @@
                         </a>
                     </li>
                 </ul>
-
+                {% endif %}
 
                 <ul class="login-nav navbar-nav bg-color-custom-primary" style="margin: 0 25px!important;">
                 
@@ -128,18 +133,16 @@
                         </ul>
                     </li>
                     {% else %}
-                    {% comment %} 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'registrar' %}">
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                             Registrar
                         </a>
-                    </li> 
-                    {% endcomment %}
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{% url 'login' %}" style="font-size: 0.9rem;">
                             <i class="fa fa-sign-in text-light" aria-hidden="true"></i>
-                            Entrar / Cadastro
+                            Entrar 
                         </a>
                     </li>
                     {% endif %}
@@ -170,14 +173,14 @@
         <footer class="page-footer bg-color-custom-primary ">
             <div class="left">
                 <div>
-                    <div class="icone">
-                        icone
+                    <div class="icone"><!--style="background: rgba(0, 0, 0, 0);" Fundo sem cor-->
+                        <img src="{% static 'img/L-StyleLogotipo.png' %}" width="100%" class="img-cover"> <!--Definir Imagens Logo L-Styles-->
                     </div>
                     <p>@L styles 2021</p>
                 </div>
                 <div>
-                    <div class="icone">
-                        icone
+                    <div class="icone" style="background: rgba(0, 0, 0, 0);">
+                        <img src="{% static 'img/utfpr_logo.png' %}" width="100%" class="img-cover"> <!--Definir Imagens Logo UTFPR-->
                     </div>
                     <p>UTFPR 2021</p>
                 </div>
@@ -234,6 +237,7 @@
         <script src="{% static 'js/jquery.mask.min.js' %}"></script>
         <script src="{% static 'js/Chart.min.js' %}"></script>
         <script src="{% static 'js/SetChart.js' %}"></script>
+        <script src="{% static 'js/setTestemonial.js' %}"></script> <!-- Script dos Comentarios-->
 
 
         {% endblock %}
@@ -241,5 +245,6 @@
 
 
     </div>
+</body>
 
 </html>

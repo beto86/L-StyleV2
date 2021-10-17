@@ -1,0 +1,12 @@
+function trocarTestemonial(numero){
+    var div_testemonial = document.getElementById("testemonial"+numero);
+    var testemonial_descricao = document.getElementById("testemonialD"+numero);
+
+    for (var i = 1; i < 5; i++){
+        var remove_testemonial = document.getElementById("testemonial"+i).classList.remove('testemonials-item-active');
+        var remove_testemonialD = document.getElementById("testemonialD"+i).classList.add('hidden');
+    }
+    div_testemonial.classList.add('testemonials-item-active');
+    testemonial_descricao.classList.remove('hidden');
+
+}

@@ -13,14 +13,22 @@
         <h2 class="border-custom-primary">Responder um teste</h2>
 
         <p class="text-secondary">
-            Informe corretamente a chave de acesso do teste informados pelo seu professor.
+            Informe corretamente a chave de acesso do teste informado pelo seu professor.
         </p>
         <form action="">
             <label for="codigo" style="width: 100%;">Chave de acesso:</label>
             <input type="text" id="chave" required>
             
-            <button type="submit" class="btn bg-color-custom-primary" id="btnSubmit">Iniciar teste</button>
+            <button type="submit" class="btn bg-color-custom-primary" id="btnSubmit">Iniciar Teste</button>
             
+        </form>
+    </section>
+    <section id="testeLoginLivre">
+        <form action="">
+     
+            <h3 for="codigo">| Não tem chave, use esse botão:</h3>
+            <a id="btn-sem-chave" class="btn btn-success" href="{% url 'teste-ils-kolb' 'TesteLivre' %}">Iniciar Teste</a>
+
         </form>
     </section>
 </div>

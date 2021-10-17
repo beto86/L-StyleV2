@@ -1,0 +1,29 @@
+.login-form-container {
+  /*CONTAINER*/
+  max-width: 1200px;
+  min-width: 300px;
+  padding: 100px 0;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.login-form-container h2 {
+  color: #ffcc44;
+}
+
+.login-form-container .btn {
+  width: 150px;
+  height: 40px;
+  padding: 5px;
+  background-color: #ffcc44;
+  margin-top: 50px;
+}
+.form-centro {
+  text-align: center;
+}
+#btn-sem-chave {
+  margin-top: 30px;
+}
+.login-form-container form {
+  padding: 20px 0;
+}

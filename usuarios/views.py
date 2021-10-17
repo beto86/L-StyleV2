@@ -85,3 +85,15 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         self.object_list = Perfil.objects.filter(
             usuario__groups__id=3)
         return self.object_list
+
+
+class ProfessorList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    group_required = [u"Administrador"]
+    model = Perfil
+    template_name = 'listas/professor.html'
+
+    def get_queryset(self):
+        self.object_list = Perfil.objects.filter(
+            usuario__groups__id=2)
+        return self.object_list

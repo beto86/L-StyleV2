@@ -5,46 +5,33 @@
 {% block conteudo %}
 <div class="lista">
     <div class="tableHead">
-        <h3>Lista de questionários registrados</h3>
-        {% if request.user.groups.all.0.name == 'Administrador'  %}
-        <a href="{% url 'cadastrar-questionario' %}" class="btn btn-primary btn-sm">Adicionar Questionário</a>
-        {% endif %}
+        <h3>Lista de Professores registrados</h3>
     </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
             <thead>
                 <tr>
-                    <th>Descrição</th>
-                    {% if request.user.groups.all.0.name == 'Administrador'  %}
-                    <th>Opções</th>
-                    {% endif %}
+                    <th>Nome</th>
+                    <th>e-mail</th>
+                    <th>Telefone</th>
                 </tr>
             </thead>
             <tbody>
-                {% for questionario in object_list %}
+                {% for professor in object_list %}
                 <tr>
-                    <td>{{ questionario.descricao }}</td>
-                    {% if request.user.groups.all.0.name == 'Administrador'  %}
-                    <td>
-                        <a href="{% url 'editar-questionario' questionario.pk %}" class="btn btn-table btn-sm" title="Editar">
-                            <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
-                        </a>
-                        <a href="{% url 'excluir-questionario' questionario.pk %}" class="btn btn-table btn-sm" title="Excluir">
-                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-                        </a>
-                        
-                    </td>
-                    {% endif %}
+                    <td>{{ professor.nome_completo }}</td>
+                    <td>{{ professor.usuario.email }}</td>
+                    <td>{{ professor.telefone }}</td>
                 </tr>
                 {% empty %}
-                <td colspan="3">Nenhuma questionário registrado.</td>
+                <td colspan="3">Nenhum professor registrado.</td>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-</div>
-    
 
+    
+</div>
 {% endblock %}
 
 {% block scripts %}

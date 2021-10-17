@@ -6,7 +6,9 @@
 <div class="lista">
     <div class="tableHead">
         <h3>Lista de opções registradas</h3>
+        {% if request.user.groups.all.0.name == 'Administrador'  %}
         <a href="{% url 'cadastrar-opcao' %}" class="btn btn-primary btn-sm">Adicionar Opção</a>
+        {% endif %}
     </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
@@ -14,11 +16,11 @@
                 <tr>
                     <th>Questão</th>
                     <th>Descrição</th>
-                    <th>Imagem</th>
-                    <th>Video</th>
                     <th>Ordem</th>
                     <th>Forma Aprend.</th>
+                    {% if request.user.groups.all.0.name == 'Administrador'  %}
                     <th>Opções</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -26,10 +28,9 @@
                 <tr>
                     <td>{{opcao.questao.ordem}} - {{ opcao.questao.descricao }}</td>
                     <td>{{ opcao.descricao }}</td>
-                    <td>{{ opcao.imagem|default_if_none:'Sem imagem' }}</td>
-                    <td>{{ opcao.video|default_if_none:'Sem vídeo' }}</td>
                     <td>{{ opcao.ordem }}</td>
                     <td>{{ opcao.forma_aprendizagem }}</td>
+                    {% if request.user.groups.all.0.name == 'Administrador'  %}
                     <td>
                         <a href="{% url 'editar-opcao' opcao.pk %}" class="btn btn-table btn-sm" title="Editar">
                             <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
@@ -39,6 +40,7 @@
                         </a>
                         
                     </td>
+                    {% endif %}
                 </tr>
                 {% empty %}
                 <td colspan="3">Nenhuma opcao registrada.</td>

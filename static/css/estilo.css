@@ -482,6 +482,11 @@
   color: #e9af4a;
 }
 
+.testemonials .hidden {
+  display: none;
+  visibility: hidden;
+}
+
 .page-footer {
   filter: brightness(95%);
   display: flex;
@@ -656,5 +661,121 @@
   }
   .login-nav {
     padding: 0 5px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .login-nav {
+    width: 250px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  /*inicial*/
+
+  div#slide-inicial .welcome-info {
+    position: absolute;
+    z-index: 2;
+  }
+  div#slide-inicial .welcome-info h1 {
+    width: 90%;
+    text-shadow: 2px 2px #ffc107;
+  }
+  div#slide-inicial img {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  /* Responsivo Grafico*/
+  .metrics {
+    flex-direction: column;
+  }
+  .metrics .info-block-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .card-container {
+    width: 300px;
+  }
+  .info-block-statics {
+    margin-left: 0;
+  }
+  /*Responsivo testemonial*/
+  .testemonials {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+  .testemonials .left {
+    width: 100%;
+    margin: 10px 10px;
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .testemonials .right {
+    width: 80%;
+    margin: 10px auto;
+    min-height: 250px;
+    padding: 30px;
+  }
+  .testemonials-item {
+    min-width: 300px;
+    margin-right: 5px;
+  }
+}
+@media (max-width: 770px) {
+  .container {
+    width: 100%;
+    margin: 0 20px;
+  }
+  .metrics .info-block-card {
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+  .card-container {
+    width: 80%;
+  }
+
+  .info-section ul {
+    padding: 0;
+  }
+
+  /*Grafico*/
+  .info-block-statics {
+    padding: 5px;
+  }
+}
+@media (max-width: 600px) {
+  .show-off-title h1 {
+    font-size: 1.5rem;
+  }
+  /*inicial*/
+  div#slide-inicial {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  div#slide-inicial .welcome-info {
+    position: static;
+    text-align: center;
+  }
+  div#slide-inicial .welcome-info h1 {
+    width: 100%;
+  }
+  .info-section li {
+    font-size: 1rem;
+  }
+  .info-section li::before {
+    margin-right: 10px;
+  }
+  /*Testemonials*/
+  .testemonials .right {
+    width: 100%;
+    margin: 10px auto;
+    min-height: 250px;
+    padding: 30px;
+  }
+  .terceira-bolinha-titulo {
+    display: none;
   }
 }

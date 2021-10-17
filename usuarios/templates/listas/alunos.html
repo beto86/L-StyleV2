@@ -3,7 +3,10 @@
 {% load static %}
 
 {% block conteudo %}
-    <h3>Lista de Alunos registrados</h3>
+<div class="lista">
+    <div class="tableHead">
+        <h3>Lista de Alunos registrados</h3>
+    </div>
     <hr>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
@@ -11,6 +14,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>RA</th>
+                    <th>e-mail</th>
                     <th>Telefone</th>
                     <th>Sexo</th>
                 </tr>
@@ -20,6 +24,7 @@
                 <tr>
                     <td>{{ aluno.nome_completo }}</td>
                     <td>{{ aluno.RA }}</td>
+                    <td>{{ aluno.usuario.email }}</td>
                     <td>{{ aluno.telefone }}</td>
                     <td>{{ aluno.sexo }}</td>
                 </tr>
@@ -29,7 +34,7 @@
             </tbody>
         </table>
     </div>
-
+</div>
     
 
 {% endblock %}

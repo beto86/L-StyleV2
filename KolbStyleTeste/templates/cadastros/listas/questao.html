@@ -6,7 +6,9 @@
 <div class="lista">
     <div class="tableHead">
         <h3>Lista de questões registradas</h3>
+        {% if request.user.groups.all.0.name == 'Administrador'  %}
         <a href="{% url 'cadastrar-questao' %}" class="btn btn-primary btn-sm">Adicionar Questão</a>
+        {% endif %}
     </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
@@ -15,7 +17,9 @@
                     <th>Questionário</th>
                     <th>Descrição</th>
                     <th>Ordem</th>
+                    {% if request.user.groups.all.0.name == 'Administrador'  %}
                     <th>Opções</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +28,7 @@
                     <td>{{ questao.questionario.descricao }}</td>
                     <td>{{ questao.descricao }}</td>
                     <td>{{ questao.ordem }}</td>
+                    {% if request.user.groups.all.0.name == 'Administrador'  %}
                     <td>
                         <a href="{% url 'editar-questao' questao.pk %}" class="btn btn-table btn-sm" title="Editar">
                             <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
@@ -33,6 +38,7 @@
                         </a>
                         
                     </td>
+                    {% endif %}
                 </tr>
                 {% empty %}
                 <td colspan="3">Nenhuma questao registrada.</td>

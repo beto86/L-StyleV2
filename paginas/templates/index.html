@@ -13,11 +13,11 @@ Bem vindo ao sistema {{ user.perfil.nome_completo }}.
 {% else %}
 Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados' %}">meus dados</a> para atualizar.
 {% endif %} {% endcomment %}
-<section class="main-block welcome-block">
+<section id="slide-inicial" class="main-block welcome-block">
     <div class="container">
         <div class="welcome-info color-custom-primary">
             <h1>Seja bem vindo, vamos fazer o teste?</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet consequatur maxime commodi.</p>
+            <p>Faça o teste agora e descubra seu método de aprendizagem</p>
             <a href="{% url 'iniciar-teste' %}"><button class="btn-welcome border-custom-primary">Quero fazer o teste</button></a>
         </div>
         <img src="{% static 'img/img-hero.jpg' %}" class="img-cover">
@@ -29,54 +29,54 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
             <div class="show-off-title-icon show-off-icon-left">
                 <i class="fas fa-circle color-custom-primary"></i>
                 <i class="fas fa-circle color-custom-primary"></i>
-                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary terceira-bolinha-titulo"></i>
             </div>
-            <h1 class="color-custom-primary">Quais são os metodos de aprendizagem?</h1>
+            <h1 class="color-custom-primary titulo-home">Quais são os metodos de aprendizagem?</h1>
             <div class="show-off-title-icon show-off-icon-right">
                 <i class="fas fa-circle color-custom-primary"></i>
                 <i class="fas fa-circle color-custom-primary"></i>
-                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary terceira-bolinha-titulo"></i>
             </div>
         </div>
         <div class="info-section">
-            <ul>
+            <ul style="text-align: justify;">
                 <li>
                     <div>
-                        <b>Experiência Concreta (EC):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                        <b>Experiência Concreta (EC):</b> <span><span>Uma abordagem fundamentada em experiências, de modo que a aprendizagem se fundamenta em ponderações baseadas em sentimentos.</span>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <b>Observação Reflexiva (OR):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                        <b>Observação Reflexiva (OR):</b> <span>Uma abordagem por tentativas, imparcial e reflexiva, de modo que os indivíduos se baseiam fortemente em observações.</span>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <b>Conceituação Abstrato (CA):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                        <b>Conceituação Abstrato (CA):</b> <span>Um modo de aprendizado analítico e conceitual, baseia-se principalmente em raciocínio lógico.</span>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <b>Experimentação Ativa (EA):</b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, amet! Earum quis exercitationem, voluptatibus dolor magni dolore bl</span>
+                        <b>Experimentação Ativa (EA):</b> <span>Uma forte disposição em realizar atividades práticas. Os indivíduos aprendem com facilidade quando participam de projetos práticos.</span>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </section>
-<section class="main-block info-block">
+<section id="section-exemplo" class="main-block info-block">
     <div class="container">
         <div class="show-off-title">
             <div class="show-off-title-icon show-off-icon-left">
                 <i class="fas fa-circle color-custom-primary"></i>
                 <i class="fas fa-circle color-custom-primary"></i>
-                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary terceira-bolinha-titulo"></i>
             </div>
-            <h1 class="color-custom-primary">Alguns dados interessantes</h1>
+            <h1 class="color-custom-primary titulo-home">Exemplo de Gráfico</h1>
             <div class="show-off-title-icon show-off-icon-right">
                 <i class="fas fa-circle color-custom-primary"></i>
                 <i class="fas fa-circle color-custom-primary"></i>
-                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary terceira-bolinha-titulo"></i>
             </div>
         </div>
         <div class="metrics">
@@ -87,7 +87,7 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                     </div>
                     <div class="card-info">
                         <h2>Experiência Concreta (EC)</h2>
-                        <span>56 vezes</span>
+                        <!-- <span>56 vezes</span> -->
                     </div>
                 </div>
                 <div class="card-container">
@@ -96,7 +96,7 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                     </div>
                     <div class="card-info">
                         <h2>Observação Reflexiva (OR)</h2>
-                        <span>56 vezes</span>
+                        <!-- <span>56 vezes</span> -->
                     </div>
                 </div>
                 <div class="card-container">
@@ -105,7 +105,7 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                     </div>
                     <div class="card-info">
                         <h2>Conceituação Abstrato (CA)</h2>
-                        <span>56 vezes</span>
+                        <!-- <span>56 vezes</span> -->
                     </div>
                 </div>
                 <div class="card-container">
@@ -114,7 +114,7 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                     </div>
                     <div class="card-info">
                         <h2>Experimentação Ativa (EA)</h2>
-                        <span>56 vezes</span>
+                        <!-- <span>56 vezes</span> -->
                     </div>
                 </div>
             </div>
@@ -132,18 +132,18 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
             <div class="show-off-title-icon show-off-icon-left">
                 <i class="fas fa-circle color-custom-primary"></i>
                 <i class="fas fa-circle color-custom-primary"></i>
-                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary terceira-bolinha-titulo"></i> 
             </div>
-            <h1 class="color-custom-primary">Veja a opnião de quem fez</h1>
+            <h1 class="color-custom-primary titulo-home">Veja a opnião de quem fez</h1>
             <div class="show-off-title-icon show-off-icon-right">
                 <i class="fas fa-circle color-custom-primary"></i>
                 <i class="fas fa-circle color-custom-primary"></i>
-                <i class="fas fa-circle color-custom-primary"></i>
+                <i class="fas fa-circle color-custom-primary terceira-bolinha-titulo"></i>
             </div>
         </div>
         <div class="testemonials">
             <div class="left">
-                <div class="testemonials-item testemonials-item-active">
+                <div id="testemonial1" class="testemonials-item testemonials-item-active" onclick="trocarTestemonial(1)"> 
                     <div class="photo">
                         <img src="{% static 'img/Userdefault.png' %}" width="100%">
                     </div>
@@ -152,7 +152,7 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                         <p>Metodo: Observação Reflexiva</p>
                     </div>
                 </div>
-                <div class="testemonials-item">
+                <div id="testemonial2" class="testemonials-item" onclick="trocarTestemonial(2)"> 
                     <div class="photo">
                         <img src="{% static 'img/Userdefault.png' %}" width="100%">
                     </div>
@@ -161,7 +161,7 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                         <p>Metodo: Observação Reflexiva</p>
                     </div>
                 </div>
-                <div class="testemonials-item">
+                <div id="testemonial3" class="testemonials-item" onclick="trocarTestemonial(3)"> 
                     <div class="photo">
                         <img src="{% static 'img/Userdefault.png' %}" width="100%">
                     </div>
@@ -170,7 +170,7 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                         <p>Metodo: Observação Reflexiva</p>
                     </div>
                 </div>
-                <div class="testemonials-item">
+                <div id="testemonial4" class="testemonials-item" onclick="trocarTestemonial(4)"> 
                     <div class="photo">
                         <img src="{% static 'img/Userdefault.png' %}" width="100%">
                     </div>
@@ -181,16 +181,51 @@ Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados
                 </div>
             </div>
             <div class="right">
-                <h1>Lorem ipsum dolor, sit amet consectetur</h1>
-                <div class="testemonials-stars">
+                <div id="testemonialD1">
+                    <h1>Primeira vez</h1>
+                    <div class="testemonials-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                
+                <p>Muito bom.</p>
+                </div>
+                <div id="testemonialD2" class="testemonialsDescricao hidden"> <!--ID + Class hidden-->
+                    <h1>Segunda vez</h1>
+                    <div class="testemonials-stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam aperiam amet nisi eveniet officia accusantium facere voluptatibus expedita quaerat ea, eos provident esse distinctio error est sint dicta commodi.
-                </p>
+                <p>Muito bom de novo</p>
+                </div>
+                <div id="testemonialD3" class="testemonialsDescricao hidden"> <!--ID + Class hidden-->
+                    <h1>Terceira vez</h1>
+                    <div class="testemonials-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>Gostei muito</p>
+                </div>
+                <div id="testemonialD4" class="testemonialsDescricao hidden"> <!--ID + Class hidden-->
+                    <h1>Quarta vez</h1>
+                    <div class="testemonials-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>100%</p>
+                </div>
             </div>
         </div>
     </div>
