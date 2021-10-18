@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block conteudo %}
-    
 <div class="row">
     {% if request.user.is_authenticated %}
     <div class="col-md-8 mx-auto">
@@ -30,22 +29,24 @@
     {% else %}
 
     <div class="row">
-        <div class="col-md-4 mx-auto">
-            <h2>| Autenticação</h2>
- 
-            <hr>
+        <aside class="login-form-container">
+            <div class="col-md-4 mx-auto">
+                <h2>| Autenticação</h2>
 
-            <form action="" method="POST">
-                {% csrf_token %}
-        
-                {{ form|crispy }}
-        
-                <button type="submit" class="btn btn-primary mt-3 btn-log-cad" style="width: 200px; height: 50px;" >Entrar</button> 
-        
-                
-            </form>  
-               
-        </div>
+                <hr>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    {{ form|crispy }}
+
+                    <button type="submit" class="btn btn-primary mt-3 btn-log-cad" style="width: 200px; height: 50px;" >Entrar</button>
+
+
+                </form>
+
+            </div>
+        </aside>
         {% endif %}
     </div>
 

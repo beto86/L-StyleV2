@@ -28,7 +28,7 @@
 }
 
 .border-custom-primary {
-  border: 1px solid #ffcc44;
+  border: 2px solid #ffcc44;
   color: #ffcc44;
   transition: background 0.8s;
 }
