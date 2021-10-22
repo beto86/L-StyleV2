@@ -15,3 +15,7 @@ class SobreView(TemplateView):
 
 class QuemSomosView(TemplateView):
     template_name = 'quem-somos.html'
+
+
+class ComoFuncionaView(TemplateView):
+    template_name = 'como-funciona.html'

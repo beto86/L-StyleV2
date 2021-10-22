@@ -133,12 +133,27 @@
                         </ul>
                     </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registrar' %}">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
-                            Registrar
+                                    Registrar
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'registrar-aluno' %}">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    Aluno
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'registrar-professor' %}">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    Professor
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{% url 'login' %}" style="font-size: 0.9rem;">
                             <i class="fa fa-sign-in text-light" aria-hidden="true"></i>

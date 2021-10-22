@@ -14,28 +14,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
-class UsuarioCreate(CreateView):
-    template_name = 'cadastros/form.html'
-    form_class = UsuarioForm
-    success_url = reverse_lazy('login')
-
-    def form_valid(self, form):
-        grupo = get_object_or_404(Group, name="Aluno")
-        url = super().form_valid(form)
-
-        self.object.groups.add(grupo)
-        self.object.save()
-
-        Perfil.objects.create(usuario=self.object)
-
-        return url
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['titulo'] = 'Registro de Novo Usuário'
-        return context
-
-
 class PerfilUpdate(UpdateView):
     template_name = 'cadastros/form.html'
     model = Perfil
@@ -97,3 +75,47 @@ class ProfessorList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         self.object_list = Perfil.objects.filter(
             usuario__groups__id=2)
         return self.object_list
+
+
+class AlunoCreate(CreateView):
+    template_name = 'cadastros/form.html'
+    form_class = UsuarioForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        grupo = get_object_or_404(Group, name="Aluno")
+        url = super().form_valid(form)
+
+        self.object.groups.add(grupo)
+        self.object.save()
+
+        Perfil.objects.create(usuario=self.object)
+
+        return url
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Registro de Novo Aluno'
+        return context
+
+
+class ProfessorCreate(CreateView):
+    template_name = 'cadastros/form.html'
+    form_class = UsuarioForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        grupo = get_object_or_404(Group, name="Professor")
+        url = super().form_valid(form)
+
+        self.object.groups.add(grupo)
+        self.object.save()
+
+        Perfil.objects.create(usuario=self.object)
+
+        return url
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo'] = 'Registro de Novo Professor'
+        return context

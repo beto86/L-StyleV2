@@ -47,7 +47,7 @@ class Perfil(models.Model):
     nome_completo = models.CharField(
         max_length=50, null=True, verbose_name='Nome Completo')
     ra = models.CharField(max_length=10, unique=True,
-                          verbose_name='RA', null=True)
+                          verbose_name='RA', null=True, help_text='Para perfil professor, informe 000000.')
     cpf = models.CharField(max_length=14, null=True, verbose_name='CPF')
     telefone = models.CharField(max_length=16, null=True)
     sexo = models.CharField(max_length=30, choices=sexo_choice, null=True)

@@ -7,18 +7,21 @@
 {% endblock %}
 
 {% block conteudo %}
-
-{% comment %} {% if user.perfil.nome_completo %}
-Bem vindo ao sistema {{ user.perfil.nome_completo }}.
-{% else %}
-Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados' %}">meus dados</a> para atualizar.
-{% endif %} {% endcomment %}
+{% if request.user.is_authenticated %}
+    {% if not user.perfil.nome_completo %}
+    <ul class="messages" style="list-style: none;" text-aligt>
+        <li class="alert alert-warning" role="alert">
+            Você precisa completar seu cadastro. Acesse os <a href="{% url 'atualizar-dados' %}" class="alert-link">meus dados</a> para atualizar.
+        </li>
+    </ul>
+    {% endif %} 
+{% endif %}
 <section id="slide-inicial" class="main-block welcome-block">
     <div class="container">
         <div class="welcome-info color-custom-primary">
             <h1>Seja bem vindo, vamos fazer o teste?</h1>
             <p>Faça o teste agora e descubra seu método de aprendizagem</p>
-            <a href="{% url 'iniciar-teste' %}"><button class="btn-welcome border-custom-primary">Quero fazer o teste</button></a>
+            <a href="{% url 'iniciar-teste' %}" style="font-size: 1.1rem;"><button class="btn-welcome border-custom-primary">Quero fazer o teste</button></a>
         </div>
         <img src="{% static 'img/img-hero.jpg' %}" class="img-cover">
     </div>
