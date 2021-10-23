@@ -10,17 +10,41 @@ from django.shortcuts import get_object_or_404
 from .models import Perfil
 from braces.views import GroupRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms import ModelForm
+
 
 # Create your views here.
+
+
+class ProfessorForm(ModelForm):
+    template_name = 'cadastros/form.html'
+
+    class Meta():
+        model = Perfil
+        fields = ['nome_completo', 'cpf', 'telefone',
+                  'sexo', 'data_nascimento', 'endereco', 'numero',
+                  'cep', 'cidade', 'estado', 'pais']
+
+
+class AlunoForm(ModelForm):
+    template_name = 'cadastros/form.html'
+
+    class Meta():
+        model = Perfil
+        fields = ['nome_completo', 'ra', 'cpf', 'telefone',
+                  'sexo', 'data_nascimento', 'endereco', 'numero',
+                  'cep', 'cidade', 'estado', 'pais']
 
 
 class PerfilUpdate(UpdateView):
     template_name = 'cadastros/form.html'
     model = Perfil
-    fields = ['nome_completo', 'ra', 'cpf', 'telefone',
-              'sexo', 'data_nascimento', 'endereco', 'numero',
-              'cep', 'cidade', 'estado', 'pais']
     success_url = reverse_lazy("index")
+
+    def get_form_class(self):
+        if self.request.user.groups.filter(name='Professor').exists():
+            return ProfessorForm
+        return AlunoForm
 
     # def form_valid(self, form):
     #grupo_id = self.request.POST.get("grupo")

@@ -8,7 +8,7 @@ class Instituicao(models.Model):
     nome = models.CharField(max_length=100)
     endereco = models.CharField(
         max_length=100, null=True, verbose_name='Endereço')
-    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Instituição de Ensino'
@@ -32,7 +32,7 @@ class Turma(models.Model):
         max_length=15, choices=turno_choice, blank=True, null=True)
     instituicao = models.ForeignKey(
         Instituicao, related_name='instituicao_ensinos', on_delete=models.CASCADE, verbose_name='Instituição de Ensino', blank=True, null=True)
-    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     # Atributo do professor (User)
 
     class Meta:
