@@ -11,6 +11,8 @@ from .models import Perfil
 from braces.views import GroupRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import ModelForm
+from cadastros.models import Turma
+from KolbStyleTeste.models import Teste, Tentativa
 
 
 # Create your views here.
@@ -84,8 +86,15 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'listas/alunos.html'
 
     def get_queryset(self):
+        turmas = Turma.objects.filter(usuario=self.request.user)
+        tentativas = Tentativa.objects.filter(
+            teste__professor=self.request.user)
+        testes = Teste.objects.filter()
+        print('=====================')
+        for i in tentativas:
+            print(i.usuario)
         self.object_list = Perfil.objects.filter(
-            usuario__groups__id=3)
+            usuario__groups__id=3, )  # tenho que trazer só os alunos que pertencem à este professor logado
         return self.object_list
 
 

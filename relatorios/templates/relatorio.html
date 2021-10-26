@@ -7,97 +7,101 @@
 {% endblock %}
 
 {% block conteudo %}
-<aside class="login-form-container">
-<form action="" method="GET">
-    <label for="turmas">Escolha uma Turma:</label>
+<aside>
+    <div class="login-form-container">
+        <form action="" method="GET">
+            <label for="turmas">Escolha uma Turma:</label>
+            <select name="turmas" id="turmas">
+                {% for t in turmas %}
+                <option value="{{ t }}">{{ t }}</option>
+                {% endfor %}
+            </select>
+            <input type = 'submit' value="Submit">
+        </form>
+        <hr><hr>
+        <h3>Pagina de Relatórios</h3>
+        <hr>
+        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+            <canvas id="mediaTurma" style="max-width: 600px; max-height: 600px;"></canvas>
+        </div>
+        <hr>
+        <hr>
+        <h1>Tentativas da Turma {{nome_turma}}</h1>
+        <div class="table-responsive">
+            <table class="table table-striped" id="tabela-listar">
+                <thead>
+                    <tr>
+                        <th>Teste</th>
+                        <th>Quem respondeu</th>
+                        <th>Data</th>
+                        <th>Estilo</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    {% for t in evlTurma %}
+                    <tr>
+                        <td>{{t.teste.descricao}}</td>
+                        <td>{{t.usuario}}</td>
+                        <td>{{t.data}}</td>
+                        <td>{{t.estilo}}</td>
+                    </tr>
+                    {% empty %}
+                    <td colspan="3">Nenhuma tentativa registrada.</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <form action="" method="GET">
+            {% csrf_token %}
+            <label for="turmas">Escolha um Curso:</label>
 
+            <select name="cursos" id="cursos">
+                {% for t in cursos %}
+                <option value="{{ t.curso }}">{{ t.curso }}</option>
+                {% endfor %}
+            </select>
+            <input type = 'submit' value="Submit">
+        </form>
+        <hr>
+        {{nome_turma_curso}}
 
-    <select name="turmas" id="turmas">
-        {% for t in turmas %}
-        <option value="{{ t }}">{{ t }}</option>
-        {% endfor %}
-    </select>
-    <input type = 'submit' value="Submit">
-</form>
-
-<hr><hr>
-<h3>Pagina de Relatórios</h3>
-<hr>
-<canvas id="mediaTurma" style="max-width: 600px; max-height: 600px;"></canvas>
-<hr>
-<hr>
-<h1>Tentativas da Turma {{nome_turma}}</h1>
-<div class="table-responsive">
-    <table class="table table-striped" id="tabela-listar">
-        <thead>
-            <tr>
-                <th>Teste</th>
-                <th>Quem respondeu</th>
-                <th>Data</th>
-                <th>Estilo</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for t in evlTurma %}
-            <tr>
-                <td>{{t.teste.descricao}}</td>
-                <td>{{t.usuario}}</td>
-                <td>{{t.data}}</td>
-                <td>{{t.estilo}}</td>
-            </tr>
-            {% empty %}
-            <td colspan="3">Nenhuma tentativa registrada.</td>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-<hr>
-<form action="" method="GET">
-    {% csrf_token %}
-    <label for="turmas">Escolha um Curso:</label>
-
-    <select name="cursos" id="cursos">
-        {% for t in cursos %}
-        <option value="{{ t.curso }}">{{ t.curso }}</option>
-        {% endfor %}
-    </select>
-    <input type = 'submit' value="Submit">
-</form>
-<hr>
-{{nome_turma_curso}}
-
-<hr>
-<canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
-<hr>
-<h1>Tentativas por curso {{nome_turma_curso}}</h1>
-<div class="table-responsive">
-    <table class="table table-striped" id="tabela-listar">
-        <thead>
-            <tr>
-                <th>Teste</th>
-                <th>Quem respondeu</th>
-                <th>Data</th>
-                <th>Estilo</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for t in evlCurso %}
-            <tr>
-                <td>{{t.teste.descricao}}</td>
-                <td>{{t.usuario}}</td>
-                <td>{{t.data}}</td>
-                <td>{{t.estilo}}</td>
-            </tr>
-            {% empty %}
-            <td colspan="3">Nenhuma tentativa registrada.</td>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-<hr>
-<hr>
-<!--<canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>-->
-<hr>
+        <hr>
+        <canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
+        <hr>
+        <h1>Tentativas por curso {{nome_turma_curso}}</h1>
+        <div class="table-responsive">
+            <table class="table table-striped" id="tabela-listar">
+                <thead>
+                    <tr>
+                        <th>Teste</th>
+                        <th>Quem respondeu</th>
+                        <th>Data</th>
+                        <th>Estilo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in evlCurso %}
+                    <tr>
+                        <td>{{t.teste.descricao}}</td>
+                        <td>{{t.usuario}}</td>
+                        <td>{{t.data}}</td>
+                        <td>{{t.estilo}}</td>
+                    </tr>
+                    {% empty %}
+                    <td colspan="3">Nenhuma tentativa registrada.</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <hr>
+        <canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>
+        <hr>
+        <hr>
+        <canvas id="evolucaoCurso" style="max-width: 600px; max-height: 600px;"></canvas>
+        <hr>
+    </div>
 </aside>
 {% endblock %}
 
@@ -116,16 +120,16 @@
                     data: [{{ Assimilador }}, {{ Convergente }}, {{ Divergente }}, {{ Acomodador }}],
                     fill: true,
                     backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 99, 132, 0.3)',
+                    'rgba(54, 162, 235, 0.3)',
+                    'rgba(255, 206, 86, 0.3)',
+                    'rgba(0, 255, 0, 0.3)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
+                        'rgba(0, 255, 0, 1)',
                     ],
                     borderWidth: 1
                 }
@@ -143,7 +147,8 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stepSize: 1
                     }
                 }]
             },
@@ -166,23 +171,23 @@
                     data: [{{ AssimiladorCurso }}, {{ ConvergenteCurso }}, {{ DivergenteCurso }}, {{ AcomodadorCurso }}],
                     fill: true,
                     backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 99, 132, 0.3)',
+                    'rgba(54, 162, 235, 0.3)',
+                    'rgba(255, 206, 86, 0.3)',
+                    'rgba(0, 255, 0, 0.3)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
+                        'rgba(0, 255, 0, 1)',
                     ],
                     borderWidth: 1
                 }
             ] // fim dos conjuntos
         };
 
-        var config = {
+        var config1 = {
             maintainAspectRatio: true,
             title: {
                 display: true,
@@ -193,7 +198,8 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stepSize: 1
                     }
                 }]
             },
@@ -202,72 +208,209 @@
         var ChartCurso = new Chart(ctx, {
             type: 'bar',
             data: dados,
-            options: config,
+            options: config1,
         });
 
         //Relatório por turma contendo a evolução da turma, gráfico de linha
         var ctx = $('#evolucaoTurma');
 
         var dados = {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            labels: ['Jan', 'Fev', 
+                    'Mar', 'Abr', 
+                    'Maio', 'Jun', 
+                    'Jul', 'Ago', 
+                    'Set', 'Out', 
+                    'Nov', 'Dez',
+                ],
             datasets: [
                 { 
                     label: 'Assimilador',
-                    data: [],
+                    data: [{{evlAssJan}}, {{evlAssFev}}, 
+                            {{evlAssMar}}, {{evlAssAbr}}, 
+                            {{evlAssMai}}, {{evlAssJun}}, 
+                            {{evlAssJul}}, {{evlAssAgo}}, 
+                            {{evlAssSet}}, {{evlAssOut}}, 
+                            {{evlAssNov}}, {{evlAssDes}}
+                        ],
                     fill: false,
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                    ],
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 3,
+                    backgroundColor: 'transparent',
                 },
                 { 
                     label: 'Convergente',
-                    data: [{{evlAssimilador}}],
+                    data: [{{evlConJan}}, {{evlConFev}}, 
+                            {{evlConMar}}, {{evlConAbr}}, 
+                            {{evlConMai}}, {{evlConJun}}, 
+                            {{evlConJul}}, {{evlConAgo}}, 
+                            {{evlConSet}}, {{evlConOut}}, 
+                            {{evlConNov}}, {{evlConDes}}
+                        ],
                     fill: false,
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                    ],
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 3,
+                    backgroundColor: 'transparent',
                 },
                 { 
                     label: 'Divergente',
-                    data: [],
+                    data: [{{evlDivJan}}, {{evlDivFev}}, 
+                            {{evlDivMar}}, {{evlDivAbr}}, 
+                            {{evlDivMai}}, {{evlDivJun}}, 
+                            {{evlDivJul}}, {{evlDivAgo}}, 
+                            {{evlDivSet}}, {{evlDivOut}}, 
+                            {{evlDivNov}}, {{evlDivDes}}
+                        ],
                     fill: false,
-                    borderColor: [
-                        'rgba(255, 206, 86, 1)',
-                    ],
+                    borderColor: 'rgba(255, 206, 86, 1)',
                     borderWidth: 3,
+                    backgroundColor: 'transparent',
                 },
                 { 
                     label: 'Acomodador',
-                    data: [],
+                    data: [{{evlAcoJan}}, {{evlAcoFev}}, 
+                            {{evlAcoMar}}, {{evlAcoAbr}}, 
+                            {{evlAcoMai}}, {{evlAcoJun}}, 
+                            {{evlAcoJul}}, {{evlAcoAgo}}, 
+                            {{evlAcoSet}}, {{evlAcoOut}}, 
+                            {{evlAcoNov}}, {{evlAcoDes}}
+                        ],
                     fill: false,
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                    ],
+                    borderColor: 'rgba(0, 255, 0, 1)',
                     borderWidth: 3,
+                    backgroundColor: 'transparent',
                 },
-            ] // fim dos conjuntos
+            ], // fim dos conjuntos
         };
 
-        var config = {
+        var config2 = {
             maintainAspectRatio: true,
             title: {
                 display: true,
                 text: 'Evolução da Turma',
                 fontSize: 30,
                 fontColor: '#273c75'
-            }
+            },
+            elements: {
+                line: {
+                    tension:0
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            },
         };
 
-        var ChartCurso = new Chart(ctx, {
+        var ChartTurmaEvl = new Chart(ctx, {
             type: 'line',
             data: dados,
-            options: config,
+            options: config2,
         });
         
+         //Relatório por curso contendo a evolução do curso, gráfico de linha
+        var ctx = $('#evolucaoCurso');
+
+        var dados = {
+            labels: ['Jan', 'Fev', 
+                    'Mar', 'Abr', 
+                    'Maio', 'Jun', 
+                    'Jul', 'Ago', 
+                    'Set', 'Out', 
+                    'Nov', 'Dez'
+                ],
+            datasets: [
+                { 
+                    label: 'Assimilador',
+                    data: [{{curAssJan}}, {{curAssFev}}, 
+                            {{curAssMar}}, {{curAssAbr}}, 
+                            {{curAssMai}}, {{curAssJun}}, 
+                            {{curAssJul}}, {{curAssAgo}}, 
+                            {{curAssSet}}, {{curAssOut}}, 
+                            {{curAssNov}}, {{curAssDes}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+                { 
+                    label: 'Convergente',
+                    data: [{{curConJan}}, {{curConFev}}, 
+                            {{curConMar}}, {{curConAbr}}, 
+                            {{curConMai}}, {{curConJun}}, 
+                            {{curConJul}}, {{curConAgo}}, 
+                            {{curConSet}}, {{curConOut}}, 
+                            {{curConNov}}, {{curConDes}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+                { 
+                    label: 'Divergente',
+                    data: [{{curDivJan}}, {{curDivFev}}, 
+                            {{curDivMar}}, {{curDivAbr}}, 
+                            {{curDivMai}}, {{curDivJun}}, 
+                            {{curDivJul}}, {{curDivAgo}}, 
+                            {{curDivSet}}, {{curDivOut}}, 
+                            {{curDivNov}}, {{curDivDes}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+                { 
+                    label: 'Acomodador',
+                    data: [{{curAcoJan}}, {{curAcoFev}}, 
+                            {{curAcoMar}}, {{curAcoAbr}}, 
+                            {{curAcoMai}}, {{curAcoJun}}, 
+                            {{curAcoJul}}, {{curAcoAgo}}, 
+                            {{curAcoSet}}, {{curAcoOut}}, 
+                            {{curAcoNov}}, {{curAcoDes}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(0, 255, 0, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+            ] // fim dos conjuntos
+        };
+
+        var config3 = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Evolução da Turma',
+                fontSize: 30,
+                fontColor: '#273c75'
+            },
+            elements: {
+                line: {
+                    tension:0
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            },
+        };
+
+        var ChartCursoEvl = new Chart(ctx, {
+            type: 'line',
+            data: dados,
+            options: config3,
+        });
     });
-    // var myChart = new Chart(ctx, { ...});
 
 </script>
 
