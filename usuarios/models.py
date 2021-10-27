@@ -39,20 +39,6 @@ class Cidade(models.Model):
         return self.nome
 
 
-class UsuarioTurma(models.Model):
-    usuario = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True)
-    turma = models.ForeignKey(
-        Turma, on_delete=models.CASCADE, blank=True, null=True)
-
-    class Meta:
-        verbose_name = 'Usuário com Turma'
-        verbose_name_plural = 'Usuários com Turmas'
-
-    def __str__(self):
-        return f'{self.usuario.username} da {self.turma}'
-
-
 class Perfil(models.Model):
     sexo_choice = (
         ('Masculino', 'Masculino'),
@@ -69,8 +55,6 @@ class Perfil(models.Model):
     data_nascimento = models.DateField(
         blank=True, null=True, verbose_name='Data de Nascimento')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    # grupo = models.ForeignKey(
-    # Group, on_delete=models.CASCADE, null=True)
     endereco = models.CharField(
         max_length=100, blank=True, null=True, verbose_name='Endereço')
     numero = models.CharField(max_length=10, blank=True, null=True,
@@ -86,8 +70,6 @@ class Perfil(models.Model):
     criacao = models.DateTimeField(auto_now_add=True, verbose_name='Criação')
     atualizacao = models.DateTimeField(
         auto_now=True, verbose_name='Atualização')
-    usuarioTurma = models.ForeignKey(
-        UsuarioTurma, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Perfil'

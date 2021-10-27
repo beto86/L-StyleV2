@@ -1,116 +1,124 @@
-.feedback{
-    padding: 40px 50px;
+.feedback {
+  padding: 40px 50px;
 }
-.feedback .title{
-    width: fit-content;
-    border-right-width: 0!important;
-    border-top-width: 0!important;
-    border-bottom-width: 0!important;
-    border-left-width: 4px!important;
-    padding-left: 25px;
-    margin-bottom: 35px;
-    font-size: 1.7rem;
-}
-
-.feedback .top{
-    margin-bottom: 50px;
+.feedback .title {
+  width: fit-content;
+  border-right-width: 0 !important;
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+  border-left-width: 4px !important;
+  padding-left: 25px;
+  margin-bottom: 35px;
+  font-size: 1.7rem;
 }
 
-.feedback .top .info{
-    display: flex;
-    padding: 40px 0;
-    width: 100%;
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+.feedback .top {
+  margin-bottom: 50px;
 }
 
-.feedback .top .info .msg{
-    display: none;
+.feedback .grafico {
+  width: 60%;
+  height: 300px;
 }
 
-.feedback .top .info .type{
-    font-size: 1.65rem;
-    color: rgb(80, 80, 80);
-    width: 100%;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 15px;
+.feedback .grafico #myChart {
+  width: 100%;
 }
 
-.feedback .top .info .type strong{
-    color: rgb(80, 80, 80);
+.feedback .top .info {
+  column-gap: 5%;
+  display: flex;
+  align-items: center;
+  padding: 40px 50px;
+  width: 100%;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
-.feedback .top .info .wayLearning{
-    font-size: 0.9rem;
-    opacity: 0.9;
-    margin-bottom: 40px;
+.feedback .top .info .msg {
+  display: none;
 }
 
-.feedback .top .info .desc-title{
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: rgb(80, 80, 80);
+.feedback .top .info .type {
+  font-size: 1.65rem;
+  color: rgb(80, 80, 80);
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 15px;
 }
 
-.feedback .top .info .desc-text{
-    font-size: 0.9rem;
-    opacity: 0.9;
-    word-break: break-all;
+.feedback .top .info .type strong {
+  color: rgb(80, 80, 80);
 }
 
-.feedback .list .table thead{
-    vertical-align: middle!important;
+.feedback .top .info .wayLearning {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
 }
 
-.feedback .list th, .feedback .list td{
-    height: 60px;
-    line-height: 60px;
-    border-bottom: 1px solid rgba(0,0,0,0.1)!important;
+.feedback .top .info .desc-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: rgb(80, 80, 80);
+}
+
+.feedback .top .info .desc-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.feedback .list .table thead {
+  vertical-align: middle !important;
+}
+
+.feedback .list th,
+.feedback .list td {
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 @media screen and (max-width: 1100px) {
-    .feedback {
-        padding: 40px 20px;
-    }
-    .feedback .top .info #myChart{
-        width: 500px!important;
-        height: 225px!important;
-    }
+  .feedback {
+    padding: 40px 20px;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .feedback .top .info{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    .feedback .top .info #myChart{
-        margin-bottom: 30px;
-    }
+  .feedback .top .info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .feedback .grafico {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }
 
 @media screen and (max-width: 550px) {
-    .feedback .top .info #myChart{
-        width: 100%!important;
-    }
-    .feedback .title{
-        font-size: 1.4rem;
-    }
+  .feedback .title {
+    font-size: 1.4rem;
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .feedback .top .info #myChart{
-        display: none!important;
-    }
-    .feedback .top .info .msg{
-        display: block;
-    }
-    .feedback {
-        padding: 40px 10px;
-    }
-    .feedback .top .info{
-        padding-left: 5px;
-        padding-right: 5px;
-    }
+  .feedback {
+    padding: 40px 10px;
+  }
+  .feedback .top .info {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .feedback .grafico {
+    display: none !important;
+  }
+  .feedback .top .info .msg {
+    display: block;
+  }
 }

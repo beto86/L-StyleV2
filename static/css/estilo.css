@@ -506,7 +506,7 @@
 .page-footer .left .icone {
   width: 125px;
   height: 100px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -521,7 +521,7 @@
 
 .page-footer .right {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   column-gap: 5%;
 }
@@ -532,7 +532,7 @@
 
 .page-footer .column h4 {
   font-size: 1rem;
-  text-align: left;
+  text-align: center;
   font-weight: bolder;
   margin-bottom: 10px;
   color: rgb(78, 78, 78);
@@ -550,6 +550,17 @@
   cursor: pointer;
   margin-bottom: 2.5px;
 }
+
+.page-footer .column .list-group-item {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.page-footer .column .list-group a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #2b2b2b;
+}
+
 /*Login*/
 .form-screen {
   height: calc(100vh - 60px);
@@ -686,6 +697,9 @@
     height: auto;
     margin: 0 auto;
   }
+  .titulo-home {
+    text-align: center;
+  }
   /* Responsivo Grafico*/
   .metrics {
     flex-direction: column;
@@ -768,6 +782,25 @@
   .info-section li::before {
     margin-right: 10px;
   }
+  /*Grafico*/
+  #metricsChart {
+    display: none;
+    visibility: hidden;
+  }
+  #section-exemplo .info-block-statics {
+    width: 90%;
+    margin: 10px auto;
+  }
+  #section-exemplo .info-block-statics div.chart {
+    width: 100%;
+    margin: 10px auto;
+    background-image: url("/static/img/grafico_para_celular.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 460px;
+  }
+
   /*Testemonials*/
   .testemonials .right {
     width: 100%;

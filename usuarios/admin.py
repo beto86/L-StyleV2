@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Perfil, Cidade, Estado, Pais, UsuarioTurma
+from .models import Perfil, Cidade, Estado, Pais
 
 # Register your models here.
 
@@ -8,7 +8,7 @@ from .models import Perfil, Cidade, Estado, Pais, UsuarioTurma
 class PerfilAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome_completo', 'ra', 'cpf', 'telefone', 'sexo',
                     'data_nascimento', 'usuario', 'endereco', 'numero',
-                    'cep', 'cidade', 'estado', 'pais', 'criacao', 'atualizacao', 'usuarioTurma')
+                    'cep', 'cidade', 'estado', 'pais', 'criacao', 'atualizacao')
 
 
 @admin.register(Cidade)
@@ -24,8 +24,3 @@ class EstadoAdmin(admin.ModelAdmin):
 @admin.register(Pais)
 class PaisAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome', 'nome_pt', 'sigla', 'bacen')
-
-
-@admin.register(UsuarioTurma)
-class UsuarioTurma(admin.ModelAdmin):
-    list_display = ('id', 'usuario', 'turma')

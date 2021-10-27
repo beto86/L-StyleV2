@@ -93,8 +93,8 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
         print('=====================')
         for i in tentativas:
             print(i.usuario)
-        self.object_list = Perfil.objects.filter(
-            usuario__groups__id=3, )  # tenho que trazer só os alunos que pertencem à este professor logado
+        # tenho que trazer só os alunos que pertencem à este professor logado
+        self.object_list = Perfil.objects.filter(usuario__groups__id=3)
         return self.object_list
 
 

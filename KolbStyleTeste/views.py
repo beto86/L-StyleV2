@@ -10,7 +10,6 @@ from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
 from .forms import TesteILSKolbForm
 from django.contrib.auth.models import User, Group
-from usuarios.models import UsuarioTurma
 
 from django.db.models import Sum
 
@@ -342,8 +341,6 @@ class TesteILSKolbView(FormView):
         if(self.request.user.is_authenticated):
             tentativa = Tentativa.objects.create(
                 teste=teste, usuario=self.request.user, turma=teste.turma)
-            usurioTurma = UsuarioTurma.objects.create(
-                usuario=self.request.user, turma=teste.turma)
         else:
             tentativa = Tentativa.objects.create(
                 teste=teste, turma=teste.turma)

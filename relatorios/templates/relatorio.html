@@ -7,68 +7,71 @@
 {% endblock %}
 
 {% block conteudo %}
-<aside>
-    <div class="login-form-container">
-        <form action="" method="GET">
-            <label for="turmas">Escolha uma Turma:</label>
-            <select name="turmas" id="turmas">
-                {% for t in turmas %}
-                <option value="{{ t }}">{{ t }}</option>
-                {% endfor %}
-            </select>
-            <input type = 'submit' value="Submit">
-        </form>
-        <hr><hr>
-        <h3>Pagina de Relatórios</h3>
-        <hr>
-        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-            <canvas id="mediaTurma" style="max-width: 600px; max-height: 600px;"></canvas>
+<div class="relatorio">
+    <h3 class="title border-custom-primary">Pagina de Relatórios</h3>
+    <div class="box">
+        <div class="left">
+            <canvas id="mediaTurma"></canvas>
+            <canvas id="mediaPorCurso" style="display: none;"></canvas>
         </div>
-        <hr>
-        <hr>
-        <h1>Tentativas da Turma {{nome_turma}}</h1>
-        <div class="table-responsive">
-            <table class="table table-striped" id="tabela-listar">
-                <thead>
-                    <tr>
-                        <th>Teste</th>
-                        <th>Quem respondeu</th>
-                        <th>Data</th>
-                        <th>Estilo</th>
-                    </tr>
-                </thead>
-                <tbody> 
-                    {% for t in evlTurma %}
-                    <tr>
-                        <td>{{t.teste.descricao}}</td>
-                        <td>{{t.usuario}}</td>
-                        <td>{{t.data}}</td>
-                        <td>{{t.estilo}}</td>
-                    </tr>
-                    {% empty %}
-                    <td colspan="3">Nenhuma tentativa registrada.</td>
+        <div class="right">
+            <div class="tabMenu">
+                <h1 class="btnRelNav active" style="border-bottom-color: #ffcc44;" data-role="sortByTurma">Tentativas da Turma</h1> 
+                <h1 class="btnRelNav" data-role="sortByCourse">Tentativas por curso</h1>           
+            </div>
+            <form action="" method="GET" class="formulario" id="turmaForm">
+                <label for="turmas">Escolha uma Turma:</label>
+
+
+                <select name="turmas" id="turmas">
+                    {% for t in turmas %}
+                    <option value="{{ t }}">{{ t }}</option>
                     {% endfor %}
-                </tbody>
-            </table>
+                </select>
+                <input type = 'submit' value="Submit" class="btn">
+            </form>
+            <form action="" method="GET" class="formulario" id="cursoForm" style="display: none;">
+                {% csrf_token %}
+                <label for="turmas">Escolha um Curso:</label>
+
+                <select name="cursos" id="cursos">
+                    {% for t in cursos %}
+                    <option value="{{ t.curso }}">{{ t.curso }}</option>
+                    {% endfor %}
+                </select>
+                <input type = 'submit' value="Submit" class="btn">
+            </form>
         </div>
-        <hr>
-        <form action="" method="GET">
-            {% csrf_token %}
-            <label for="turmas">Escolha um Curso:</label>
+    </div>
+</div>
 
-            <select name="cursos" id="cursos">
-                {% for t in cursos %}
-                <option value="{{ t.curso }}">{{ t.curso }}</option>
-                {% endfor %}
-            </select>
-            <input type = 'submit' value="Submit">
-        </form>
-        <hr>
-        {{nome_turma_curso}}
+<div class="table-info table-responsive">
+    <table class="table table-striped" id="tabela-listar" style="min-width: 800px;">
+        <thead>
+            <tr>
+                <th>Teste</th>
+                <th>Quem respondeu</th>
+                <th>Data</th>
+                <th>Estilo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in evlTurma %}
+            <tr>
+                <td>{{t.teste.descricao}}</td>
+                <td>{{t.usuario}}</td>
+                <td>{{t.data}}</td>
+                <td>{{t.estilo}}</td>
+            </tr>
+            {% empty %}
+            <td colspan="3">Nenhuma tentativa registrada.</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-        <hr>
-        <canvas id="mediaPorCurso" style="max-width: 600px; max-height: 600px;"></canvas>
-        <hr>
+<!--  DAQUI EM DIANTE ESTA SEM ESTILO -->
+<hr>
         <h1>Tentativas por curso {{nome_turma_curso}}</h1>
         <div class="table-responsive">
             <table class="table table-striped" id="tabela-listar">
@@ -101,12 +104,12 @@
         <hr>
         <canvas id="evolucaoCurso" style="max-width: 600px; max-height: 600px;"></canvas>
         <hr>
-    </div>
-</aside>
 {% endblock %}
 
 {% block scripts %}
+
 <script src="{% static 'js/Chart.min.js' %}"></script>
+<script src="{% static 'js/relatorio.js' %}"></script>
 <script>
     $(document).ready(function () {
         //relatório para a media da turma de estilo de aprendizagem
@@ -386,7 +389,7 @@
             maintainAspectRatio: true,
             title: {
                 display: true,
-                text: 'Evolução da Turma',
+                text: 'Evolução do Curso',
                 fontSize: 30,
                 fontColor: '#273c75'
             },

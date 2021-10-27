@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic import DetailView
-from KolbStyleTeste.models import Resposta, Questionario, Tentativa, Estilo, FormaAprendizagem, Turma
+from KolbStyleTeste.models import Resposta, Questionario, Tentativa, Estilo, FormaAprendizagem, Turma, Teste
 from django.db.models import Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
@@ -145,8 +145,17 @@ class RelatorioTurma(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
         context['turmas'] = turmas
 
         # pega o id da tentativa selecionada do comboBox
-        nome_turma = self.request.GET.get("turmas")
-        context['nome_turma'] = nome_turma
+        turma = self.request.GET.get("turmas")
+        context['nome_turma'] = turma
+
+        turma = Turma.objects.get(pk=turma, usuario=self.request.user)
+
+        # fazer if se tem turma
+        testes = Teste.objects.filter(turma=turma)
+
+        tentativas = {}
+        for t in testes:
+            tentativas[t.pk] = Tentativa.objects.filter(teste=t)
 
         # aqui filtra a turma de acordo com o id
         mediaTurma = Tentativa.objects.filter(turma__nome=nome_turma)

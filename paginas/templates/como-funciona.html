@@ -5,317 +5,317 @@
 {% load crispy_forms_tags %}
 
 {% block titulo %}
-<title>{{titulo}}</title>
-<link rel="stylesheet" type="text/css" href="{% static 'css/StyleLogins.css' %}"> 
+<title>Ajuda</title> <!--Mudou aqui-->
 {% endblock %}
 
 {% block conteudo %}
-<!-- navbar para o indice da pagina -->
-<div class="d-none d-xl-block col-xl-2 bd-toc">
-    <ul class="section-nav">
-        <li class="toc-entry toc-h2"><a href="#manual-do-aluno">1. Manual do Aluno</a>
-            <ul>
-                <li class="toc-entry toc-h3"><a href="#registro-do-aluno">1.1. Registro de Aluno</a></li>
-                <li class="toc-entry toc-h3"><a href="#acessar-a-aplicacao">1.2. Acessar a aplicação</a></li>
-                <li class="toc-entry toc-h3"><a href="#fazer-teste">1.3. Fazer Teste </a></li>
-                <li class="toc-entry toc-h3"><a href="#fazer-teste-sem-acesso">1.4. Fazer o Teste Sem Acesso no Login</a></li>
-                <li class="toc-entry toc-h3"><a href="#relatorio-tentativas-aluno">1.5. Relatório de Tentativas do Aluno</a></li>
-            </ul>
-        </li>
-        <li class="toc-entry toc-h2"><a href="#manual-do-professor">2. Manual do Professor</a>
-            <ul>
-                <li class="toc-entry toc-h3"><a href="#registro-do-professor">2.1. Registro de Professor</a></li>
-                <li class="toc-entry toc-h3"><a href="#acessar-a-aplicacao-do-professor">2.2. Acessar a aplicação</a></li>
-                <li class="toc-entry toc-h3"><a href="#criar-teste">2.3. Criar Teste </a></li>
-                <li class="toc-entry toc-h3"><a href="#relatorio-tentativas-por-aluno">2.4. Relatório de Tentativas por Aluno</a></li>
-                <li class="toc-entry toc-h3"><a href="#relatorio-da-turma">2.5. Relatório da Turma</a></li>
-            </ul>
-        </li>
-        
-    </ul>
-</div>
+<main class="container" id="pag-help" > <!--Mudou-->
+    <!-- navbar para o indice da pagina -->
+    <nav class="d-xl-block col-xl-2 bd-toc indice-esquerda"> <!--Div virou nav class indice-esquerda-->
+        <ul class="section-nav list-group list-group-flush">
+            <li class="toc-entry toc-h2 list-group-item"><a href="#manual-do-aluno">1. Manual do Aluno</a>
+                <ul class="list-group list-group-flush">
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#registro-do-aluno">1.1. Registro de Aluno</a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#acessar-a-aplicacao">1.2. Acessar a aplicação</a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#fazer-teste">1.3. Fazer Teste </a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#fazer-teste-sem-acesso">1.4. Fazer o Teste Sem Acesso no Login</a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-tentativas-aluno">1.5. Relatório de Tentativas do Aluno</a></li>
+                </ul>
+            </li>
+            <li class="toc-entry toc-h2 list-group-item"><a href="#manual-professor">2. Manual do Professor</a>
+                <ul class="list-group list-group-flush">
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#registro-do-professor">2.1. Registro de Professor</a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#acessar-a-aplicacao-do-professor">2.2. Acessar a aplicação</a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#criar-teste">2.3. Criar Teste </a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-tentativas-por-aluno">2.4. Relatório de Tentativas por Aluno</a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-da-turma">2.5. Relatório da Turma</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
 
 
 
 
-<!-- introdução -->
-<aside class="login-form-container">
-<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-    <h1 class="bd-title" id="content">Como Faço</h1>
-    <p class="bd-lead">Fazer uma introdução.</p>
+    <!-- introdução -->
+    <aside class="login-form-container">
+        <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main"> <!--Mudou para div-->
+            <h1 class="bd-title color-custom-primary" id="content">| Como Faço</h1> <!-- Mudou aqui-->
+            <p class="bd-lead">Fazer uma introdução.</p>
 
-    <!-- conteudo -->
-    <h2 id="manual-do-aluno">1. Manual do Aluno</h2>
-    <figure class="figure" style="width: 1000px;">
-        <img src="{% static 'img/ajuda/Fluxograma_Aluno.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="registro-do-aluno">1.1. Registro de Aluno</h3>
-    <p>Ao clicar no botão <strong>Registrar -> Aluno</strong>, é acessado a página para 
-        um novo registro de usuario. Onde é obrigatório informar 
-        nome de Usuário, E-mail, Senha e Confirmação da senha 
-        para poder acessar a aplicação.
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/registro-aluno.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Ao finalizar o cadastro como perfil de Aluno, onde tem 
-        permissões somente de Aluno.  
-    </p>
-    <p>
-        Logo após, é necessario finalizar o cadastro do perfil no item <strong>Meus Dados</strong>, 
-        para complementar os dados pessoais necessários para ficar 
-        disponível para os relatórios.
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/completar-cadastro.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="acessar-a-aplicacao">1.2. Acessar a aplicação</h3>
-    <p>
-        Ao clicar no botão de <strong>Entrar</strong>, você entra na parte de autenticação 
-        de login do usuário com nome de usuário e senha. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/login-usuario.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="fazer-teste">1.3. Fazer Teste </h3>
-    <p>
-        Quando estiver logado como aluno, ao clicar no botão logo acima 
-        a direita <strong>Fazer Teste</strong>, você entra na opção 
-        para responder o teste com a chave de acesso que o seu professor passou. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/fazer-teste-logado.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Com tal chave de acesso fornecida, ao clicar no botão 
-        <strong>Iniciar Teste</strong>, é direcionado para o teste onde será 
-        identificado o estilo predominante de aprendizagem. 
-        Mas na mesma página, tendo uma opção de responder o 
-        teste sem a chave de acesso. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/responder-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        A chave de acesso será necessária para o relatório próprio 
-        e da turma de seu estilo de aprendizagem predominante. 
-        Sem a chave de acesso não é gravada a sua tentativa na base de dados. 
-    </p>
-    <p>
-        Na página de teste, é necessário responder todas as questões, 
-        e ao clicar no botão Enviar Respostas. É enviado para a base 
-        de dados a tentativa para registro, se estiver com a chave de 
-        acesso como já foi informado. E mostrado a resposta da tentativa, 
-        com as descrições e recomendações do estilo. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Assim para responder corretamente, o questionário presente possui 12 
-        sentenças a serem respondidas, com cada pergunta de 4 respostas, 
-        sendo cada resposta com valores de 1 a 4 de forma crescente de acordo 
-        com cada afinidade. Se classificam de acordo com que se encaixam no 
-        jeito de aprender, podendo ser algo novo na universidade, escola ou 
-        no dia-dia, de tal forma que seja recente (Kolb; Kolb, 2005).
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="fazer-teste-sem-acesso">1.4. Fazer o Teste Sem Acesso no Login</h3>
-    <p>
-        Ao clicar no botão <strong>Quero fazer o teste</strong>, é direcionado para o teste 
-        onde será identificado o estilo predominante de aprendizagem. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/fazer-teste-deslogado.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Na mesma página, tem a opção de responder o teste sem a chave de acesso 
-        (para o público), e outra opção com a chave de acesso fornecida pelo 
-        professor, ou seja, para os alunos que não queiram entrar no sistema 
-        sendo possível responder somente com a chave de acesso. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/responder-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Na página de teste, é necessário responder todas as questões, 
-        e para finalizar no botão <strong>Enviar Respostas</strong> depois da alternativa 12. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Para o usuario sem login, é mostrado somente a resposta da tentativa, 
-        com as descrições e recomendações do estilo. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="relatorio-tentativas-aluno">1.5. Relatório de Tentativas do Aluno</h3>
-    <p>
-        No relatório para o aluno, no item <strong>Tentativa</strong>, mostra uma 
-        lista de tentativas feitas como relatório pelo próprio usuário.
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/relatorio-tentativas.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Em forma de lista, é mostrado as tentativas com as informações 
-        e tendo a possibilidade de escolher as opções para ver relatório 
-        ou imprimir relatório gerando em PDF.
-    </p>
-    <p>
-        Ao clicar em ver a resposta, é mostrado o mesmo a mesma resposta 
-        do resultado do teste, mas com a quantidade de estilos da turma 
-        que o aluno pertence no mesmo gráfico. E logo abaixo uma lista 
-        das tentativas que o aluno fez, mostrando como uma evolução por data da tentativa. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/relatorio-evolucao.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h2 id="manual-professor">2. Manual do Professor</h2>
-    <figure class="figure" style="width: 1000px;">
-        <img src="{% static 'img/ajuda/Fluxograma_Professor.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="registro-do-professor">2.1. Registro de Professor</h3>
-    <p>Ao clicar no botão <strong>Registrar -> Professor</strong>, é acessado a página para 
-        um novo registro de usuario. Onde é obrigatório informar 
-        nome de Usuário, E-mail, Senha e Confirmação da senha 
-        para poder acessar a aplicação.
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/registro-professor.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Ao finalizar o cadastro como perfil de Professor, onde tem as
-        permissões de Professor.  
-    </p>
-    <p>
-        Logo após, é necessario finalizar o cadastro do perfil no item 
-        <strong>Meus Dados</strong>, para complementar os dados pessoais 
-        necessários, para o funcionamento dos relatórios. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/completar-cadastro.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="acessar-a-aplicacao-do-professor">2.2. Acessar a aplicação</h3>
-    <p>
-        Ao clicar no botão de <strong>Entrar</strong>, você entra na parte de autenticação 
-        de login do usuário com nome de usuário e senha. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/login-usuario.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="criar-teste">2.3. Criar Teste</h3>
-    <p>
-        Logo a cima no menu, aparece o cadastro com todas as listas que voce possui.
-        No <Strong>Cadastro -> Teste</Strong> voce entra, e o professor pode cadastrar 
-        o seu teste que desejar para ser aplicado aos alunos desejados.     
-    </p>
-    <p>
-        Ao adicionar um teste, é informado nome, turma, curso, ra e chave de acesso 
-        sendo obrigatórios, alem de ter outros não obrigatórios. Sendo a chave de acesso 
-        que o professor vai passar para os alunos para responder tal teste. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/criar-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        
-        Com a chave de acesso no sistema, é necessario ser enviado para os alunos, 
-        que deseja fazer. De certa forma, na hora que o aluno responde e finaliza o teste com a 
-        chave de acesso fornecida pelo professor, conforme no item do <a href="#manual-do-aluno" style="text-decoration: none;"> Manual do Aluno</a>, é pego os dados deste aluno que respondeu e 
-        gravado no banco de dados. 
-    </p>
-    <p>
-        Pois a chave de acesso é necessária para o relatório da turma apresentar o 
-        estilo de aprendizagem predominante de cada. 
-        Sem a chave de acesso não é gravada as informações da tentativa 
-        na base de dados. 
-    </p>
-    <h3 id="relatorio-tentativas-por-aluno">2.4. Relatório de Tentativas por Aluno</h3>
-    <p>
-        No relatório para o aluno, no item <strong>Cadastro -> Tentativa</strong>, mostra uma 
-        lista de tentativas feitas como relatório por cada aluno da turma.
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/relatorio-tentativas-alunos.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Em forma de lista, é mostrado as tentativas com as informações 
-        e tendo a possibilidade de escolher as opções para ver relatório 
-        ou imprimir relatório gerando em PDF de cada aluno registrado de sua turma.
-    </p>
-    <p>
-        Ao clicar em ver a resposta, é mostrado a mesma resposta 
-        do resultado do teste, mas com a quantidade de estilos da turma 
-        que o aluno pertence no mesmo gráfico. E logo abaixo uma lista 
-        das tentativas que o aluno fez, mostrando como uma evolução por data da tentativa. 
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/relatorio-evolucao.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <h3 id="relatorio-da-turma">2.5. Relatório da turma</h3>
-    <p>
-        Ao clicar em <strong>Relatório</strong> o professor pode ver 
-        com detalhes em grafico, onde é mostrado de forma quantitativa, 
-        qual o estilo predominante da turma. E em lista, onde traz todos 
-        os resultados das tentativas ordenado por data.  
-    </p>
-    <p>
-        Neste caso, para identificar a predominancia da turma, pode escolher no 
-        botão <strong>Escolher uma Turma</strong>, que tera os resultados dos estilos 
-        da turma escolhida.
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/relatorio-turma.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
-    <p>
-        Na mesma pagina de relatórios, tambem é apresentado outro grafico que apresenta
-        o estilo predominante do curso. Neste caso para apresenta-lo, é clicado no botão 
-        <strong>Escolher um Curso:</strong>, onde escolhe o curso desejado. Na mesma forma, 
-        em lista, que mostra todos os resultados das tentativas ordenado por data.   
-    </p>
-    <figure class="figure">
-        <img src="{% static 'img/ajuda/relatorio-curso.png' %}" class="figure-img img-fluid rounded" alt="...">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-    </figure>
+            <!-- conteudo -->
+            <h2 id="manual-do-aluno">1. Manual do Aluno</h2>
+            <figure class="figure mapa-mental"> <!--Adiciona a Classe e remove o estilo-->
+                <img src="{% static 'img/ajuda/Fluxograma_Aluno.png' %}" class="figure-img img-fluid rounded mapa-mental" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="registro-do-aluno">1.1. Registro de Aluno</h3>
+            <p>Ao clicar no botão <strong>Registrar -> Aluno</strong>, é acessado a página para
+                um novo registro de usuario. Onde é obrigatório informar
+                nome de Usuário, E-mail, Senha e Confirmação da senha
+                para poder acessar a aplicação.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/registro-aluno.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Ao finalizar o cadastro como perfil de Aluno, onde tem
+                permissões somente de Aluno.
+            </p>
+            <p>
+                Logo após, é necessario finalizar o cadastro do perfil no item <strong>Meus Dados</strong>,
+                para complementar os dados pessoais necessários para ficar
+                disponível para os relatórios.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/completar-cadastro.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="acessar-a-aplicacao">1.2. Acessar a aplicação</h3>
+            <p>
+                Ao clicar no botão de <strong>Entrar</strong>, você entra na parte de autenticação
+                de login do usuário com nome de usuário e senha.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/login-usuario.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="fazer-teste">1.3. Fazer Teste </h3>
+            <p>
+                Quando estiver logado como aluno, ao clicar no botão logo acima
+                a direita <strong>Fazer Teste</strong>, você entra na opção
+                para responder o teste com a chave de acesso que o seu professor passou.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/fazer-teste-logado.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Com tal chave de acesso fornecida, ao clicar no botão
+                <strong>Iniciar Teste</strong>, é direcionado para o teste onde será
+                identificado o estilo predominante de aprendizagem.
+                Mas na mesma página, tendo uma opção de responder o
+                teste sem a chave de acesso.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/responder-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                A chave de acesso será necessária para o relatório próprio
+                e da turma de seu estilo de aprendizagem predominante.
+                Sem a chave de acesso não é gravada a sua tentativa na base de dados.
+            </p>
+            <p>
+                Na página de teste, é necessário responder todas as questões,
+                e ao clicar no botão Enviar Respostas. É enviado para a base
+                de dados a tentativa para registro, se estiver com a chave de
+                acesso como já foi informado. E mostrado a resposta da tentativa,
+                com as descrições e recomendações do estilo.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/teste.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Assim para responder corretamente, o questionário presente possui 12
+                sentenças a serem respondidas, com cada pergunta de 4 respostas,
+                sendo cada resposta com valores de 1 a 4 de forma crescente de acordo
+                com cada afinidade. Se classificam de acordo com que se encaixam no
+                jeito de aprender, podendo ser algo novo na universidade, escola ou
+                no dia-dia, de tal forma que seja recente (Kolb; Kolb, 2005).
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="fazer-teste-sem-acesso">1.4. Fazer o Teste Sem Acesso no Login</h3>
+            <p>
+                Ao clicar no botão <strong>Quero fazer o teste</strong>, é direcionado para o teste
+                onde será identificado o estilo predominante de aprendizagem.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/fazer-teste-deslogado.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Na mesma página, tem a opção de responder o teste sem a chave de acesso
+                (para o público), e outra opção com a chave de acesso fornecida pelo
+                professor, ou seja, para os alunos que não queiram entrar no sistema
+                sendo possível responder somente com a chave de acesso.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/responder-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Na página de teste, é necessário responder todas as questões,
+                e para finalizar no botão <strong>Enviar Respostas</strong> depois da alternativa 12.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/teste.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Para o usuario sem login, é mostrado somente a resposta da tentativa,
+                com as descrições e recomendações do estilo.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="relatorio-tentativas-aluno">1.5. Relatório de Tentativas do Aluno</h3>
+            <p>
+                No relatório para o aluno, no item <strong>Tentativa</strong>, mostra uma
+                lista de tentativas feitas como relatório pelo próprio usuário.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-tentativas.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Em forma de lista, é mostrado as tentativas com as informações
+                e tendo a possibilidade de escolher as opções para ver relatório
+                ou imprimir relatório gerando em PDF.
+            </p>
+            <p>
+                Ao clicar em ver a resposta, é mostrado o mesmo a mesma resposta
+                do resultado do teste, mas com a quantidade de estilos da turma
+                que o aluno pertence no mesmo gráfico. E logo abaixo uma lista
+                das tentativas que o aluno fez, mostrando como uma evolução por data da tentativa.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-evolucao.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h2 id="manual-professor">2. Manual do Professor</h2>
+            <figure class="figure mapa-mental"> <!--Adiciona a Classe e remove o estilo-->
+                <img src="{% static 'img/ajuda/Fluxograma_Professor.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="registro-do-professor">2.1. Registro de Professor</h3>
+            <p>Ao clicar no botão <strong>Registrar -> Professor</strong>, é acessado a página para
+                um novo registro de usuario. Onde é obrigatório informar
+                nome de Usuário, E-mail, Senha e Confirmação da senha
+                para poder acessar a aplicação.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/registro-professor.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Ao finalizar o cadastro como perfil de Professor, onde tem as
+                permissões de Professor.
+            </p>
+            <p>
+                Logo após, é necessario finalizar o cadastro do perfil no item
+                <strong>Meus Dados</strong>, para complementar os dados pessoais
+                necessários, para o funcionamento dos relatórios.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/completar-cadastro.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="acessar-a-aplicacao-do-professor">2.2. Acessar a aplicação</h3>
+            <p>
+                Ao clicar no botão de <strong>Entrar</strong>, você entra na parte de autenticação
+                de login do usuário com nome de usuário e senha.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/login-usuario.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="criar-teste">2.3. Criar Teste</h3>
+            <p>
+                Logo a cima no menu, aparece o cadastro com todas as listas que voce possui.
+                No <Strong>Cadastro -> Teste</Strong> voce entra, e o professor pode cadastrar
+                o seu teste que desejar para ser aplicado aos alunos desejados.
+            </p>
+            <p>
+                Ao adicionar um teste, é informado nome, turma, curso, ra e chave de acesso
+                sendo obrigatórios, alem de ter outros não obrigatórios. Sendo a chave de acesso
+                que o professor vai passar para os alunos para responder tal teste.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/criar-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+
+                Com a chave de acesso no sistema, é necessario ser enviado para os alunos,
+                que deseja fazer. De certa forma, na hora que o aluno responde e finaliza o teste com a
+                chave de acesso fornecida pelo professor, conforme no item do <a href="#manual-do-aluno" style="text-decoration: none;"> Manual do Aluno</a>, é pego os dados deste aluno que respondeu e
+                gravado no banco de dados.
+            </p>
+            <p>
+                Pois a chave de acesso é necessária para o relatório da turma apresentar o
+                estilo de aprendizagem predominante de cada.
+                Sem a chave de acesso não é gravada as informações da tentativa
+                na base de dados.
+            </p>
+            <h3 id="relatorio-tentativas-por-aluno">2.4. Relatório de Tentativas por Aluno</h3>
+            <p>
+                No relatório para o aluno, no item <strong>Cadastro -> Tentativa</strong>, mostra uma
+                lista de tentativas feitas como relatório por cada aluno da turma.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-tentativas-alunos.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Em forma de lista, é mostrado as tentativas com as informações
+                e tendo a possibilidade de escolher as opções para ver relatório
+                ou imprimir relatório gerando em PDF de cada aluno registrado de sua turma.
+            </p>
+            <p>
+                Ao clicar em ver a resposta, é mostrado a mesma resposta
+                do resultado do teste, mas com a quantidade de estilos da turma
+                que o aluno pertence no mesmo gráfico. E logo abaixo uma lista
+                das tentativas que o aluno fez, mostrando como uma evolução por data da tentativa.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-evolucao.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="relatorio-da-turma">2.5. Relatório da turma</h3>
+            <p>
+                Ao clicar em <strong>Relatório</strong> o professor pode ver
+                com detalhes em grafico, onde é mostrado de forma quantitativa,
+                qual o estilo predominante da turma. E em lista, onde traz todos
+                os resultados das tentativas ordenado por data.
+            </p>
+            <p>
+                Neste caso, para identificar a predominancia da turma, pode escolher no
+                botão <strong>Escolher uma Turma</strong>, que tera os resultados dos estilos
+                da turma escolhida.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-turma.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <p>
+                Na mesma pagina de relatórios, tambem é apresentado outro grafico que apresenta
+                o estilo predominante do curso. Neste caso para apresenta-lo, é clicado no botão
+                <strong>Escolher um Curso:</strong>, onde escolhe o curso desejado. Na mesma forma,
+                em lista, que mostra todos os resultados das tentativas ordenado por data.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-curso.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+        </div>
+    </aside>
 </main>
-</aside>
-
 
 
 
