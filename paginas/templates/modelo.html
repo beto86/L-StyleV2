@@ -66,6 +66,7 @@
                                 {% if not request.user.groups.all.0.name == 'Aluno'  %}
                                 <li><a class="dropdown-item" href="{% url 'listar-instituicoes' %}">Instituição</a></li>
                                 <li><a class="dropdown-item" href="{% url 'listar-turmas' %}">Turma</a></li>
+                                <li><a class="dropdown-item" href="{% url 'listar-cursos' %}">Curso</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -94,10 +95,14 @@
                         </li>
                         {% if request.user.is_authenticated %}
                             {% if not request.user.groups.all.0.name == 'Aluno'  %}
-                            <li class="nav-item">
-                                <a class="nav-link color-custom-primary-hover" href="{% url 'relatorios' %}" id="relatorio">
-                                    Relatório
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle color-custom-primary-hover" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="cadstro">
+                                    Relatórios
                                 </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'relatorio-turma' %}">Por Turmas</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'relatorio-curso' %}">Por Cursos</a></li>
+                                </ul>
                             </li>
                             {% endif %}
                         {% endif %}

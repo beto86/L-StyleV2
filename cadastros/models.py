@@ -12,7 +12,18 @@ class Instituicao(models.Model):
 
     class Meta:
         verbose_name = 'Instituição de Ensino'
-        verbose_name_plural = 'Instituções de Ensinos'
+        verbose_name_plural = 'Instituições de Ensinos'
+
+    def __str__(self):
+        return self.nome
+
+
+class Curso(models.Model):
+    nome = models.CharField(max_length=100)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Curso'
 
     def __str__(self):
         return self.nome
@@ -27,7 +38,8 @@ class Turma(models.Model):
     nome = models.CharField(max_length=45)
     periodo = models.IntegerField(verbose_name='Período')
     ano = models.IntegerField()
-    curso = models.CharField(max_length=100)
+    curso = models.ForeignKey(
+        Curso, on_delete=models.CASCADE, blank=True, null=True)
     turno = models.CharField(
         max_length=15, choices=turno_choice, blank=True, null=True)
     instituicao = models.ForeignKey(

@@ -3,48 +3,40 @@
 {% load static %}
 
 {% block conteudo %}
-
-<hr>
-{{testes}}
-<hr>
-{% for t in tentativas %}
-{{t}}
-{%endfor%}
-<hr>
-{{orm}}
 <div class="lista">
     <div class="tableHead">
-        <h3>Lista de Alunos registrados</h3>
+        <h3>Lista de turmas registradas</h3>
+        <a href="{% url 'cadastrar-curso' %}" class="btn btn-primary btn-sm">Adicionar Curso</a>
     </div>
-    <hr>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>RA</th>
-                    <th>e-mail</th>
-                    <th>Telefone</th>
-                    <th>Sexo</th>
+                    <th>Opções</th>
                 </tr>
             </thead>
             <tbody>
-                {% for aluno in object_list %}
+                {% for curso in object_list %}
                 <tr>
-                    <td>{{ aluno.nome_completo }}</td>
-                    <td>{{ aluno.ra }}</td>
-                    <td>{{ aluno.usuario.email }}</td>
-                    <td>{{ aluno.telefone }}</td>
-                    <td>{{ aluno.sexo }}</td>
+                    <td>{{ curso.nome }}</td>
+                    <td>
+                        <a href="{% url 'editar-curso' curso.pk %}" class="btn btn-table btn-sm" title="Editar">
+                            <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
+                        </a>
+                        <a href="{% url 'excluir-curso' curso.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        </a>
+
+                    </td>
                 </tr>
                 {% empty %}
-                <td colspan="3">Nenhum aluno registrado.</td>
+                <td colspan="3">Nenhum curso registrado.</td>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
-    
 
 {% endblock %}
 

@@ -72,7 +72,7 @@
                         </div>
 
                         <!-- Colocar as opções  -->
-                        {% for opc in opcoes|get_opcoes_questao:q.pk %}
+                        {% for opc in opcoes|get_dict_pos:q.pk %}
                         <ul class="opcoes my-2" ordem="{{opc.ordem}}" data-respondido="false" data-questao="{{opc.questao.ordem}}">
                             <li>
                                 <span>{{ opc.descricao }}</span>

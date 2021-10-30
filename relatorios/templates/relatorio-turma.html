@@ -1,0 +1,300 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+{% load filtros %}
+
+{% block titulo %}
+<title>Relatório</title>
+{% endblock %}
+
+{% block conteudo %}
+
+<div class="relatorio">
+    <h3 class="title border-custom-primary">Pagina de Relatórios</h3>
+    <div class="box">
+        
+        <div class="left">
+            {% if turma %}
+            <h3>Testes aplicados na turma: {{ turma }} </h3>
+
+            <ul>
+                {% for teste in testes %}
+                <li>
+                    #{{ teste.pk }} - {{ teste }}
+                </li>
+                {% empty %}
+                <li>Nenhum teste aplicado nessa turma</li>
+                {% endfor %}
+            </ul>
+                
+                {% else %}
+            <h4>Selecione uma turma para consultar...</h4>
+            {% endif %}
+        </div>
+
+        <div class="right">
+            <div class="tabMenu">
+                <h1 class="btnRelNav active" style="border-bottom-color: #ffcc44;" data-role="sortByTurma">Tentativas da Turma</h1>           
+            </div>
+            <form action="" method="GET" class="formulario" id="turmaForm">
+                <label for="turmas">Escolha uma Turma:</label>
+
+
+                <select name="turmas" id="turmas">
+                    {% for t in turmas %}
+                    <option value="{{ t.pk }}">{{ t }}</option>
+                    {% endfor %}
+                </select>
+                <input type = 'submit' value="Submit" class="btn">
+            </form>
+            <form action="" method="GET" class="formulario" id="cursoForm" style="display: none;">
+                {% csrf_token %}
+                <label for="turmas">Escolha um Curso:</label>
+
+                <select name="cursos" id="cursos">
+                    {% for t in cursos %}
+                    <option value="{{ t.curso }}">{{ t.curso }}</option>
+                    {% endfor %}
+                </select>
+                <input type = 'submit' value="Submit" class="btn">
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Para cada teste gera um gráfico diferente com o id mediaTurma_1, por exemplo -->
+{% for teste in testes %}
+<br>
+<hr>
+<div class="row shadow-sm m-4 p-4">
+    <div class="col-lg-4">
+        <canvas id="mediaTurma_{{teste.pk}}" style="max-width: 500px;"></canvas>
+    </div>
+    <div class="col-lg">
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Usuário</th>
+                    <th>Estilo</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% with dados=mediaTurma|get_dict_pos:teste.pk %}
+                    {% for tent in dados|get_dict_pos:'tentativas' %}
+                    <tr>
+                        <td>{{ tent.usuario|default_if_none:'Anônimo' }}</td>
+                        <td>{{ tent.estilo|default_if_none:'Não definido' }}</td>
+                        <td>{{ tent.data }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="100%">
+                            Nenhuma resposta registrada para esse teste.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% endwith %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<!-- <canvas id="mediaPorCurso" style="display: none;"></canvas> -->
+{% endfor %}
+
+{% if turma %}
+<br>
+<br>
+<hr class="mt-5 mb-3">
+
+<canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>
+
+
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/Chart.min.js' %}"></script>
+<script src="{% static 'js/relatorio.js' %}"></script>
+<script>
+    $(document).ready(function () {
+
+        // ##########################################
+        // Monta um gráfico daquele para cada teste da turma
+
+        {% for teste in testes %}
+        //relatório para a media da turma de estilo de aprendizagem
+        var ctx = $('#mediaTurma_{{teste.pk}}');
+
+        {% with contagem=mediaTurma|get_dict_pos:teste.pk %}
+        var dados = {
+            labels: ['Assimilador', 'Convergente', 'Divergente', 'Acomodador'],
+            datasets: [
+                { // Depois os dados/média da turma
+                    label: 'Geral da Turma',
+                    data: [
+                        {{ contagem|get_dict_pos:'Assimilador' }}, 
+                        {{ contagem| get_dict_pos:'Convergente' }}, 
+                        {{ contagem| get_dict_pos:'Divergente' }}, 
+                        {{ contagem| get_dict_pos:'Acomodador' }}
+                    ],
+                    fill: true,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.3)',
+                    'rgba(54, 162, 235, 0.3)',
+                    'rgba(255, 206, 86, 0.3)',
+                    'rgba(0, 255, 0, 0.3)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(0, 255, 0, 1)',
+                    ],
+                    borderWidth: 1
+                }
+            ] // fim dos conjuntos
+        };
+        {% endwith %}
+
+        var config = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Resultados do Teste #{{teste.pk}}',
+                fontSize: 30,
+                fontColor: '#273c75'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            },
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: dados,
+            options: config,
+        });
+
+
+        {% endfor %}
+        // Fim dos gráficos para cada teste da turma
+        // ##########################################
+
+        
+
+        //Relatório por turma contendo a evolução da turma, gráfico de linha
+        var ctx = $('#evolucaoTurma');
+
+        var dados = {
+            labels: ['Jan', 'Fev', 
+                    'Mar', 'Abr', 
+                    'Maio', 'Jun', 
+                    'Jul', 'Ago', 
+                    'Set', 'Out', 
+                    'Nov', 'Dez',
+                ],
+            datasets: [
+                { 
+                    label: 'Assimilador',
+                    data: [{{evlAssJan}}, {{evlAssFev}}, 
+                            {{evlAssMar}}, {{evlAssAbr}}, 
+                            {{evlAssMai}}, {{evlAssJun}}, 
+                            {{evlAssJul}}, {{evlAssAgo}}, 
+                            {{evlAssSet}}, {{evlAssOut}}, 
+                            {{evlAssNov}}, {{evlAssDez}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+                { 
+                    label: 'Convergente',
+                    data: [{{evlConJan}}, {{evlConFev}}, 
+                            {{evlConMar}}, {{evlConAbr}}, 
+                            {{evlConMai}}, {{evlConJun}}, 
+                            {{evlConJul}}, {{evlConAgo}}, 
+                            {{evlConSet}}, {{evlConOut}}, 
+                            {{evlConNov}}, {{evlConDez}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+                { 
+                    label: 'Divergente',
+                    data: [{{evlDivJan}}, {{evlDivFev}}, 
+                            {{evlDivMar}}, {{evlDivAbr}}, 
+                            {{evlDivMai}}, {{evlDivJun}}, 
+                            {{evlDivJul}}, {{evlDivAgo}}, 
+                            {{evlDivSet}}, {{evlDivOut}}, 
+                            {{evlDivNov}}, {{evlDivDez}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+                { 
+                    label: 'Acomodador',
+                    data: [{{evlAcoJan}}, {{evlAcoFev}}, 
+                            {{evlAcoMar}}, {{evlAcoAbr}}, 
+                            {{evlAcoMai}}, {{evlAcoJun}}, 
+                            {{evlAcoJul}}, {{evlAcoAgo}}, 
+                            {{evlAcoSet}}, {{evlAcoOut}}, 
+                            {{evlAcoNov}}, {{evlAcoDez}}
+                        ],
+                    fill: false,
+                    borderColor: 'rgba(0, 255, 0, 1)',
+                    borderWidth: 3,
+                    backgroundColor: 'transparent',
+                },
+            ], // fim dos conjuntos
+        };
+
+        var config2 = {
+            maintainAspectRatio: true,
+            title: {
+                display: true,
+                text: 'Evolução da Turma',
+                fontSize: 30,
+                fontColor: '#273c75'
+            },
+            elements: {
+                line: {
+                    tension:0
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            },
+        };
+
+        var ChartTurmaEvl = new Chart(ctx, {
+            type: 'line',
+            data: dados,
+            options: config2,
+        });
+        
+       
+    });
+
+</script>
+
+{% endblock %}

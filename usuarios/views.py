@@ -85,17 +85,39 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Perfil
     template_name = 'listas/alunos.html'
 
+    alunos = []
+
     def get_queryset(self):
-        turmas = Turma.objects.filter(usuario=self.request.user)
-        tentativas = Tentativa.objects.filter(
-            teste__professor=self.request.user)
-        testes = Teste.objects.filter()
-        print('=====================')
-        for i in tentativas:
-            print(i.usuario)
-        # tenho que trazer só os alunos que pertencem à este professor logado
+        #turmas = Turma.objects.filter(usuario=self.request.user)
+
+        # print(set(range(alunos)))
+        ##alunos = User.objects.filter()
+        # for a in alunos:
         self.object_list = Perfil.objects.filter(usuario__groups__id=3)
+        # tenho que trazer só os alunos que pertencem à este professor logado
+        #self.object_list = Perfil.objects.filter(usuario__groups__id=3, usuario=alunos)
+
         return self.object_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        testes = Teste.objects.filter(professor=self.request.user)
+
+        for t in testes:
+            #queryset = Tentativa.objects.distinct()
+            tentativas = Tentativa.objects.filter(teste=t)
+            for ten in tentativas:
+                if not ten.usuario == None:
+                    # print(ten.usuario)
+
+                    alunos = User.objects.filter(username=ten.usuario)
+        print('==================')
+        # print(alunos)
+        context['orm'] = testes.query
+
+        context['testes'] = testes
+
+        return context
 
 
 class ProfessorList(GroupRequiredMixin, LoginRequiredMixin, ListView):
