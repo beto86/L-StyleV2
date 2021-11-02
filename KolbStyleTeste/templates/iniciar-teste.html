@@ -9,7 +9,7 @@
 
 {% block conteudo %}
 <div class="testeLogin">
-    <section>
+    <section style="margin-bottom: 20px;">
         <h2 class="border-custom-primary">Responder um teste</h2>
 
         <p class="text-secondary">
@@ -25,11 +25,13 @@
     </section>
     <section id="testeLoginLivre">
         <form action="">
-     
-            <h3 for="codigo">| Não tem chave, use esse botão:</h3>
-            <a id="btn-sem-chave" class="btn btn-success" href="{% url 'teste-ils-kolb' 'TesteLivre' %}">Iniciar Teste</a>
-
-        </form>
+            <h2 class="border-custom-primary" for="codigo">Não tem chave?</h2>
+            <p class="text-secondary">
+                Faça o teste sem chave através do botão de acesso abaixo.
+            </p>
+            <form action="" style="height: fit-content;">
+                <a id="btn-sem-chave" class="btn bg-color-custom-primary" href="{% url 'teste-ils-kolb' 'TesteLivre' %}">Iniciar Teste</a>
+            </form>
     </section>
 </div>
 

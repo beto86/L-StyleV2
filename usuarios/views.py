@@ -88,36 +88,41 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     alunos = []
 
     def get_queryset(self):
+
         #turmas = Turma.objects.filter(usuario=self.request.user)
-
-        # print(set(range(alunos)))
-        ##alunos = User.objects.filter()
-        # for a in alunos:
-        self.object_list = Perfil.objects.filter(usuario__groups__id=3)
-        # tenho que trazer só os alunos que pertencem à este professor logado
-        #self.object_list = Perfil.objects.filter(usuario__groups__id=3, usuario=alunos)
-
-        return self.object_list
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
         testes = Teste.objects.filter(professor=self.request.user)
-
         for t in testes:
             #queryset = Tentativa.objects.distinct()
             tentativas = Tentativa.objects.filter(teste=t)
+
             for ten in tentativas:
-                if not ten.usuario == None:
-                    # print(ten.usuario)
+                if not ten.perfil == None:
+                    print(ten.perfil)
+                    alunos = ten.usuario
+                    self.object_list = Perfil.objects.filter(
+                        usuario__groups__id=3, usuario=ten.usuario)
+    # print(context['perfil'])
+    # print(set(range(alunos)))
+    ##alunos = User.objects.filter()
+    # for a in alunos:
+    # self.object_list = Tentativa.objects.select_related(User).select_related(Perfil).filter(nome_completo=, tmp__active=True, tmp__archived=False)
 
-                    alunos = User.objects.filter(username=ten.usuario)
-        print('==================')
-        # print(alunos)
-        context['orm'] = testes.query
+    # tenho que trazer só os alunos que pertencem à este professor logado
+    #self.object_list = Perfil.objects.filter(usuario__groups__id=3)
 
-        context['testes'] = testes
+        return self.object_list
 
+
+"""
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        testes = Teste.objects.filter(professor=self.request.user)
+        for t in testes:
+            for p in Tentativa.objects.raw('SELECT * FROM KOLBSTYLETESTE_TENTATIVA KT INNER JOIN USUARIOS_PERFIL P ON KT.USUARIO_ID = P.USUARIO_ID INNER JOIN AUTH_USER U ON U.ID = P.USUARIO_ID'):
+                print(p)
+                context['alunos'] = p
         return context
+"""
 
 
 class ProfessorList(GroupRequiredMixin, LoginRequiredMixin, ListView):

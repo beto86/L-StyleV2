@@ -45,19 +45,9 @@
                     <option value="{{ t.pk }}">{{ t }}</option>
                     {% endfor %}
                 </select>
-                <input type = 'submit' value="Submit" class="btn">
+                <input type = 'submit' value="Enviar" class="btn">
             </form>
-            <form action="" method="GET" class="formulario" id="cursoForm" style="display: none;">
-                {% csrf_token %}
-                <label for="turmas">Escolha um Curso:</label>
-
-                <select name="cursos" id="cursos">
-                    {% for t in cursos %}
-                    <option value="{{ t.curso }}">{{ t.curso }}</option>
-                    {% endfor %}
-                </select>
-                <input type = 'submit' value="Submit" class="btn">
-            </form>
+            
         </div>
     </div>
 </div>

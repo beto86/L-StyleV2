@@ -29,6 +29,7 @@
                     <li class="toc-entry toc-h3 list-group-item"><a href="#criar-teste">2.3. Criar Teste </a></li>
                     <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-tentativas-por-aluno">2.4. Relatório de Tentativas por Aluno</a></li>
                     <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-da-turma">2.5. Relatório da Turma</a></li>
+                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-do-curso">2.6. Relatório de Curso</a></li>
                 </ul>
             </li>
 
@@ -265,7 +266,7 @@
                 lista de tentativas feitas como relatório por cada aluno da turma.
             </p>
             <figure class="figure">
-                <img src="{% static 'img/ajuda/relatorio-tentativas-alunos.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <img src="{% static 'img/ajuda/relatorio-por-aluno.png' %}" class="figure-img img-fluid rounded" alt="...">
                 <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
@@ -289,28 +290,42 @@
             </figure>
             <h3 id="relatorio-da-turma">2.5. Relatório da turma</h3>
             <p>
-                Ao clicar em <strong>Relatório</strong> o professor pode ver
-                com detalhes em grafico, onde é mostrado de forma quantitativa,
-                qual o estilo predominante da turma. E em lista, onde traz todos
-                os resultados das tentativas ordenado por data.
-            </p>
-            <p>
-                Neste caso, para identificar a predominancia da turma, pode escolher no
-                botão <strong>Escolher uma Turma</strong>, que tera os resultados dos estilos
-                da turma escolhida.
+                Para o relatório da turma, ao clicar em <strong>Relatório -> Por Turmas</strong> entra na parte 
+                de relatórios, onde o professor pode ver com detalhes os graficos da turma de cada teste 
+                criado, onde é mostrado de forma quantitativa, qual o estilo predominante da turma e em 
+                lista, onde traz todos os resultados das tentativas ordenado por data.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-turma.png' %}" class="figure-img img-fluid rounded" alt="...">
                 <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
-                Na mesma pagina de relatórios, tambem é apresentado outro grafico que apresenta
-                o estilo predominante do curso. Neste caso para apresenta-lo, é clicado no botão
-                <strong>Escolher um Curso:</strong>, onde escolhe o curso desejado. Na mesma forma,
-                em lista, que mostra todos os resultados das tentativas ordenado por data.
+                Neste caso, para identificar a predominancia da turma, é necessario escolher no
+                botão <strong>Escolha uma Turma</strong>, que tera os resultados dos estilos
+                da turma escolhida.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-por-turma.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <h3 id="relatorio-do-curso">2.6. Relatório de curso</h3>
+            <p>
+                Alem dos relatórios de Turma, o relatório de curso tambem é apresentado graficamente, 
+                sendo o mesmo procedimento do item 2.6, neste caso no <strong>Relatório -> Por Curso</strong>,
+                 onde apresenta o estilo predominante do curso. 
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-curso.png' %}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+            <P>     
+                 Assim clicado no botão
+                <strong>Escolher um Curso:</strong>, e em <strong>Enviar</strong> onde escolhe o curso desejado. 
+                Da mesma forma, é apresentado uma lista, que mostra todos os resultados das tentativas ordenado 
+                por data junto com os graficos.
+            </p>
+            <figure class="figure">
+                <img src="{% static 'img/ajuda/relatorio-por-curso.png' %}" class="figure-img img-fluid rounded" alt="...">
                 <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
         </div>

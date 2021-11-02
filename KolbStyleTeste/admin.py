@@ -17,7 +17,8 @@ class TesteAdmin(admin.ModelAdmin):
 
 @admin.register(Tentativa)
 class TentativaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'teste', 'data', 'usuario', 'turma', 'estilo')
+    list_display = ('id', 'teste', 'data', 'usuario',
+                    'turma', 'estilo', 'perfil')
 
 
 @admin.register(Questao)

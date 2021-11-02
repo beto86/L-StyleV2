@@ -426,16 +426,28 @@ class RelatorioCurso(GroupRequiredMixin, LoginRequiredMixin, TemplateView):
 
         # Verifica se tem um curso para consulta
         if(curso_id is not None):
+            # print("======================")
+            # print(curso_id)
+            # Pesquisa a turma com esse ID que seja desse usuário
+            curso = Curso.objects.get(
+                pk=curso_id, usuario=self.request.user)
+            # context['turma'] =
 
-            # Pesquisa o curso com esse ID que seja desse usuário
-            curso = Curso.objects.get(pk=curso_id, usuario=self.request.user)
+            mediaTurma = {}
+
+            testes = Teste.objects.filter(
+                turma__curso=curso, professor=self.request.user)
+            context['testes'] = testes
             context['curso'] = curso
-
+            # print("======================")
+            # print(curso)
             mediaCurso = {}
 
             testes = Teste.objects.filter(
                 turma__curso=curso, professor=self.request.user)
             context['testes'] = testes
+            # print("======================")
+            # print(testes)
 
             ##################
             # variaveis para calculo evolução do curso

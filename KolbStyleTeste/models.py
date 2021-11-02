@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cadastros.models import Turma
+from usuarios.models import Perfil
 
 # Create your models here.
 
@@ -74,6 +75,8 @@ class Tentativa(models.Model):
         Turma, on_delete=models.CASCADE, blank=True, null=True)
     estilo = models.ForeignKey(
         Estilo, on_delete=models.CASCADE, blank=True, null=True)
+    perfil = models.ForeignKey(
+        Perfil, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Tentativa'

@@ -39,7 +39,7 @@ class Turma(models.Model):
     periodo = models.IntegerField(verbose_name='Período')
     ano = models.IntegerField()
     curso = models.ForeignKey(
-        Curso, on_delete=models.CASCADE, blank=True, null=True)
+        Curso, on_delete=models.CASCADE)
     turno = models.CharField(
         max_length=15, choices=turno_choice, blank=True, null=True)
     instituicao = models.ForeignKey(

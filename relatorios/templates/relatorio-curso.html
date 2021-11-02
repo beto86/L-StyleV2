@@ -36,7 +36,7 @@
             <div class="tabMenu">
                 <h1 class="btnRelNav active" style="border-bottom-color: #ffcc44;" data-role="sortByTurma">Tentativas do Curso</h1>           
             </div>
-            <form action="" method="GET" class="formulario" id="turmaForm">
+            <form action="" method="GET" class="formulario" id="cursoForm">
                 <label for="cursos">Escolha um Curso:</label>
 
 
@@ -45,9 +45,9 @@
                     <option value="{{ c.pk }}">{{ c }}</option>
                     {% endfor %}
                 </select>
-                <input type = 'submit' value="Submit" class="btn">
+                <input type = 'submit' value="Enviar" class="btn">
             </form>
-         
+            
         </div>
     </div>
 </div>

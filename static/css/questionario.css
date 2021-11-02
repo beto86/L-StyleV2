@@ -4,9 +4,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
+  padding: 50px 0;
 }
 .testeLogin section {
+  width: 600px;
   padding: 30px;
   margin: 5px;
   border-radius: 5px;
@@ -41,7 +43,8 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 7px;
 }
-#btnSubmit {
+#btnSubmit,
+#btn-sem-chave {
   margin-top: 15px;
   width: fit-content;
   height: 40px;
@@ -555,6 +558,9 @@
   }
   .question-main {
     padding: 70px 0 120px;
+  }
+  .testeLogin section {
+    width: 95%;
   }
 }
 

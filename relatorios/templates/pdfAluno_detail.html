@@ -11,6 +11,38 @@
             font-family: "Helvetica", "sans-serif";
             color: #333333;
         }
+        .top .type{
+            font-size: 1.65rem;
+            color: rgb(80, 80, 80);
+            width: 100%;
+            border-bottom: 1px solid #dbdbdb;
+            padding-bottom: 5px;
+        }
+
+        .top .wayLearning{
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .top .desc-title{
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: rgb(50, 50, 50);
+            margin-bottom: 5px;
+        }
+
+        .top .desc-text{
+            font-size: 1rem;
+            opacity: 0.9;
+            word-break: break-all;
+            margin:0;
+        }
+
+        td, th{
+            padding: 0.5rem; 
+            text-align: center;
+        }
     </style>
     
 {% endblock %}
@@ -27,7 +59,6 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-    <link rel="stylesheet" href="{% static 'css/pdf.css' %}">
 
     <script src="{% static 'js/Chart.min.js' %}"></script>
     <script src="{% static 'js/SetChart.js' %}"></script>
@@ -38,54 +69,52 @@
 <body>
     {% block content %}
 
-    <h2> {{questionario}} </h2>
+    <h2 style="margin-bottom: 40px;font-size: 1.7rem;text-align: center;color: #686868;"> {{questionario}} </h2>
 
     <form action="" method="POST">
-
-        <hr>
-
         <canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>
 
         <hr>
 
-        <div class="container-fluid">
-            <p>Seu estilo de aprendizagem: <strong>{{estilo}}</strong></p>
+        <div class="container-fluid top">
+            <p class="type" id="teste">Seu estilo de aprendizagem: <strong>{{estilo}}</strong></p>
 
-            <p>E sua forma de aprender, por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
+            <p class="wayLearning">E sua forma de aprender, por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
+            <h2 class="desc-title">Descrição do estilo e forma de aprender</h2>
+            <p class="desc-text">{{desc_estilo}}</p>
 
-            <p>Descrição do estilo e forma de aprender: {{desc_estilo}}</p>
-
-            <p>Recomendações do estilo e forma de aprender: {{rec_estilo}}</p>
+            <h2 class="desc-title">Recomendações do estilo e forma de aprender</h2>
+            <p class="desc-text">{{rec_estilo}}</p>
         </div>
     </form>
-
-    
-<hr>
-<h1>Evolução das tentativas do Aluno {{quem_respondeu}}</h1>
-<div class="table-responsive">
-    <table class="table table-striped" id="tabela-listar">
-        <thead>
-            <tr>
-                <th>Teste</th>
-                <th>Turma</th>
-                <th>Data</th>
-                <th>Estilo</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for t in tentativa %}
-            <tr>
-                <td>{{t.teste.descricao}}</td>
-                <td>{{t.turma}}</td>
-                <td>{{t.data}}</td>
-                <td>{{t.estilo}}</td>
-            </tr>
-            {% empty %}
-            <td colspan="3">Nenhuma tentativa registrada.</td>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+    <br>
+    <div>
+        <h1>Evolução das tentativas do Aluno {{quem_respondeu}}</h1>
+        <div class="table-responsive" style="border: 1px solid #dbdbdb;">
+            <table class="table table-striped" id="tabela-listar">
+                <thead>
+                    <tr>
+                        <th>Teste</th>
+                        <th>Turma</th>
+                        <th>Data</th>
+                        <th>Estilo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in tentativa %}
+                    <tr>
+                        <td>{{t.teste.descricao}}</td>
+                        <td>{{t.turma}}</td>
+                        <td>{{t.data}}</td>
+                        <td>{{t.estilo}}</td>
+                    </tr>
+                    {% empty %}
+                    <td colspan="3">Nenhuma tentativa registrada.</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     {% endblock %}
 </body>
