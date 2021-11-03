@@ -85,48 +85,15 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     model = Perfil
     template_name = 'listas/alunos.html'
 
-    alunos = []
-
     def get_queryset(self):
 
-        #turmas = Turma.objects.filter(usuario=self.request.user)
-        """
-        testes = Teste.objects.filter(professor=self.request.user)
+        queryset = Tentativa.objects.filter(
+            teste__professor=self.request.user).select_related('usuario')  # .distinct('usuario')
+        self.object_list = []
+        for t in queryset:
+            self.object_list.append(t.usuario.perfil)
 
-        for t in testes:
-            #queryset = Tentativa.objects.distinct()
-            tentativas = Tentativa.objects.filter(teste=t)
-
-            for ten in tentativas:
-                if not ten.perfil == None:
-                    print(ten.perfil)
-                    alunos = ten.usuario
-                    self.object_list = Perfil.objects.filter(
-                        usuario__groups__id=3, usuario=ten.usuario)
-        """
-    # print(context['perfil'])
-    # print(set(range(alunos)))
-    ##alunos = User.objects.filter()
-    # for a in alunos:
-
-    # tenho que trazer só os alunos que pertencem à este professor logado
-    #self.object_list = Perfil.objects.filter(usuario__groups__id=3)
-        queryset = Tentativa.objects.distinct()
-        self.object_list = queryset.select_related(
-            'perfil').filter(usuario__groups__id=3)
         return self.object_list
-
-
-"""
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        testes = Teste.objects.filter(professor=self.request.user)
-        for t in testes:
-            for p in Tentativa.objects.raw('SELECT * FROM KOLBSTYLETESTE_TENTATIVA KT INNER JOIN USUARIOS_PERFIL P ON KT.USUARIO_ID = P.USUARIO_ID INNER JOIN AUTH_USER U ON U.ID = P.USUARIO_ID'):
-                print(p)
-                context['alunos'] = p
-        return context
-"""
 
 
 class ProfessorList(GroupRequiredMixin, LoginRequiredMixin, ListView):

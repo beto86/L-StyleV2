@@ -95,6 +95,8 @@ class TesteCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'].fields['turma'].queryset = Turma.objects.filter(
+            usuario=self.request.user)
         context['titulo'] = 'Cadastro de Teste'
         return context
 
@@ -159,6 +161,8 @@ class TesteUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'].fields['turma'].queryset = Turma.objects.filter(
+            usuario=self.request.user)
         context['titulo'] = 'Editar Cadastro de Teste'
         return context
 

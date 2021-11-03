@@ -45,6 +45,10 @@ class TurmaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'].fields['curso'].queryset = Curso.objects.filter(
+            usuario=self.request.user)
+        context['form'].fields['instituicao'].queryset = Instituicao.objects.filter(
+            usuario=self.request.user)
         context['titulo'] = 'Cadastro de Turma'
         return context
 
@@ -105,6 +109,10 @@ class TurmaUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'].fields['curso'].queryset = Curso.objects.filter(
+            usuario=self.request.user)
+        context['form'].fields['instituicao'].queryset = Instituicao.objects.filter(
+            usuario=self.request.user)
         context['titulo'] = 'Editar Cadastro de Turma'
         return context
 

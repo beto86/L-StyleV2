@@ -33,11 +33,11 @@
                
                     {% for aluno in object_list  %}
                     <tr>
-                        <td>{{ aluno.perfil.nome_completo }}</td>
-                        <td>{{ aluno.perfil.ra }}</td>
+                        <td>{{ aluno.nome_completo }}</td>
+                        <td>{{ aluno.ra }}</td>
                         <td>{{ aluno.usuario.email }}</td>
-                        <td>{{ aluno.perfil.telefone }}</td>
-                        <td>{{ aluno.perfil.sexo }}</td>
+                        <td>{{ aluno.telefone }}</td>
+                        <td>{{ aluno.sexo }}</td>
                     </tr>
                     {% empty %}
                         <td colspan="3">Nenhum aluno registrado.</td>
