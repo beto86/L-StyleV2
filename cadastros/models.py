@@ -43,7 +43,7 @@ class Turma(models.Model):
     turno = models.CharField(
         max_length=15, choices=turno_choice, blank=True, null=True)
     instituicao = models.ForeignKey(
-        Instituicao, related_name='instituicao_ensinos', on_delete=models.CASCADE, verbose_name='Instituição de Ensino', blank=True, null=True)
+        Instituicao, related_name='instituicao_ensinos', on_delete=models.CASCADE, verbose_name='Instituição de Ensino')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     # Atributo do professor (User)
 

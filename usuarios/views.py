@@ -90,7 +90,9 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
     def get_queryset(self):
 
         #turmas = Turma.objects.filter(usuario=self.request.user)
+        """
         testes = Teste.objects.filter(professor=self.request.user)
+
         for t in testes:
             #queryset = Tentativa.objects.distinct()
             tentativas = Tentativa.objects.filter(teste=t)
@@ -101,15 +103,17 @@ class AlunoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
                     alunos = ten.usuario
                     self.object_list = Perfil.objects.filter(
                         usuario__groups__id=3, usuario=ten.usuario)
+        """
     # print(context['perfil'])
     # print(set(range(alunos)))
     ##alunos = User.objects.filter()
     # for a in alunos:
-    # self.object_list = Tentativa.objects.select_related(User).select_related(Perfil).filter(nome_completo=, tmp__active=True, tmp__archived=False)
 
     # tenho que trazer só os alunos que pertencem à este professor logado
     #self.object_list = Perfil.objects.filter(usuario__groups__id=3)
-
+        queryset = Tentativa.objects.distinct()
+        self.object_list = queryset.select_related(
+            'perfil').filter(usuario__groups__id=3)
         return self.object_list
 
 

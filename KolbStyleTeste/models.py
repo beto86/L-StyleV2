@@ -51,7 +51,7 @@ class Teste(models.Model):
     questionario = models.ForeignKey(
         Questionario, related_name='questionarios', on_delete=models.CASCADE)
     turma = models.ForeignKey(
-        Turma, related_name='turmas', on_delete=models.CASCADE, blank=True, null=True)
+        Turma, related_name='turmas', on_delete=models.CASCADE)
     data = models.DateField(auto_now_add=True)
     hora = models.DateTimeField(auto_now_add=True)
     chave_acesso = models.CharField(max_length=30, verbose_name='Chave de Acesso', unique=True,

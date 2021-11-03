@@ -181,20 +181,21 @@ main.container#pag-help {
   display: flex;
   position: relative;
 }
+/*Mudanças 02/11/2021*/
 .indice-esquerda {
   position: fixed;
   z-index: 1;
   left: 0;
   padding: 0 20px 0 30px;
-  top: 20%;
-  width: 400px;
+  width: 350px;
+  height: 80vh;
+  overflow-y: auto;
 }
 
 main.container .indice-esquerda a {
   color: #2b2b2b;
   text-decoration: none;
-  text-shadow: 1px 1px 0.5px #ffcc44;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 main.container aside.login-form-container {
@@ -250,6 +251,7 @@ main.container aside.login-form-container div.bd-content .mapa-mental {
     background: #fff;
     top: 50px;
     position: static;
+    height: 350px;
   }
   .indice-esquerda ul.section-nav {
     display: flex;
@@ -257,7 +259,7 @@ main.container aside.login-form-container div.bd-content .mapa-mental {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 100%;
   }
   main.container aside.login-form-container {
     width: 100%;
