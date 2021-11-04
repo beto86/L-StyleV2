@@ -12,7 +12,7 @@ from braces.views import GroupRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import ModelForm
 from cadastros.models import Turma
-from KolbStyleTeste.models import Teste, Tentativa
+from KolbStyleTeste.models import Tentativa
 
 
 # Create your views here.
@@ -47,15 +47,6 @@ class PerfilUpdate(UpdateView):
         if self.request.user.groups.filter(name='Professor').exists():
             return ProfessorForm
         return AlunoForm
-
-    # def form_valid(self, form):
-    #grupo_id = self.request.POST.get("grupo")
-    #usuario = User.objects.get(pk=self.request.user.id)
-    #self.object = form.save()
-    # usuario.groups.add(grupo_id)
-    # self.object.groups.add(grupo)
-    # self.object.save()
-    # return super().form_valid(form)
 
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Perfil, usuario=self.request.user)

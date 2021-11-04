@@ -10,9 +10,7 @@ from django.views.generic import TemplateView
 from braces.views import GroupRequiredMixin
 from .forms import TesteILSKolbForm
 from django.contrib.auth.models import User, Group
-
 from django.db.models import Sum
-
 from django.views.generic import TemplateView
 
 
@@ -316,28 +314,6 @@ class TesteILSKolbView(FormView):
         # Validar respostas
         respostas = True
 
-        # Para cada número das questões
-        for q in questoes:
-            # Para cada opção que a gente tem de cada questão
-            for opc in opcoes:
-                # Gera o name igual lá no template
-                name = f"opc_{q}_{opc}"
-                # pega o valor desse input que ficou selecionado no template
-                valor = self.request.POST.get(name)
-                # Se input não foi preenchido ou se for algum outro valor
-                if(valor is None or valor not in ["1", "2", "3", "4"]):
-                    # Adiciona uma mensagem de erro no formulário
-                    form.add_error(
-                        None, f"Você não respondeu corretamente a opção {opc} da questão {q}.")
-                    # Muda para falso para não submeter com sucesso o formulário
-                    respostas = False
-
-        # Se não preencheu tudo, retorna ao formulário com as mensagens de erro encontradas
-        # if(respostas == False):
-        #     return self.form_invalid(form)
-        # else:
-            # Caso esteja tudo certo...
-
         # Criar uma Tentativa
         teste = get_object_or_404(
             Teste, chave_acesso=self.kwargs['chave'], ativo=True)
@@ -363,7 +339,6 @@ class TesteILSKolbView(FormView):
                 # pega o valor desse input que ficou selecionado no template
                 valor = self.request.POST.get(name)
                 # Criar um objeto Resposta para cada um com a tentativa, teste, opção, etc
-
                 resp = Resposta.objects.create(
                     tentativa=tentativa, opcao=opcao, valor=valor)
 
@@ -394,17 +369,10 @@ class TesteILSKolbView(FormView):
 
 class RespostaView(TemplateView):
     template_name = 'resposta.html'
-    # success_url = reverse_lazy("index")
-    # model = Questionario
-
-    # def get_object(self):
-    #     id_ = self.kwargs.get("id")
-    #     return get_object_or_404(Tentativa, id=id_)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['questionario'] = Questionario.objects.get(pk=1)
-        #teste = Teste.objects.get(pk=1)
 
         # Esse context é um objeto por causa do get
         if(self.request.user.is_authenticated):
@@ -414,17 +382,11 @@ class RespostaView(TemplateView):
             context['tentativas'] = Tentativa.objects.get(
                 pk=self.kwargs['pk'], usuario__isnull=True)
 
-        # Para o relatório do professor como DETAILVIEW de tentativa
-        # context['tentativas'] = Tentativa.objects.get(pk=self.object.pk, teste__professor=self.request.user)
-
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
         context['respostas'] = Resposta.objects.filter(
             tentativa=context['tentativas'])
-        # for t in context['tentativas']:
-        #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
         # aqui vai calcular a quantidade de cada forma de aprendizagem traz
-
         context['EC'] = context['respostas'].filter(
             opcao__forma_aprendizagem__nome='Experiência Concreta').aggregate(Sum('valor'))
         context['OR'] = context['respostas'].filter(
@@ -445,7 +407,6 @@ class RespostaView(TemplateView):
         context['EA'] = EA
 
         # aqui calculo do resultado do estilo de aprendizagem
-
         assimilador = OR + CA
         convergente = CA + EA
         divergente = EC + OR
@@ -468,7 +429,6 @@ class RespostaView(TemplateView):
         context['estilo'] = estilo
 
         # aqui calcula o resultado da forma de aprendizagem
-
         eap1 = CA - EC  # +abstrato ou -concreto
         eap2 = EA - OR  # +ativo ou -reflexivo
 

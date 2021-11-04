@@ -43,36 +43,41 @@
     <aside class="login-form-container">
         <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main"> <!--Mudou para div-->
             <h1 class="bd-title color-custom-primary" id="content">| Como Faço</h1> <!-- Mudou aqui-->
-            <p class="bd-lead">Fazer uma introdução.</p>
+            <p class="bd-lead">
+                Para uma ajuda com a aplicação é disponibilizado esta pagina de "help", que explica passo a passo
+                o que um aluno e um professor pode fazer. 
+                Desta forma, com o Manual do Aluno explica como pode se cadastrar, fazer o teste para o estilo de aprendizagem
+                de Kolb, visualizar suas tentativas. E para o Professor, o Manual do Professor, onde pode 
+                explicar como se cadastra, visualiza os relatórios disponíveis para o professor e seus devidos cadastros, e 
+                a criação de um teste para ser aplicado a uma turma ou curso com chave de acesso. 
+                
+            </p>
 
             <!-- conteudo -->
             <h2 id="manual-do-aluno">1. Manual do Aluno</h2>
             <figure class="figure mapa-mental"> <!--Adiciona a Classe e remove o estilo-->
                 <img src="{% static 'img/ajuda/Fluxograma_Aluno.png' %}" class="figure-img img-fluid rounded mapa-mental" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="registro-do-aluno">1.1. Registro de Aluno</h3>
             <p>Ao clicar no botão <strong>Registrar -> Aluno</strong>, é acessado a página para
-                um novo registro de usuario. Onde é obrigatório informar
+                um novo registro de usuário. Onde é obrigatório informar
                 nome de Usuário, E-mail, Senha e Confirmação da senha
                 para poder acessar a aplicação.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/registro-aluno.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Ao finalizar o cadastro como perfil de Aluno, onde tem
                 permissões somente de Aluno.
             </p>
             <p>
-                Logo após, é necessario finalizar o cadastro do perfil no item <strong>Meus Dados</strong>,
+                Logo após, é necessário finalizar o cadastro do perfil no item <strong>Meus Dados</strong>,
                 para complementar os dados pessoais necessários para ficar
                 disponível para os relatórios.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/completar-cadastro.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="acessar-a-aplicacao">1.2. Acessar a aplicação</h3>
             <p>
@@ -81,7 +86,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/login-usuario.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="fazer-teste">1.3. Fazer Teste </h3>
             <p>
@@ -91,7 +95,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/fazer-teste-logado.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Com tal chave de acesso fornecida, ao clicar no botão
@@ -102,7 +105,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/responder-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 A chave de acesso será necessária para o relatório próprio
@@ -118,7 +120,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Assim para responder corretamente, o questionário presente possui 12
@@ -130,7 +131,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="fazer-teste-sem-acesso">1.4. Fazer o Teste Sem Acesso no Login</h3>
             <p>
@@ -139,7 +139,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/fazer-teste-deslogado.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Na mesma página, tem a opção de responder o teste sem a chave de acesso
@@ -149,7 +148,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/responder-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Na página de teste, é necessário responder todas as questões,
@@ -157,15 +155,13 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
-                Para o usuario sem login, é mostrado somente a resposta da tentativa,
+                Para o usuário sem login, é mostrado somente a resposta da tentativa,
                 com as descrições e recomendações do estilo.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="relatorio-tentativas-aluno">1.5. Relatório de Tentativas do Aluno</h3>
             <p>
@@ -174,7 +170,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-tentativas.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Em forma de lista, é mostrado as tentativas com as informações
@@ -189,39 +184,34 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-evolucao.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h2 id="manual-professor">2. Manual do Professor</h2>
             <figure class="figure mapa-mental"> <!--Adiciona a Classe e remove o estilo-->
                 <img src="{% static 'img/ajuda/Fluxograma_Professor.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="registro-do-professor">2.1. Registro de Professor</h3>
             <p>Ao clicar no botão <strong>Registrar -> Professor</strong>, é acessado a página para
-                um novo registro de usuario. Onde é obrigatório informar
+                um novo registro de usuário. Onde é obrigatório informar
                 nome de Usuário, E-mail, Senha e Confirmação da senha
                 para poder acessar a aplicação.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/registro-professor.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Ao finalizar o cadastro como perfil de Professor, onde tem as
                 permissões de Professor.
             </p>
             <p>
-                Logo após, é necessario finalizar o cadastro do perfil no item
+                Logo após, é necessário finalizar o cadastro do perfil no item
                 <strong>Meus Dados</strong>, para complementar os dados pessoais
                 necessários, para o funcionamento dos relatórios.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/completar-cadastro.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="acessar-a-aplicacao-do-professor">2.2. Acessar a aplicação</h3>
             <p>
@@ -230,32 +220,30 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/login-usuario.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="criar-teste">2.3. Criar Teste</h3>
             <p>
-                Logo a cima no menu, aparece o cadastro com todas as listas que voce possui.
-                No <Strong>Cadastro -> Teste</Strong> voce entra, e o professor pode cadastrar
+                Logo a cima no menu, aparece o cadastro com todas as listas que você possui.
+                No <Strong>Cadastro -> Teste</Strong> você entra, e o professor pode cadastrar
                 o seu teste que desejar para ser aplicado aos alunos desejados.
             </p>
             <p>
                 Ao adicionar um teste, é informado nome, turma, curso, ra e chave de acesso
-                sendo obrigatórios, alem de ter outros não obrigatórios. Sendo a chave de acesso
+                sendo obrigatórios, além de ter outros não obrigatórios. Sendo a chave de acesso
                 que o professor vai passar para os alunos para responder tal teste.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/criar-teste.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
 
-                Com a chave de acesso no sistema, é necessario ser enviado para os alunos,
+                Com a chave de acesso no sistema, é necessário ser enviado para os alunos,
                 que deseja fazer. De certa forma, na hora que o aluno responde e finaliza o teste com a
                 chave de acesso fornecida pelo professor, conforme no item do <a href="#manual-do-aluno" style="text-decoration: none;"> Manual do Aluno</a>, é pego os dados deste aluno que respondeu e
                 gravado no banco de dados.
             </p>
             <p>
-                Pois a chave de acesso é necessária para o relatório da turma apresentar o
+                Pois, a chave de acesso é necessária para o relatório da turma apresentar o
                 estilo de aprendizagem predominante de cada.
                 Sem a chave de acesso não é gravada as informações da tentativa
                 na base de dados.
@@ -267,7 +255,6 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-por-aluno.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Em forma de lista, é mostrado as tentativas com as informações
@@ -282,22 +269,19 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/resposta.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-evolucao.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="relatorio-da-turma">2.5. Relatório da turma</h3>
             <p>
                 Para o relatório da turma, ao clicar em <strong>Relatório -> Por Turmas</strong> entra na parte 
-                de relatórios, onde o professor pode ver com detalhes os graficos da turma de cada teste 
+                de relatórios, onde o professor pode ver com detalhes os gráficos da turma de cada teste 
                 criado, onde é mostrado de forma quantitativa, qual o estilo predominante da turma e em 
-                lista, onde traz todos os resultados das tentativas ordenado por data.
+                lista, onde traz todos os resultados das tentativas ordenadas por data.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-turma.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <p>
                 Neste caso, para identificar a predominancia da turma, é necessario escolher no
@@ -306,27 +290,24 @@
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-por-turma.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <h3 id="relatorio-do-curso">2.6. Relatório de curso</h3>
             <p>
-                Alem dos relatórios de Turma, o relatório de curso tambem é apresentado graficamente, 
-                sendo o mesmo procedimento do item 2.6, neste caso no <strong>Relatório -> Por Curso</strong>,
+                Além dos relatórios de Turma, o relatório de curso também é apresentado graficamente, 
+                sendo o mesmo procedimento do item 2.6, neste caso no <strong>Relatório -> Por Cursos</strong>,
                  onde apresenta o estilo predominante do curso. 
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-curso.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
             <P>     
                  Assim clicado no botão
                 <strong>Escolher um Curso:</strong>, e em <strong>Enviar</strong> onde escolhe o curso desejado. 
-                Da mesma forma, é apresentado uma lista, que mostra todos os resultados das tentativas ordenado 
-                por data junto com os graficos.
+                Da mesma forma, é apresentado uma lista, que mostra todos os resultados das tentativas ordenadas 
+                por data junto com os gráficos de cada teste.
             </p>
             <figure class="figure">
                 <img src="{% static 'img/ajuda/relatorio-por-curso.png' %}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
         </div>
     </aside>

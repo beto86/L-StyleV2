@@ -45,7 +45,7 @@ class Questionario(models.Model):
 
 
 class Teste(models.Model):
-    descricao = models.CharField(max_length=100, verbose_name='Descriçãos')
+    descricao = models.CharField(max_length=100, verbose_name='Descrição')
     professor = models.ForeignKey(
         User, on_delete=models.PROTECT, blank=True, null=True)
     questionario = models.ForeignKey(

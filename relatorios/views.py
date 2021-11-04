@@ -18,31 +18,18 @@ class RelatorioPorAlunoView(DetailView):
     # success_url = reverse_lazy("index")
 
     def get_object(self):
-        # Consultar o grupo do usuário, se for aluno faz isso...
-        # return get_object_or_404(Tentativa, pk=self.kwargs.get("id"), usuario=self.request.user)
         return get_object_or_404(Tentativa, pk=self.kwargs["id"])
-        # Se não for aluno
-        # return get_object_or_404(Tentativa, pk=self.kwargs.get("id"))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['questionario'] = Questionario.objects.get(pk=1)
-        #teste = Teste.objects.get(pk=1)
-
-        # Esse context é um objeto por causa do get
-        # context['tentativas'] = Tentativa.objects.filter(aluno=self.request.user).last()
-
-        # Para o relatório do professor como DETAILVIEW de tentativa
         context['tentativas'] = self.object
 
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
         context['respostas'] = Resposta.objects.filter(
             tentativa=context['tentativas'])
-        # for t in context['tentativas']:
-        #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
         # aqui vai calcular a quantidade de cada forma de aprendizagem traz
-
         context['EC'] = context['respostas'].filter(
             opcao__forma_aprendizagem__nome='Experiência Concreta').aggregate(Sum('valor'))
         context['OR'] = context['respostas'].filter(
@@ -63,7 +50,6 @@ class RelatorioPorAlunoView(DetailView):
         context['EA'] = EA
 
         # aqui calculo do resultado do estilo de aprendizagem
-
         assimilador = OR + CA
         convergente = CA + EA
         divergente = EC + OR
@@ -86,7 +72,6 @@ class RelatorioPorAlunoView(DetailView):
         context['estilo'] = estilo
 
         # aqui calcula o resultado da forma de aprendizagem
-
         eap1 = CA - EC  # +abstrato ou -concreto
         eap2 = EA - OR  # +ativo ou -reflexivo
 
@@ -693,11 +678,7 @@ class PDFAlunoDetailView(PDFTemplateResponseMixin, DetailView):
     download_filename = 'relatorio-aluno.pdf'
 
     def get_object(self):
-        # Consultar o grupo do usuário, se for aluno faz isso...
-        # return get_object_or_404(Tentativa, pk=self.kwargs.get("id"), usuario=self.request.user)
         return get_object_or_404(Tentativa, pk=self.kwargs["id"])
-        # Se não for aluno
-        # return get_object_or_404(Tentativa, pk=self.kwargs.get("id"))
 
     def get_context_data(self, **kwargs):
         context = super(PDFAlunoDetailView, self).get_context_data(**kwargs)
@@ -708,21 +689,12 @@ class PDFAlunoDetailView(PDFTemplateResponseMixin, DetailView):
         context['title'] = f'relatorio do aluno {self.request.user}'
 
         context['questionario'] = Questionario.objects.get(pk=1)
-        #teste = Teste.objects.get(pk=1)
-        # Esse context é um objeto por causa do get
-        # context['tentativas'] = Tentativa.objects.filter(aluno=self.request.user).last()
-
-        # Para o relatório do professor como DETAILVIEW de tentativa
         context['tentativas'] = self.object
-
         # Filtra (gera uma lista) de respostas daquele objeto tentativa
         context['respostas'] = Resposta.objects.filter(
             tentativa=context['tentativas'])
-        # for t in context['tentativas']:
-        #    context['respostas'][t.pk] = Resposta.objects.filter(tentativa=t)
 
         # aqui vai calcular a quantidade de cada forma de aprendizagem traz
-
         context['EC'] = context['respostas'].filter(
             opcao__forma_aprendizagem__nome='Experiência Concreta').aggregate(Sum('valor'))
         context['OR'] = context['respostas'].filter(
@@ -743,7 +715,6 @@ class PDFAlunoDetailView(PDFTemplateResponseMixin, DetailView):
         context['EA'] = EA
 
         # aqui calculo do resultado do estilo de aprendizagem
-
         assimilador = OR + CA
         convergente = CA + EA
         divergente = EC + OR
@@ -766,7 +737,6 @@ class PDFAlunoDetailView(PDFTemplateResponseMixin, DetailView):
         context['estilo'] = estilo
 
         # aqui calcula o resultado da forma de aprendizagem
-
         eap1 = CA - EC  # +abstrato ou -concreto
         eap2 = EA - OR  # +ativo ou -reflexivo
 

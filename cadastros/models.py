@@ -45,7 +45,6 @@ class Turma(models.Model):
     instituicao = models.ForeignKey(
         Instituicao, related_name='instituicao_ensinos', on_delete=models.CASCADE, verbose_name='Instituição de Ensino')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Atributo do professor (User)
 
     class Meta:
         verbose_name = 'Turma'

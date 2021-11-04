@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
-from cadastros.models import Turma
 
 # Create your models here.
 
