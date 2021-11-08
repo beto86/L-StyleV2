@@ -9,99 +9,106 @@
 
 {% block conteudo %}
 
-<div class="relatorio">
-    <h3 class="title border-custom-primary">Página de Relatórios</h3>
-    <div class="box">
-        
-        <div class="left">
-            {% if turma %}
-            <h3>Testes aplicados na turma: {{ turma }} </h3>
-
-            <ul>
-                {% for teste in testes %}
-                <li>
-                    #{{ teste.pk }} - {{ teste }}
-                </li>
-                {% empty %}
-                <li>Nenhum teste aplicado nessa turma</li>
-                {% endfor %}
-            </ul>
-                
-                {% else %}
-            <h4>Selecione uma turma para consultar...</h4>
-            {% endif %}
-        </div>
-
-        <div class="right">
-            <div class="tabMenu">
-                <h1 class="btnRelNav active" style="border-bottom-color: #ffcc44;" data-role="sortByTurma">Tentativas da Turma</h1>           
-            </div>
-            <form action="" method="GET" class="formulario" id="turmaForm">
-                <label for="turmas">Escolha uma Turma:</label>
-
-
-                <select name="turmas" id="turmas">
-                    {% for t in turmas %}
-                    <option value="{{ t.pk }}">{{ t }}</option>
-                    {% endfor %}
-                </select>
-                <input type = 'submit' value="Enviar" class="btn">
-            </form>
+<div class="relatorio-container">
+    <div class="relatorio">
+        <h3 class="title border-custom-primary">Página de Relatórios</h3>
+        <div class="box">
             
+            <div class="left">
+                {% if turma %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Testes aplicados na turma: {{ turma }}</th>
+                        </tr>
+                    </thead>
+                    {% for teste in testes %}
+                    <tr>
+                        <td>{{ teste.pk }} - {{ teste }}</td>
+                    </tr>
+                    {% empty %}
+                    <li>Nenhum teste aplicado nessa turma</li>
+                    {% endfor %}
+                </table>                    
+                {% else %}
+                <div class="standardMsg">
+                    <h4>Selecione uma turma para consultar</h4>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="right">
+                <div class="tabMenu">
+                    <h1 class="btnRelNav active" style="border-bottom-color: #ffcc44;" data-role="sortByTurma">Tentativas da Turma</h1>           
+                </div>
+                <form action="" method="GET" class="formulario" id="turmaForm">
+                    <label for="turmas">Escolha uma Turma:</label>
+
+
+                    <select name="turmas" id="turmas">
+                        {% for t in turmas %}
+                        <option value="{{ t.pk }}">{{ t }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type = 'submit' value="Enviar" class="btn">
+                </form>
+                
+            </div>
         </div>
     </div>
-</div>
+
 
 <!-- Para cada teste gera um gráfico diferente com o id mediaTurma_1, por exemplo -->
 {% for teste in testes %}
-<br>
-<hr>
-<div class="row shadow-sm m-4 p-4">
-    <div class="col-lg-4">
-        <canvas id="mediaTurma_{{teste.pk}}" style="max-width: 500px;"></canvas>
-    </div>
-    <div class="col-lg">
-        
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Usuário</th>
-                    <th>Estilo</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% with dados=mediaTurma|get_dict_pos:teste.pk %}
-                    {% for tent in dados|get_dict_pos:'tentativas' %}
+<div class="relatorio">
+    <h3 class="title border-custom-primary">Resultados do Teste #{{teste.pk}}</h3>
+    <div class="box">
+        <div class="left">
+            <canvas id="mediaTurma_{{teste.pk}}"></canvas>
+        </div>
+        <div class="right">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ tent.usuario|default_if_none:'Anônimo' }}</td>
-                        <td>{{ tent.estilo|default_if_none:'Não definido' }}</td>
-                        <td>{{ tent.data }}</td>
+                        <th>Usuário</th>
+                        <th>Estilo</th>
+                        <th>Data</th>
                     </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="100%">
-                            Nenhuma resposta registrada para esse teste.
-                        </td>
-                    </tr>
-                    {% endfor %}
-                {% endwith %}
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    {% with dados=mediaTurma|get_dict_pos:teste.pk %}
+                        {% for tent in dados|get_dict_pos:'tentativas' %}
+                        <tr>
+                            <td>{{ tent.usuario|default_if_none:'Anônimo' }}</td>
+                            <td>{{ tent.estilo|default_if_none:'Não definido' }}</td>
+                            <td>{{ tent.data }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="100%">
+                                Nenhuma resposta registrada para esse teste.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endwith %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!-- <canvas id="mediaPorCurso" style="display: none;"></canvas> -->
 {% endfor %}
 
 {% if turma %}
-<br>
-<br>
-<hr class="mt-5 mb-3">
 
-<canvas id="evolucaoTurma" style="max-width: 600px; max-height: 600px;"></canvas>
+<div class="relatorio">
+    <h3 class="title border-custom-primary">Evolução da Turma</h3>
+    <div class="box">
+        <canvas id="evolucaoTurma"></canvas>
+    </div>
+</div>
 
-
+</div>
 {% endif %}
 
 {% endblock %}
@@ -153,10 +160,11 @@
 
         var config = {
             maintainAspectRatio: true,
+            responsive: true,
             title: {
                 display: true,
                 text: 'Resultados do Teste #{{teste.pk}}',
-                fontSize: 30,
+                fontSize: 0,
                 fontColor: '#273c75'
             },
             scales: {
@@ -255,10 +263,11 @@
 
         var config2 = {
             maintainAspectRatio: true,
+            responsive: true,
             title: {
                 display: true,
                 text: 'Evolução da Turma',
-                fontSize: 30,
+                fontSize: 0,
                 fontColor: '#273c75'
             },
             elements: {

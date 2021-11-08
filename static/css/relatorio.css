@@ -1,6 +1,10 @@
-.relatorio {
+.relatorio-container {
   min-height: 100vh;
   padding: 35px 50px;
+}
+
+.relatorio {
+  margin-bottom: 80px;
 }
 
 .relatorio .title {
@@ -22,10 +26,34 @@
   margin-bottom: 30px;
 }
 
+.relatorio .box .table tr td, .relatorio .box .table tr th {
+  padding: 12.5px 0!important;
+}
+
+.relatorio .box .table thead th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #525252;
+}
+
 .relatorio .box .left {
   width: 55%;
   height: 300px;
 }
+
+.relatorio .box .left .standardMsg {
+  border: 3px dashed rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.relatorio .box .left .standardMsg h4 {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
 .relatorio .box .right {
   width: 45%;
 }
@@ -71,7 +99,6 @@
 
 .table-info {
   padding: 10px 50px;
-
   margin-bottom: 50px;
 }
 
@@ -79,14 +106,13 @@
   vertical-align: middle !important;
 }
 
-.table-info th,
-.table-info td {
+.table-info th, .table-info td {
   height: 60px;
   line-height: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1025px) {
   .relatorio .box {
     padding: 40px 15px;
     flex-direction: column;
@@ -98,6 +124,7 @@
   .relatorio .box .left {
     width: 100%;
     margin-bottom: 50px;
+    height: fit-content;
   }
   .relatorio {
     padding: 35px 20px;
@@ -105,5 +132,20 @@
   .table-info {
     padding: 10px 20px;
     margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .relatorio-container {
+    padding: 35px 5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .relatorio-container {
+    padding: 35px 0px;
+  }
+  .relatorio {
+    padding: 35px 5px;
   }
 }

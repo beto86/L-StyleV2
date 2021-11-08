@@ -9,26 +9,30 @@
 
 {% block conteudo %}
 
+<div class="relatorio-container">
 <div class="relatorio">
     <h3 class="title border-custom-primary">Página de Relatórios</h3>
     <div class="box">
-        
         <div class="left">
             {% if curso %}
-            <h3>Testes aplicados no curso: {{ curso }} </h3>
-
-            <ul>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Testes aplicados no curso: {{ curso }}</th>
+                    </tr>
+                </thead>
                 {% for teste in testes %}
-                <li>
-                    #{{ teste.pk }} - {{ teste }}
-                </li>
+                <tr>
+                    <td>{{ teste.pk }} - {{ teste }}</td>
+                </tr>
                 {% empty %}
-                <li>Nenhum teste aplicado nesse curso</li>
+                <li>Nenhum teste aplicado nessa turma</li>
                 {% endfor %}
-            </ul>
-                
-                {% else %}
-            <h4>Selecione um curso para consultar...</h4>
+            </table>                    
+            {% else %}
+            <div class="standardMsg">
+                <h4>Selecione um curso para consultar</h4>
+            </div>
             {% endif %}
         </div>
 
@@ -52,58 +56,63 @@
     </div>
 </div>
 
-<br>
+
 
 <!-- Para cada teste gera um gráfico diferente com o id mediaCurso_1, por exemplo -->
 {% for teste in testes %}
-<hr>
-<div class="row shadow-sm m-4 p-4">
-    <div class="col-lg-4">
-        <canvas id="mediaCurso_{{teste.pk}}" style="max-width: 500px;"></canvas>
-    </div>
-    <div class="col-lg">
-        
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Usuário</th>
-                    <th>Estilo</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% with dados=mediaCurso|get_dict_pos:teste.pk %}
-                    {% for tent in dados|get_dict_pos:'tentativas' %}
-                    <tr>
-                        <td>{{ tent.usuario|default_if_none:'Anônimo' }}</td>
-                        <td>{{ tent.estilo|default_if_none:'Não definido' }}</td>
-                        <td>{{ tent.data }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="100%">
-                            Nenhuma resposta registrada para esse teste.
-                        </td>
-                    </tr>
-                    {% endfor %}
-                {% endwith %}
-            </tbody>
-        </table>
 
+<div class="relatorio">
+    <h3 class="title border-custom-primary">Resultados do Teste #{{teste.pk}}</h3>
+    <div class="box">
+        <div class="left">
+            <canvas id="mediaCurso_{{teste.pk}}"></canvas>
+        </div>
+        <div class="right">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>Estilo</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% with dados=mediaCurso|get_dict_pos:teste.pk %}
+                        {% for tent in dados|get_dict_pos:'tentativas' %}
+                        <tr>
+                            <td>{{ tent.usuario|default_if_none:'Anônimo' }}</td>
+                            <td>{{ tent.estilo|default_if_none:'Não definido' }}</td>
+                            <td>{{ tent.data }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="100%">
+                                Nenhuma resposta registrada para esse teste.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endwith %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!-- <canvas id="mediaPorCurso" style="display: none;"></canvas> -->
 {% endfor %}
 
 {% if curso %}
-<br>
-<br>
-<hr class="mt-5 mb-3">
-
-<canvas id="evolucaoCurso" style="max-width: 600px; max-height: 600px;"></canvas>
 
 
 
+<div class="relatorio">
+    <h3 class="title border-custom-primary">Evolução do curso</h3>
+    <div class="box">
+        <canvas id="evolucaoCurso"></canvas>
+    </div>
+</div>
+
+
+</div>
 {% endif %}
 
 {% endblock %}
@@ -158,7 +167,7 @@
             title: {
                 display: true,
                 text: 'Resultados do Teste #{{teste.pk}}',
-                fontSize: 30,
+                fontSize: 0,
                 fontColor: '#273c75'
             },
             scales: {
@@ -260,7 +269,7 @@
             title: {
                 display: true,
                 text: 'Evolução do Curso',
-                fontSize: 30,
+                fontSize: 0,
                 fontColor: '#273c75'
             },
             elements: {
