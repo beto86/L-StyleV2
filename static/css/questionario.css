@@ -1,15 +1,16 @@
 /*iniciar teste*/
 .testeLogin {
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 2.5%;
   min-height: calc(100vh - 60px);
-  padding: 50px 0;
+  padding: 80px 0;
 }
 .testeLogin section {
-  width: 600px;
-  padding: 30px;
+  width: fit-content;
+  height: 300px;
+  padding: 40px;
   margin: 5px;
   border-radius: 5px;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2);
@@ -30,8 +31,6 @@
 }
 .testeLogin section form {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
   flex-direction: column;
   height: 150px;
 }
@@ -45,11 +44,11 @@
 }
 #btnSubmit,
 #btn-sem-chave {
-  margin-top: 15px;
   width: fit-content;
+  margin: 15px auto 15px 0!important;
   height: 40px;
-  margin-top: 30px;
   font-size: 0.9rem;
+  padding: 25px;
   color: #f5f5f5;
 }
 /*questionario*/
@@ -486,6 +485,12 @@
   }
 }
 
+@media screen and (max-width: 1100px) {
+  .testeLogin section{
+    width: 70%;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .question-main {
     flex-direction: column;
@@ -562,6 +567,9 @@
   .testeLogin section {
     width: 95%;
   }
+  .testeLogin section{
+    width: 85%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -579,6 +587,9 @@
   .questionary .inner .hero {
     top: 38px;
   }
+  .testeLogin section{
+    width: 95%;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -588,9 +599,10 @@
   .question-info .footer {
     padding-right: 95px;
   }
-}
-
-@media screen and (max-width: 450px) {
+  .testeLogin section{
+    width: 100%;
+    padding: 40px 20px;
+  }
   .question-info .footer {
     padding-right: 75px;
   }
