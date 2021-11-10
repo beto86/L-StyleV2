@@ -8,27 +8,30 @@
 {% endblock %}
 
 {% block conteudo %}
-<h2> {{questionario}} </h2>
+<div class="feedback">
+    <div class="top">
+        <h2 class="title border-custom-primary"> {{questionario}} </h2>
 
-<form action="" method="POST">
+            <form action="" method="POST" class="info">                
 
+                <canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>
 
-    <hr>
+                
 
-    <canvas id="myChart" style="max-width: 600px; max-height: 600px;"></canvas>
+                <div class="container-fluid">
+                    <p class="type">Você é um <strong>{{estilo}}</strong></p>
 
-    <hr>
+                    <p class="wayLearning">E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
 
-    <div class="container-fluid">
-        <p>Seu estilo de aprendizagem é <strong>{{estilo}}</strong></p>
+                    <h2 class="desc-title">Descrição do estilo e forma de aprender </h2>
+                    <p class="desc-text">{{desc_estilo}}</p>
 
-        <p>E sua forma de aprender é por <strong>{{forma1}}</strong> e <strong>{{forma2}}</strong></p>
-
-        <p>Descrição do estilo e forma de aprender: {{desc_estilo}}</p>
-
-        <p>Recomendações do estilo e forma de aprender: {{rec_estilo}}</p>
+                    <h2 class="desc-title">Recomendações do estilo e forma de aprender</h2>
+                    <p class="desc-text">{{rec_estilo}}</p>
+                </div>
+            </form>
     </div>
-</form>
+</div>
 
 {% endblock %}
 
