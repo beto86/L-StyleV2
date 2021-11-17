@@ -175,6 +175,7 @@
   height: calc(100% - 80px);
   overflow-y: auto;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .nav-active {

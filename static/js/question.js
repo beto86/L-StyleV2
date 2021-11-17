@@ -106,6 +106,9 @@ function changeQuestion(element, source = "") {
     var cover = document.getElementsByClassName('protected')[0];
     var resp = [];
     var questao = 0;
+    var target = element.offsetTop;
+
+    document.getElementsByClassName('question-nav')[0].scrollTop = target;
 
     if (source == "") {
         numControl = document.getElementsByClassName('nav-active')[0].parentElement.getAttribute('questao');
