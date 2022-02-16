@@ -408,7 +408,7 @@ ul#login-nav{
 
 .info-block-statics {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 50px;
+  padding: 20px 10px;
   margin-left: 0;
   display: flex;
   width: auto;
@@ -715,6 +715,7 @@ ul#login-nav{
   div#slide-inicial .welcome-info h1 {
     width: 90%;
     text-shadow: 2px 2px #ffc107;
+    font-size: 2em;
   }
   div#slide-inicial img {
     width: 100%;
@@ -723,6 +724,7 @@ ul#login-nav{
   }
   .titulo-home {
     text-align: center;
+    font-size: 0.7em;
   }
   /* Responsivo Grafico*/
   .info-block-statics {
@@ -846,3 +848,22 @@ ul#login-nav{
     padding: 4px;
   }
 }
+
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+  .titulo-home {
+    font-size: 0.8em;
+  }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {  }
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

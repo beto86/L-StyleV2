@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body onload="dataAutomatima()">
 
     <!-- Bloco com o menu principal -->
     {% block menu %}
@@ -214,13 +214,13 @@
                     <div class="icone"><!--style="background: rgba(0, 0, 0, 0);" Fundo sem cor-->
                         <img src="{% static 'img/L-StyleLogotipo.png' %}" width="100%" class="img-cover"> <!--Definir Imagens Logo L-Styles-->
                     </div>
-                    <p>@L-style 2021</p>
+                    <p>L-style <span class="inner_date"></span></p>
                 </div>
                 <div>
                     <div class="icone" style="background: rgba(0, 0, 0, 0);">
                         <img src="{% static 'img/utfpr_logo.png' %}" width="100%" class="img-cover"> <!--Definir Imagens Logo UTFPR-->
                     </div>
-                    <p>UTFPR 2021</p>
+                    <p>UTFPR <span class="inner_date"></span></p>
                 </div>
             </div>
             <div class="right">

@@ -10,3 +10,15 @@ function trocarTestemonial(numero){
     testemonial_descricao.classList.remove('hidden');
 
 }
+
+function dataAutomatima() {
+    let data = new Date();
+
+    var ano = data.getFullYear();
+
+    let documento_data = document.getElementsByClassName('inner_date');
+
+    for(let i in documento_data){
+        documento_data[i].innerHTML = ano;
+    }
+}
