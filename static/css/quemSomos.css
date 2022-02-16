@@ -38,6 +38,7 @@ aside p {
 
 .time-item {
   width: 23.5%;
+  min-width: 360px;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1);
   padding: 10px 25px;
   margin-right: 2%;
@@ -73,7 +74,7 @@ aside p {
 
 .time-item .corpo {
   font-size: 0.9rem;
-  font-style: italic;
+  font-style: normal;
 }
 
 .time-item .footer {
@@ -119,6 +120,7 @@ aside p {
   color: rgb(94, 94, 94);
 }
 /*responsive*/
+
 @media screen and (max-width: 1100px) {
   .time-item {
     width: 28%;
@@ -131,6 +133,7 @@ aside p {
 }
 @media screen and (max-width: 900px) {
   .time-item {
+    min-width: 200px;
     width: 47%;
     margin-right: 6%;
   }
@@ -140,11 +143,25 @@ aside p {
   .first-row .time-item:nth-of-type(3) {
     margin-right: 6%;
   }
-  .second-row .time-item {
-    width: 47% !important;
-  }
+
   .second-row .time-item:nth-of-type(2) {
     margin-right: 0 !important;
+  }
+}
+@media screen and (max-width: 850px) {
+  .row {
+    justify-content: space-around;
+  }
+  .time-item {
+    width: 360px;
+    margin-right: 0!important;
+  }
+}
+@media screen and (max-width: 800px) {
+
+  .time-item {
+    width: 400px;
+    margin-right: 0!important;
   }
 }
 @media screen and (max-width: 600px) {

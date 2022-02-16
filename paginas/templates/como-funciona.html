@@ -4,34 +4,24 @@
 
 {% load crispy_forms_tags %}
 
-{% block titulo %}
-<title>Ajuda</title> <!--Mudou aqui-->
-{% endblock %}
-
 {% block conteudo %}
 <main class="container" id="pag-help" > <!--Mudou-->
     <!-- navbar para o indice da pagina -->
     <nav class="d-xl-block col-xl-2 bd-toc indice-esquerda"> <!--Div virou nav class indice-esquerda-->
         <ul class="section-nav list-group list-group-flush">
-            <li class="toc-entry toc-h2 list-group-item"><a href="#manual-do-aluno">1. Manual do Aluno</a>
-                <ul class="list-group list-group-flush">
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#registro-do-aluno">1.1. Registro de Aluno</a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#acessar-a-aplicacao">1.2. Acessar a aplicação</a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#fazer-teste">1.3. Fazer Teste </a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#fazer-teste-sem-acesso">1.4. Fazer o Teste Sem Acesso no Login</a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-tentativas-aluno">1.5. Relatório de Tentativas do Aluno</a></li>
-                </ul>
-            </li>
-            <li class="toc-entry toc-h2 list-group-item"><a href="#manual-professor">2. Manual do Professor</a>
-                <ul class="list-group list-group-flush">
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#registro-do-professor">2.1. Registro de Professor</a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#acessar-a-aplicacao-do-professor">2.2. Acessar a aplicação</a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#criar-teste">2.3. Criar Teste </a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-tentativas-por-aluno">2.4. Relatório de Tentativas por Aluno</a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-da-turma">2.5. Relatório da Turma</a></li>
-                    <li class="toc-entry toc-h3 list-group-item"><a href="#relatorio-do-curso">2.6. Relatório de Curso</a></li>
-                </ul>
-            </li>
+            <li class="toc-entry toc-h2 list-group-item"><a href="#manual-do-aluno">1. Manual do Aluno</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#registro-do-aluno">1.1. Registro de Aluno</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#acessar-a-aplicacao">1.2. Acessar a aplicação</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#fazer-teste">1.3. Fazer Teste </a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#fazer-teste-sem-acesso">1.4. Fazer o Teste Sem Acesso no Login</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#relatorio-tentativas-aluno">1.5. Relatório de Tentativas do Aluno</a></li>
+            <li class="toc-entry toc-h2 list-group-item"><a href="#manual-professor">2. Manual do Professor</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#registro-do-professor">2.1. Registro de Professor</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#acessar-a-aplicacao-do-professor">2.2. Acessar a aplicação</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#criar-teste">2.3. Criar Teste </a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#relatorio-tentativas-por-aluno">2.4. Relatório de Tentativas por Aluno</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento"><a href="#relatorio-da-turma">2.5. Relatório da Turma</a></li>
+                <li class="toc-entry toc-h3 list-group-item deslocamento" style="border-bottom-width: 1px;"><a href="#relatorio-do-curso">2.6. Relatório de Curso</a></li>
 
         </ul>
     </nav>

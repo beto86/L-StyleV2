@@ -1,6 +1,8 @@
 .relatorio-container {
+  max-width: 1400px;
   min-height: 100vh;
   padding: 35px 50px;
+  margin: 0 auto;
 }
 
 .relatorio {

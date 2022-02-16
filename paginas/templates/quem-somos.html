@@ -1,6 +1,5 @@
-{% extends 'modelo.html' %} {% load static %} {% block titulo %}
-<title>Quem somos</title>
-{% endblock %} {% block conteudo %}
+{% extends 'modelo.html' %} {% load static %}
+{% block conteudo %}
 <div class="about">
   <aside>
     <h1 class="border-custom-primary">Quem somos</h1>
@@ -21,8 +20,8 @@
         <div class="top">
           <div class="hr"></div>
           <div class="img" style="background-image: url({% static 'img/sobre/time/roberto.jpeg' %});"></div>
-          <h2>Roberto</h2>
-          <p>Graduando em ciência da computação</p>
+          <h2>Roberto Rocha</h2>
+          <p>Graduando em Ciência da Computação</p>
         </div>
         <div class="corpo">
             Aluno da UTFPR-SH, responsável pelo projeto e desenvolvedor do L-Style. 
@@ -43,7 +42,7 @@
           <div class="hr"></div>
           <div class="img" style="background-image: url({% static 'img/sobre/time/brasil.png' %});"></div>
           <h2>Guilherme W S Brasil</h2>
-          <p>Graduando em ciência da computação</p>
+          <p>Graduando em Ciência da Computação</p>
         </div>
         <div class="corpo">
             Aluno da UTFPR-SH, colaborou com o front-end do projeto L-Style. 
@@ -65,7 +64,7 @@
           <div class="hr"></div>
           <div class="img" style="background-image: url({% static 'img/sobre/time/huff.jpeg' %});"></div>
           <h2>Guilherme Feier Huff</h2>
-          <p>Graduando em ciência da computação</p>
+          <p>Graduando em Ciência da Computação</p>
         </div>
         <div class="corpo">
             Aluno da UTFPR-SH, colaborou com o front-end do projeto L-Style.
@@ -97,8 +96,8 @@
         </div>
         <div class="footer">
 
-          <a href="https://www.linkedin.com/in/giani-ito-505b944/" target="_blank">
-            <img src="{% static 'img/sobre/contato/linkedin.png' %}" />
+          <a href="http://lattes.cnpq.br/4727340593582933" target="_blank">
+            <img src="{% static 'img/sobre/contato/lattes.png' %}" />
           </a>
           <img src="{% static 'img/sobre/contato/gmail.png' %}" class="btnEmail" />
         </div>
@@ -118,8 +117,8 @@
             Professora na IFPR campus Paranavaí e Co-orientadora do projeto L-Style.
         </div>
         <div class="footer">
-          <a href="https://linkedin.com" target="_blank">
-            <img src="{% static 'img/sobre/contato/linkedin.png' %}" />
+          <a href="http://lattes.cnpq.br/7560936930373791" target="_blank">
+            <img src="{% static 'img/sobre/contato/lattes.png' %}" />
           </a>
           <img src="{% static 'img/sobre/contato/gmail.png' %}" class="btnEmail" />
         </div>
@@ -140,7 +139,7 @@
         </div>
         <div class="footer">
           <a href="https://linkedin.com" target="_blank">
-            <img src="{% static 'img/sobre/contato/linkedin.png' %}" />
+            <img src="{% static 'img/sobre/contato/lattes.png' %}" />
           </a>
           <img src="{% static 'img/sobre/contato/gmail.png' %}" class="btnEmail" />
         </div>
@@ -175,8 +174,29 @@
   function copyEmail(element) {
     var email = element.dataset.email;
 
-    element.innerHTML = '<i class="fas fa-check"></i>';
-    navigator.clipboard.writeText(email);
+    if (window.clipboardData && window.clipboardData.setData) {
+
+      element.innerHTML = '<i class="fas fa-check"></i>';
+      navigator.clipboard.writeText(email);
+
+    }else if (document.queryCommandSupported && document.queryCommandSupported("copy")){
+      var textarea = document.createElement("textarea");
+      textarea.textContent = email;
+      textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
+      document.body.appendChild(textarea);
+      textarea.select();
+      element.innerHTML = '<i class="fas fa-check"></i>';
+      try {
+          return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+      }
+      catch (ex) {
+          console.warn("Copy to clipboard failed.", ex);
+          return false;
+      }
+      finally {
+          document.body.removeChild(textarea);
+      }
+    }
   }
   document.getElementById('quemSomos').classList.add("color-custom-primary");
 </script>

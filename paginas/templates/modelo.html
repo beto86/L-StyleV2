@@ -10,9 +10,13 @@
     <meta name="author" content="Roberto Rocha">
 
     {% block titulo %}
-    <title>Teste de Kolb</title>
+    <title>L-Style</title>
     {% endblock %}
 
+    <link rel="shortcut icon" href="{% static 'img/L-StyleLogotipo.png' %}" type="image/png">
+		<link rel="icon" sizes="192x192" href="{% static 'img/L-StyleLogotipo.png' %}">
+		<link rel="apple-touch-icon" href="{% static 'img/L-StyleLogotipo.png' %}" type="image/png">
+    
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -88,11 +92,6 @@
                             </ul>
                         </li>
                         {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link color-custom-primary-hover" href="{% url 'sobre' %}" id="sobre">
-                                Sobre
-                            </a>
-                        </li>
                         {% if request.user.is_authenticated %}
                             {% if not request.user.groups.all.0.name == 'Aluno'  %}
                             <li class="nav-item dropdown">
@@ -106,11 +105,29 @@
                             </li>
                             {% endif %}
                         {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                 L-Style
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'quem-somos' %}">
+                                        Quem Somos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'sobre' %}">
+                                       Sobre
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link color-custom-primary-hover" href="{% url 'quem-somos' %}" id="quemSomos">
-                                Quem somos
+                            <a class="nav-link color-custom-primary-hover" href="{% url 'como-funciona' %}">
+                                Help
                             </a>
                         </li>
+
                     </ul>
                 </div>
                 {% if request.user.is_authenticated %}
@@ -123,7 +140,7 @@
                 </ul>
                 {% endif %}
 
-                <ul class="login-nav navbar-nav bg-color-custom-primary" style="margin: 0 25px!important;">
+                <ul class="login-nav navbar-nav bg-color-custom-primary" id="login-nav">
                 
                     <!-- para o login -->
 
@@ -197,7 +214,7 @@
                     <div class="icone"><!--style="background: rgba(0, 0, 0, 0);" Fundo sem cor-->
                         <img src="{% static 'img/L-StyleLogotipo.png' %}" width="100%" class="img-cover"> <!--Definir Imagens Logo L-Styles-->
                     </div>
-                    <p>@L styles 2021</p>
+                    <p>@L-style 2021</p>
                 </div>
                 <div>
                     <div class="icone" style="background: rgba(0, 0, 0, 0);">
@@ -249,6 +266,18 @@
         <script src="{% static 'js/SetChart.js' %}"></script>
         <script src="{% static 'js/setTestemonial.js' %}"></script> <!-- Script dos Comentarios-->
         <script src="{% static 'js/relatorio.js' %}"></script>
+        
+        <script>
+          var name = '';
+          var userName = document.getElementById('username').innerHTML;
+          userName = userName.split("=");
+      
+          if(window.screen.width <= 650){
+              name = userName[0].substring(0, 4)+"="+userName[1].substring(0,4)+"...";
+              document.getElementsByClassName("login-nav")[0].style.width = "fit-content";
+              document.getElementById('username').innerHTML = name;
+          }
+        </script>
 
         {% endblock %}
 
@@ -256,5 +285,7 @@
 
     </div>
 </body>
+
+
 
 </html>

@@ -1,6 +1,5 @@
-{% extends 'modelo.html' %} {% load static %} {% block titulo %}
-<title>Sobre o Projeto</title>
-{% endblock %} {% block conteudo %}
+{% extends 'modelo.html' %} {% load static %}
+{% block conteudo %}
 <section class="aboutThis">
   <div class="top">
     <div class="item border-custom-primary-color">
@@ -28,38 +27,39 @@
       </p>
     </div>
   </div>
-  <div class="body bg-color-custom-primary-gradient">
+  <div class="body" style="background-image: url('{% static 'img/bg.jpg' %}');">
+    <div class="cover"></div>
     <div class="left">
-        <h1>Estilos de aprendizagem</h1>
+        <h1 class="color-custom-primary">Estilos de aprendizagem</h1>
         <p>Os estilos de aprendizagem são maneiras que as pessoas utilizam para aprender (DANTAS, 2021). Kalatzis (2008) afirma que cada pessoa tem formas diferentes de aprendizado, tais como, aprender e guardar informações. Seja por fatores hereditários, experiências ou exigências do ambiente em que cada pessoa vive, ou sendo influenciada a forma como ela aprimora suas habilidades.<br>
 
         Também, cabe ressaltar que não há melhor ou pior forma de ensinar, mas sim uma possível adaptação do estilo adequado para que se obtenha uma boa experiência.</p>
     </div>
     <div class="right">
       <div class="item">
-        <div class="icon">
+        <div class="icon border-custom-primary-color" >
           <i class="fas fa-brain"></i>
         </div>
         <h2>Divergente</h2>
         <p>Estilo que aborda principalmente a criatividade do indivíduo no qual emprega sua imaginação gerando assim novas ideias, dúvidas e discussões tornando prazeroso o ato de buscar várias maneiras de aprender. São pessoas reflexivas, criativas.</p>
       </div>
       <div class="item">
-        <div class="icon">
-          <i class="fas fa-brain"></i>
+        <div class="icon border-custom-primary-color">
+          <i class="fas fa-atom"></i>
         </div>
         <h2>Assimilador</h2>
         <p>Pessoas que desenvolvem modelos teóricos e raciocínio, dedução não focando apenas no uso prático de teoria. Ou seja, são pessoas mais teóricas, conceituais. </p>
       </div>
       <div class="item">
-        <div class="icon">
-          <i class="fas fa-brain"></i>
+        <div class="icon border-custom-primary-color">
+          <i class="fas fa-shapes"></i>
         </div>
         <h2>Convergente</h2>
         <p>São aqueles práticos dedicados a resolver problemas usando como ferramenta o raciocínio dedutivo, gostam de usar um passo a passo, um plano estrutural. Ou seja, são pessoas estruturais, sequenciais.</p>
       </div>
       <div class="item">
-        <div class="icon">
-          <i class="fas fa-brain"></i>
+        <div class="icon border-custom-primary-color">
+          <i class="fas fa-flask"></i>
         </div>
         <h2>Acomodador</h2>
         <p>Os que assumem riscos resolvendo problemas abordados, aplicando a intuição no processo de aprendizagem com tentativas e erros. Ou seja, são pessoas mais práticas, vivenciais.</p>
