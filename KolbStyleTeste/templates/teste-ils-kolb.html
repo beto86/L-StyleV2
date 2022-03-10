@@ -24,68 +24,80 @@
     </div>
 </div>
 
-<!--Começo do conteudo do questionario-->
-<div class="question-main">
-    <div class="question-info">
-        <div class="protected"></div>
-        <div class="title">
-            <h2>Onde estou?</h2>
-        </div>
-        <ul class="question-nav scroll">
-            <div class="vertical-line"></div>
-            {% for q in questoes %}
-            <li id="nav{{q.ordem}}" onclick="changeQuestion(this)" ordem="{{q.ordem}}" questao="{{q.ordem}}">
-                <p>{{q.ordem}} - {{ q.descricao }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-        <div class="footer">
-            <span id="footerInfo">0 de 12 completa</span>
-            <button class="btn btn-expand border-custom-primary" onclick="expand(this)" data-state="hidden">Expandir <i class="fas fa-expand-arrows-alt color-custom-primary"></i></button>
-        </div>
+<div class="question-container d-flex flex-column ">
+    <div class="mb-2 mb-md-0">
+        <a href="{% url 'index' %}" class="btn btn-warning text-light py-4 "><i style="margin-right: 10px;" class="fas fa-home text-light"></i>Home</a>
     </div>
-    <div class="questionary">
-        <div class="inner now">
-            <div class="hero">
-                <img class="hero-img" src="{% static 'img/perguntas/default.svg' %}">
+
+    <div id="info-questions" class="bg-info text-light d-flex justify-content-between align-items-center" onclick="openInfoQuestions()">  
+        <i class="fas fa-info-circle px-4"></i>
+        
+    </div>
+
+    <!--Começo do conteudo do questionario-->
+    <div class="question-main">
+    
+        <div class="question-info">
+            <div class="protected"></div>
+            <div class="title">
+                <h2>Onde estou?</h2>
             </div>
-            <div class="question-self">
-                <form action="" method="POST" id="questionaryForm">
-                    {% csrf_token %}
-                    <!-- bloco de perguntas -->
-                    {% for q in questoes %}
-                    <div class="questoes question-item d-none" id="questao{{q.ordem}}">
-                        <div class="title">
-                            <h1>{{ q.descricao }}</h1>
+            <ul class="question-nav scroll">
+                <div class="vertical-line"></div>
+                {% for q in questoes %}
+                <li id="nav{{q.ordem}}" onclick="changeQuestion(this)" ordem="{{q.ordem}}" questao="{{q.ordem}}">
+                    <p>{{q.ordem}} - {{ q.descricao }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="footer">
+                <span id="footerInfo">0 de 12 completa</span>
+                <button class="btn btn-expand border-custom-primary" onclick="expand(this)" data-state="hidden">Expandir <i class="fas fa-expand-arrows-alt color-custom-primary"></i></button>
+            </div>
+        </div>
+        <div class="questionary">
+            <div class="inner now">
+                <div class="hero">
+                    <img class="hero-img" src="{% static 'img/perguntas/default.svg' %}">
+                </div>
+                <div class="question-self">
+                    <form action="" method="POST" id="questionaryForm">
+                        {% csrf_token %}
+                        <!-- bloco de perguntas -->
+                        {% for q in questoes %}
+                        <div class="questoes question-item d-none" id="questao{{q.ordem}}">
+                            <div class="title ">
+                                <h1>{{ q.descricao }}</h1>
+                            </div>
+                            <!-- Colocar as opções  -->
+                            {% for opc in opcoes|get_dict_pos:q.pk %}
+                            <ul class="opcoes my-2" ordem="{{opc.ordem}}" data-respondido="false" data-questao="{{opc.questao.ordem}}">
+                                <li>
+                                    <span>{{ opc.descricao }}</span>
+                                    <div class="custom-group" id="{{opc.ordem}}" data-photo="{{opc.img}}">
+                                        <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_1" onclick="radioSetValue(this)">1</label>
+                                        <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_2" onclick="radioSetValue(this)">2</label>
+                                        <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_3" onclick="radioSetValue(this)">3</label>
+                                        <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_4" onclick="radioSetValue(this)">4</label>
+                                        <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_1" value="1" questao="{{opc.questao.ordem}}" hidden>
+                                        <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_2" value="2" questao="{{opc.questao.ordem}}" hidden>
+                                        <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_3" value="3" questao="{{opc.questao.ordem}}" hidden>
+                                        <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_4" value="4" questao="{{opc.questao.ordem}}" hidden>
+                                    </div>
+                                </li>
+                            </ul>
+                            {% endfor %}
+                            <div class="button-group">
+                                {% if q.ordem < 12 %}
+                                <button type="button" class="btn_proximo btn-next" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>
+                                {% else %}
+                                <button type="submit" class="btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>
+                                {% endif %}
+                            </div>
                         </div>
-                        <!-- Colocar as opções  -->
-                        {% for opc in opcoes|get_dict_pos:q.pk %}
-                        <ul class="opcoes my-2" ordem="{{opc.ordem}}" data-respondido="false" data-questao="{{opc.questao.ordem}}">
-                            <li>
-                                <span>{{ opc.descricao }}</span>
-                                <div class="custom-group" id="{{opc.ordem}}" data-photo="{{opc.img}}">
-                                    <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_1" onclick="radioSetValue(this)">1</label>
-                                    <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_2" onclick="radioSetValue(this)">2</label>
-                                    <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_3" onclick="radioSetValue(this)">3</label>
-                                    <label class="custom-radio" id="lbl_opc_{{opc.questao.ordem}}_{{opc.ordem}}_4" onclick="radioSetValue(this)">4</label>
-                                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_1" value="1" questao="{{opc.questao.ordem}}" hidden>
-                                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_2" value="2" questao="{{opc.questao.ordem}}" hidden>
-                                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_3" value="3" questao="{{opc.questao.ordem}}" hidden>
-                                    <input type="radio" name="opc_{{q.ordem}}_{{opc.ordem}}" id="input_opc_{{opc.questao.ordem}}_{{opc.ordem}}_4" value="4" questao="{{opc.questao.ordem}}" hidden>
-                                </div>
-                            </li>
-                        </ul>
                         {% endfor %}
-                        <div class="button-group">
-                            {% if q.ordem < 12 %}
-                            <button type="button" class="btn_proximo btn-next" ordem="{{q.ordem}}" questao="{{q.ordem}}">Próximo</button>
-                            {% else %}
-                            <button type="submit" class="btn_enviar" ordem="{{q.ordem}}" questao="{{q.ordem}}">Enviar respostas</button>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ function trocarTestemonial(numero){
 
 }
 
-function dataAutomatima() {
+function dataAutomatica() {
     let data = new Date();
 
     var ano = data.getFullYear();

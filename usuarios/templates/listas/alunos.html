@@ -5,19 +5,18 @@
 
 {% block conteudo %}
 
-<hr>
+
 {{testes}}
-<hr>
+
 {% for t in tentativas %}
 {{t}}
 {%endfor%}
-<hr>
+
 {{orm}}
 <div class="lista">
     <div class="tableHead">
         <h3>Lista de Alunos registrados</h3>
     </div>
-    <hr>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
             <thead>

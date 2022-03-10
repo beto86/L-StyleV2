@@ -1,4 +1,4 @@
-/*iniciar teste*/
+ /*iniciar teste*/
 .testeLogin {
   display: flex;
   justify-content: center;
@@ -52,7 +52,20 @@
   color: #f5f5f5;
 }
 /*questionario*/
-.question-main {
+
+
+#info-questions{
+  position: absolute;
+  right: 0;
+  top: 50px;
+  border-radius: 5px 0 0 5px;
+  max-width: 50%;
+  min-height: 100px;
+}
+
+.question-container{
+  width: 100%;
+  height: 100vh;
   /* background: linear-gradient(337deg, rgba(37, 45, 68, 1) 40%, rgba(79, 92, 128, 1) 80%); */
   background-color: #225194;
   background-image: -webkit-gradient(
@@ -67,6 +80,8 @@
   background-image: -ms-linear-gradient(45deg, #225194 0, #029797 100%);
   background-image: -o-linear-gradient(45deg, #225194, #029797);
   background-image: linear-gradient(135deg, #225194, #029797);
+}
+.question-main {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -495,9 +510,14 @@
 @media screen and (max-width: 1000px) {
   .question-main {
     flex-direction: column;
-    height: fit-content;
+    /* height: fit-content; */
     padding: 70px 0;
+    overflow-y: auto;
   }
+  #info-questions{
+    max-width: 90%;
+  }
+
   .question-info {
     width: 90%;
     margin-bottom: 25px;

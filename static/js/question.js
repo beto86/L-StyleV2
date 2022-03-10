@@ -270,7 +270,7 @@ function radioSetValue(element) {
     parent.dataset.value = value;
     photoTag.style.animationDuration = "1s";
     photoTag.classList.add("fade-toggle");
-
+    
     setTimeout(() => {
         photoTag.src = photo;
     }, 500);
@@ -297,3 +297,21 @@ function expand(element) {
     }
 }
 
+function openInfoQuestions(){
+    let element = document.getElementById('info-questions');
+    
+    if(element.childElementCount === 1){
+        let newDiv = document.createElement("div");
+
+        newDiv.classList.add("p-3");
+        newDiv.id = "inner-info-questions"
+        
+        newDiv.innerHTML = "<p class='m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in quam in neque bibendum lacinia et eu ex. Aliquam mauris dui, gravida eget tincidunt at, vestibulum sit amet metus. Praesent ut posuere diam. Suspendisse tellus sapien, cursus at ex non, mollis vehicula quam.</p>";
+        
+        element.appendChild(newDiv);
+    }else{
+        let newDiv = document.getElementById('inner-info-questions');
+        element.removeChild(newDiv);
+    }
+
+}
