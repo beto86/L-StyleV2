@@ -57,10 +57,19 @@
 #info-questions{
   position: absolute;
   right: 0;
-  top: 50px;
+  top: 10px;
   border-radius: 5px 0 0 5px;
   max-width: 50%;
   min-height: 100px;
+}
+
+#info-questions .fa-info-circle{
+  font-size: 1.4rem;
+}
+
+#info-questions #question-label-text {
+  font-size: 1.1rem;
+  font-weight: 300;
 }
 
 .question-container{
@@ -484,6 +493,8 @@
   animation: none;
 }
 
+
+
 /*responsive*/
 
 @media screen and (max-width: 1200px) {
@@ -611,6 +622,10 @@
   .testeLogin section{
     width: 95%;
   }
+  #info-questions{
+    max-width: 98%;
+    z-index: 4;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -631,6 +646,7 @@
     width: 125px;
     right: 20px;
   }
+  
 }
 
 @media screen and (max-width: 350px) {

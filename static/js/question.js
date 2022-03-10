@@ -1,4 +1,5 @@
 //global
+//global
 var base_path = "/static/img/perguntas/";
 var questionFirstImg = true;
 var scrollCount = 0;
@@ -303,11 +304,14 @@ function openInfoQuestions(){
     if(element.childElementCount === 1){
         let newDiv = document.createElement("div");
 
-        newDiv.classList.add("p-3");
+        newDiv.className = "p-3";
         newDiv.id = "inner-info-questions"
+        let newText = document.createElement("p");
+        newText.id = "question-label-text";
+        newText.className = 'm-0 text-light';
+        newText.innerHTML = "Em cada pergunta: Assinale ( 4 ) na resposta que você tem mais afinidade, ( 3 ) para respostas com afinidade média, ( 2 ) resposta com pouca afinidade e ( 1 ) para a resposta que menos combina com você";
         
-        newDiv.innerHTML = "<p class='m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in quam in neque bibendum lacinia et eu ex. Aliquam mauris dui, gravida eget tincidunt at, vestibulum sit amet metus. Praesent ut posuere diam. Suspendisse tellus sapien, cursus at ex non, mollis vehicula quam.</p>";
-        
+        newDiv.appendChild(newText);
         element.appendChild(newDiv);
     }else{
         let newDiv = document.getElementById('inner-info-questions');
