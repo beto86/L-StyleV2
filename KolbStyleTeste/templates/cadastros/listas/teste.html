@@ -6,7 +6,7 @@
 <div class="lista">
     <div class="tableHead">
         <h3>Lista de testes registrados</h3>
-        <a href="{% url 'cadastrar-teste' %}" class="btn btn-primary btn-sm">Adicionar Teste</a>
+        <a href="{% url 'cadastrar-teste' %}" class="btn btn-two btn-primary btn-sm">Adicionar Teste</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
@@ -31,10 +31,10 @@
                     <td>{{teste.chave_acesso}}</td>
                     <td>{{teste.ativo}}</td>
                     <td>
-                        <a href="{% url 'editar-teste' teste.pk %}" class="btn btn-table btn-sm" title="Editar">
+                        <a href="{% url 'editar-teste' teste.pk %}" class="btn btn-two btn-table btn-sm" title="Editar">
                             <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
                         </a>
-                        <a href="{% url 'excluir-teste' teste.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                        <a href="{% url 'excluir-teste' teste.pk %}" class="btn btn-two btn-table btn-sm" title="Excluir">
                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                         </a>
                     </td>

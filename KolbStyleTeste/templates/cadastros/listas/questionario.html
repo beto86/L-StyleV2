@@ -7,7 +7,7 @@
     <div class="tableHead">
         <h3>Lista de questionários registrados</h3>
         {% if request.user.groups.all.0.name == 'Administrador'  %}
-        <a href="{% url 'cadastrar-questionario' %}" class="btn btn-primary btn-sm">Adicionar Questionário</a>
+        <a href="{% url 'cadastrar-questionario' %}" class="btn btn-two btn-primary btn-sm">Adicionar Questionário</a>
         {% endif %}
     </div>
     <div class="table-responsive">
@@ -26,10 +26,10 @@
                     <td>{{ questionario.descricao }}</td>
                     {% if request.user.groups.all.0.name == 'Administrador'  %}
                     <td>
-                        <a href="{% url 'editar-questionario' questionario.pk %}" class="btn btn-table btn-sm" title="Editar">
+                        <a href="{% url 'editar-questionario' questionario.pk %}" class="btn btn-two btn-table btn-sm" title="Editar">
                             <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
                         </a>
-                        <a href="{% url 'excluir-questionario' questionario.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                        <a href="{% url 'excluir-questionario' questionario.pk %}" class="btn btn-two btn-table btn-sm" title="Excluir">
                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                         </a>
                         

@@ -6,7 +6,7 @@
 <div class="lista">
     <div class="tableHead">
         <h3>Lista de turmas registradas</h3>
-        <a href="{% url 'cadastrar-turma' %}" class="btn btn-primary btn-sm">Adicionar Turma</a>
+        <a href="{% url 'cadastrar-turma' %}" class="btn btn-two btn-primary btn-sm">Adicionar Turma</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped" id="tabela-listar">
@@ -31,10 +31,10 @@
                     <td>{{ turma.turno }}</td>
                     <td>{{ turma.instituicao }}</td>
                     <td>
-                        <a href="{% url 'editar-turma' turma.pk %}" class="btn btn-table btn-sm" title="Editar">
+                        <a href="{% url 'editar-turma' turma.pk %}" class="btn btn-two btn-table btn-sm" title="Editar">
                             <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
                         </a>
-                        <a href="{% url 'excluir-turma' turma.pk %}" class="btn btn-table btn-sm" title="Excluir">
+                        <a href="{% url 'excluir-turma' turma.pk %}" class="btn btn-two btn-table btn-sm" title="Excluir">
                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                         </a>
 
