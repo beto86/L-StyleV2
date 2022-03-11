@@ -63,6 +63,13 @@
   min-height: 100px;
 }
 
+#inner-info-questions{
+  -webkit-animation: flipTitle 0.5s;
+  -moz-animation: flipTitle 0.5s;
+  -o-animation: flipTitle 0.5s;
+  animation: flipTitle 0.5s;
+}
+
 #info-questions .fa-info-circle{
   font-size: 1.4rem;
 }
@@ -771,3 +778,19 @@
     transform: translateY(25px);
   }
 }
+
+@keyframes flipTitle {
+  from{
+      -webkit-transform: rotateX(90deg);
+      -moz-transform: rotateX(90deg);
+      -o-transform: rotateX(90deg);
+      transform: rotateX(90deg);
+  }
+  to{
+      -webkit-transform: rotateX(0deg);
+      -moz-transform: rotateX(0deg);
+      -o-transform: rotateX(90deg);
+      transform: rotateX(0deg);
+  }
+}
+

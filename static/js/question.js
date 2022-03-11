@@ -313,6 +313,7 @@ function openInfoQuestions(){
         
         newDiv.appendChild(newText);
         element.appendChild(newDiv);
+        
     }else{
         let newDiv = document.getElementById('inner-info-questions');
         element.removeChild(newDiv);
