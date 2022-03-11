@@ -1,0 +1,104 @@
+
+/*P HELP*/
+main.container#pag-help {
+    display: flex;
+    position: relative;
+  }
+  /*Mudanças 02/11/2021*/
+  .indice-esquerda {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    padding: 0 20px 0 30px;
+    width: 350px;
+    height: 80vh;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+main.container .indice-esquerda a {
+    color: #2b2b2b;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+@media screen and (max-width: 1250px) {
+      /*P HELP*/
+    .indice-esquerda {
+        width: 300px;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+    /*P HELP*/
+    #pag-help {
+        display: flex;
+        flex-direction: column;
+        margin-top: 80px;
+    }
+    main.container .indice-esquerda .deslocamento {
+        margin-left: 10px;
+    }
+
+    .indice-esquerda {
+        width: 100%;
+        background-color: #fff;
+        top: 50px;
+        position: fixed;
+        height: 100px;
+        padding: 0 20px;
+        box-shadow: 10px 5px 5px #c1c1c1;
+    }
+    
+
+    .indice-esquerda ul.section-nav {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        height: 100%;
+        flex-wrap: nowrap;
+    }
+    .indice-esquerda ul.section-nav li{
+        min-width: 200px;
+        border-radius: 5px;
+        border: #ffcc44 1px solid;
+        margin-right: 4px;
+        height: 66px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+
+    }
+    main.container aside.login-form-container {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    /*P HELP*/
+    #pag-help {
+        width: 100%;
+        margin: 30px auto;
+    }
+    .indice-esquerda {
+        padding: 5px;
+    }
+}
+
+
+@media screen and (max-width: 770px){
+    main.container#pag-help{
+      margin-top: 80px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    /*HELP*/
+    .indice-esquerda {
+      padding: 30px 0;
+    }
+  }

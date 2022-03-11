@@ -191,32 +191,6 @@
   margin-bottom: 50px;
 }
 
-/*P HELP*/
-main.container#pag-help {
-  display: flex;
-  position: relative;
-}
-/*Mudanças 02/11/2021*/
-.indice-esquerda {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  padding: 0 20px 0 30px;
-  width: 350px;
-  height: 80vh;
-  overflow-y: auto;
-}
-@media screen and (min-width: 1000px){
-  main.container .indice-esquerda .deslocamento {
-    margin-left: 10px;
-  }
-}
-main.container .indice-esquerda a {
-  color: #2b2b2b;
-  text-decoration: none;
-  font-size: 0.8rem;
-}
-
 main.container aside.login-form-container {
   max-width: 1200px;
   min-width: 300px;
@@ -247,10 +221,7 @@ main.container aside.login-form-container div.bd-content .mapa-mental {
     column-gap: 4%;
     padding: 65px 10px 300px;
   }
-  /*P HELP*/
-  .indice-esquerda {
-    width: 300px;
-  }
+
 }
 
 @media screen and (max-width: 1100px) {
@@ -265,45 +236,6 @@ main.container aside.login-form-container div.bd-content .mapa-mental {
 @media screen and (max-width: 1000px) {
   .float-card {
     width: 95%;
-  }
-  /*P HELP*/
-  #pag-help {
-    display: flex;
-    flex-direction: column;
-    margin-top: 80px;
-  }
-  .indice-esquerda {
-    width: 100%;
-    background-color: #fff;
-    top: 50px;
-    position: fixed;
-    height: 100px;
-    padding: 0 20px;
-    box-shadow: 10px 5px 5px #c1c1c1;
-  }
-
-  .indice-esquerda ul.section-nav {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    height: 100%;
-    flex-wrap: nowrap;
-  }
-  .indice-esquerda ul.section-nav li{
-    min-width: 200px;
-    border-radius: 5px;
-    border: #ffcc44 1px solid;
-    margin-right: 4px;
-    height: 66px;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-
-  }
-  main.container aside.login-form-container {
-    width: 100%;
   }
 }
 
@@ -368,21 +300,10 @@ main.container aside.login-form-container div.bd-content .mapa-mental {
   .float-card .text {
     width: 70%;
   }
-  /*P HELP*/
-  #pag-help {
-    width: 100%;
-    margin: 30px auto;
-  }
-  .indice-esquerda {
-    padding: 5px;
-  }
+  
 }
 
-@media screen and (max-width: 770px){
-  main.container#pag-help{
-    margin-top: 80px;
-  }
-}
+
 @media screen and (max-width: 650px) {
   .float-card .text {
     width: 85%;
@@ -417,10 +338,6 @@ main.container aside.login-form-container div.bd-content .mapa-mental {
   .body .left {
     border: none;
     width: 100%;
-  }
-  /*HELP*/
-  .indice-esquerda {
-    padding: 30px 0;
   }
 }
 @media screen and (max-width: 420px){

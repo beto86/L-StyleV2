@@ -250,9 +250,10 @@ ul#login-nav{
 }
 
 .btn-welcome {
-  width: 175px;
-  height: 50px;
-  background: transparent;
+  width: 200px;
+  height: 60px;
+  background: #FFF;
+  border-radius: 8px;
 }
 
 .carousel-inner {
