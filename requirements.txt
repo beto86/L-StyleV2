@@ -14,6 +14,7 @@ dash-core-components==1.17.1
 dash-html-components==1.1.4
 dash-table==4.12.0
 Django==3.2.4
+django-utils-six==2.0
 django-autocomplete-light==3.8.2
 django-braces==1.14.0
 django-chartjs==2.2.1

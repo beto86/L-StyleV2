@@ -1,11 +1,56 @@
+/*
+#bar-stable{
+    height: 59px;
+}
 
-/*P HELP*/
+#navbar-help {
+    height: 90vh;
+    overflow-y: auto;
+}
+#navbar-help h1{
+    font-size: 1.9rem;
+    text-align: center;
+    width: 100%;
+}
+#navbar-help a{
+    color: #2b2b2b;
+    font-size: 0.8rem;
+}
+#navbar-help a.deslocamento{
+    margin-left: 8px;
+}
+#navbar-help a.deslocamento-2{
+    margin-left: 12px;
+}
+#navbar-help a.nav-link:hover{
+    color: #ffcc44;
+}
+*/
+
+/* P HELP*/
 main.container#pag-help {
     display: flex;
     position: relative;
-  }
-  /*Mudanças 02/11/2021*/
-  .indice-esquerda {
+}
+
+
+main.container aside.login-form-container {
+  max-width: 1200px;
+  min-width: 300px;
+  margin: 50px 0 50px auto;
+  width: 70%;
+  padding-right: 0;
+}
+main.container aside.login-form-container div.bd-content {
+  width: 100%;
+  max-width: 1200px;
+}
+
+main.container aside.login-form-container div.bd-content .mapa-mental {
+  width: 100%;
+}
+
+.indice-esquerda {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -14,6 +59,12 @@ main.container#pag-help {
     height: 80vh;
     overflow-y: auto;
     margin-top: 10px;
+}
+#pag-help li.deslocamento{
+    margin-left: 8px;
+}
+#pag-help li.deslocamento-2{
+    margin-left: 16px;
 }
 
 main.container .indice-esquerda a {
@@ -27,17 +78,18 @@ main.container .indice-esquerda a {
     .indice-esquerda {
         width: 300px;
     }
-
+    
 }
 
 @media screen and (max-width: 1000px) {
     /*P HELP*/
+
     #pag-help {
         display: flex;
         flex-direction: column;
         margin-top: 80px;
     }
-    main.container .indice-esquerda .deslocamento {
+    #pag-help li.deslocamento, #pag-help li.deslocamento-2{
         margin-left: 10px;
     }
 
@@ -76,10 +128,12 @@ main.container .indice-esquerda a {
         width: 100%;
     }
 
+
 }
 
 @media screen and (max-width: 800px) {
     /*P HELP*/
+
     #pag-help {
         width: 100%;
         margin: 30px auto;
@@ -87,10 +141,12 @@ main.container .indice-esquerda a {
     .indice-esquerda {
         padding: 5px;
     }
+
 }
 
 
 @media screen and (max-width: 770px){
+
     main.container#pag-help{
       margin-top: 80px;
     }
@@ -98,7 +154,9 @@ main.container .indice-esquerda a {
 
 @media screen and (max-width: 500px) {
     /*HELP*/
+
     .indice-esquerda {
       padding: 30px 0;
     }
-  }
+  
+} 

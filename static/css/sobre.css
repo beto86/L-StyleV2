@@ -191,21 +191,6 @@
   margin-bottom: 50px;
 }
 
-main.container aside.login-form-container {
-  max-width: 1200px;
-  min-width: 300px;
-  margin: 50px 0 50px auto;
-  width: 70%;
-  padding-right: 0;
-}
-main.container aside.login-form-container div.bd-content {
-  width: 100%;
-  max-width: 1200px;
-}
-
-main.container aside.login-form-container div.bd-content .mapa-mental {
-  width: 100%;
-}
 @media screen and (max-width: 1300px){
   .float-card {
     height: 550px;
