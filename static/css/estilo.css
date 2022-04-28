@@ -7,15 +7,15 @@
 }
 
 .color-custom-primary {
-  color: #ffcc44 !important;
+  color: #ffd833 !important;
 }
 
 .color-custom-primary-hover:hover {
-  color: #ffcc44 !important;
+  color: #ffd833 !important;
 }
 
 .bg-color-custom-primary {
-  background-color: #ffcc44;
+  background-color: #ffd833;
 }
 
 .bg-color-custom-primary-gradient {
@@ -28,21 +28,21 @@
 }
 
 .border-custom-primary {
-  border: 2px solid #ffcc44;
-  color: #ffcc44;
+  border: 2px solid #ffd833;
+  color: #ffd833;
   transition: background 0.8s;
 }
 
 .border-custom-primary-color {
-  border-color: #ffcc44 !important;
+  border-color: #ffd833 !important;
 }
 
 .border-custom-primary-color-bottom {
-  border-bottom-color: #ffcc44 !important;
+  border-bottom-color: #ffd833 !important;
 }
 
 .border-custom-primary-full {
-  background-color: #ffcc44 !important;
+  background-color: #ffd833 !important;
   color: #fff !important;
 }
 
@@ -54,7 +54,7 @@
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
-  border-left: 3px solid #ffcc44;
+  border-left: 3px solid #ffd833;
   margin-bottom: 20px;
 }
 
@@ -304,7 +304,7 @@ ul#login-nav{
 
 .welcome-aside .card-container {
   background: #fff;
-  color: #ffcc44;
+  color: #ffd833;
   height: 100px;
   margin-bottom: 15px;
 }
@@ -382,7 +382,7 @@ ul#login-nav{
   width: 20px;
   height: 25px;
   font-size: 1rem;
-  background-color: #ffcc44;
+  background-color: #ffd833;
   padding: 0px 12.5px;
   margin-right: 35px;
   border-radius: 5px;

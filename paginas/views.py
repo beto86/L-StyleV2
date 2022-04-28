@@ -18,3 +18,6 @@ class QuemSomosView(TemplateView):
 
 class ComoFuncionaView(TemplateView):
     template_name = 'como-funciona.html'
+
+class SugestaoProf(TemplateView):
+    template_name = 'sugestao.html'
