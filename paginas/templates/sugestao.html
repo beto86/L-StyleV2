@@ -1,0 +1,102 @@
+{% extends 'modelo.html' %} {% load static %}
+{% block conteudo %}
+<div class="loading" id="loadingElement">
+    <img src="{% static 'img/L-StyleLogotipo.png' %}" class="logo animate">
+    <p class="animate">Carregando...</p>
+</div>
+<section class="guide">
+    <div class="respMenu">
+
+    </div>
+    <aside class="asideMenu">
+        <div class="greatings">
+            <div>
+                <h1>Seja bem vindo(a)</h1>
+                <p>Visitante</p>
+            </div>
+            <i class="fas fa-times respClose color-custom-primary" onclick="resphandle(false)"></i>
+        </div>
+        <ul class="itens" id="menuList">
+            <li>
+                <i class="fas fa-play"></i>
+                <p>Instruções iniciais</p>
+            </li>
+            <li class="active">
+                <i class="fas fa-brain"></i>
+                <p>Divergente</p>
+            </li>
+            <li>
+                <i class="fas fa-shapes"></i>
+                <p>Convergente</p>
+            </li>
+            <li>
+                <i class="fas fa-atom"></i>
+                <p>Assimilador</p>
+            </li>
+            <li>
+                <i class="fas fa-flask"></i>
+                <p>Acomodador</p>
+            </li>
+        </ul>
+        <p class="hr" style="display: none;">Tipo de conteudo</p>
+        <ul class="itens" style="display: none;">
+            <li>
+                <i class="fas fa-align-justify"></i>
+                <p>Conteúdo para leitura</p>
+            </li>
+            <li class="active">
+                <i class="fas fa-video"></i>
+                <p>Conteúdo em videos</p>
+            </li>
+            <li>
+                <i class="fas fa-shapes"></i>
+                <p>Convergente</p>
+            </li>
+            <li>
+                <i class="fas fa-tools"></i>
+                <p>Sugestões de ferramentas</p>
+            </li>
+            <li>
+                <i class="fas fa-tools"></i>
+                <p>Links úteis</p>
+            </li>
+        </ul>
+        <div class="btnResp bg-color-custom-primary" onclick="resphandle(true)">
+            <i class="fas fa-arrow-right"></i>
+        </div>
+    </aside>
+    <main class="content">
+        <div class="realContent" id="realContent">
+
+        </div>
+        <div class="bottomMenu">
+            <span class="btnShow"><i class="fas fa-arrow-left"></i></span>
+            <button class="active">
+                <i class="fas fa-align-justify"></i>
+                <p>Conteúdo para leitura</p>
+            </button>
+            <button>
+                <i class="fas fa-video"></i>
+                <p>Conteúdo em videos</p>
+                <span class="notEnable">Indisponivel</span>
+            </button>
+            <button>
+                <i class="fas fa-tools"></i>
+                <p>Sugestões de ferramentas</p>
+                <span class="notEnable">Indisponivel</span>
+            </button>
+            <button>
+                <i class="fas fa-tools"></i>
+                <p>Links úteis</p>
+                <span class="notEnable">Indisponivel</span>
+            </button>
+            <span class="btnHide"><i class="fas fa-arrow-right"></i></span>
+        </div>
+    </main>
+</section>
+
+
+{% endblock %} {% block scripts %}
+<script src="{% static 'js/informacao.js' %}"></script>
+<script src="{% static 'js/sugestao.js' %}"></script>
+{% endblock %}
